@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Code Generator</title>
+    <title>DA-ERP | Item Code Generator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <script>
+        // Inline Auth Guard
+        if (!sessionStorage.getItem('itemgen_session')) {
+            window.location.href = 'login.html';
+        }
+    </script>
 </head>
 <body>
     <div class="app-container">
@@ -18,315 +24,416 @@
                     <path d="M8 21H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     <path d="M12 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                <h1>Item Code Generator</h1>
+                <h1>🏢 Item Code Generator</h1>
             </div>
-            <p class="subtitle">Streamlined product data creation and NetSuite integration</p>
+            <p class="subtitle">DA-ERP · Streamlined product data creation and NetSuite integration</p>
         </header>
 
+        <!-- User Bar (populated by auth.js) -->
+        <div id="userBar"></div>
+
+
+        <!-- Sticky Result Banner: Item Code & Item Name -->
+        <div class="result-banner" id="resultBanner">
+            <div class="result-banner-item">
+                <span class="result-banner-label">Item Code</span>
+                <span class="result-banner-value" id="bannerItemCode">-</span>
+            </div>
+            <div class="result-banner-divider"></div>
+            <div class="result-banner-item">
+                <span class="result-banner-label">Item Name</span>
+                <span class="result-banner-value" id="bannerItemName">-</span>
+            </div>
+        </div>
+
         <main class="main-content">
-            <section class="card input-section">
-                <h2>1. Manual Input</h2>
-                <p class="section-desc">Enter the item specifications below.</p>
-                <form id="itemForm" class="form-grid">
+            <!-- My Requests Section (Dashboard) -->
+            <section class="card" id="myRequestsSection">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2>📋 1. My Requests (คำขอของฉัน)</h2>
+                    <button type="button" id="btnShowRequestForm" class="btn btn-primary" style="background: linear-gradient(135deg, #10b981, #059669);">➕ New Item Request</button>
+                </div>
+                <p class="section-desc">รายการคำขอสร้าง Item ที่คุณส่ง</p>
+                <div class="request-filters">
+                    <button type="button" class="filter-btn active" data-filter="all">ทั้งหมด</button>
+                    <button type="button" class="filter-btn" data-filter="pending">⏳ รออนุมัติ</button>
+                    <button type="button" class="filter-btn" data-filter="completed">✅ เสร็จ</button>
+                    <button type="button" class="filter-btn" data-filter="rejected">❌ ปฏิเสธ</button>
+                </div>
+                <div id="requestList" class="request-list">
+                    <div class="request-empty">กำลังโหลด...</div>
+                </div>
+            </section>
+
+            <!-- Form Container (Hidden by default) -->
+            <div id="requestFormContainer" class="hidden">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2 style="margin:0;">Create New Item Code</h2>
+                    <button type="button" id="btnHideRequestForm" class="btn btn-secondary">🔙 Back to Dashboard</button>
+                </div>
+
+                <section class="card input-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <h2 style="margin: 0; display: flex; align-items: center; gap: 0.75rem;">✏️ 2. Manual Input (กรอกข้อมูล)</h2>
+                        <button type="button" id="btnTriggerAI" class="btn btn-primary" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); padding: 0.5rem 1rem; font-size: 0.85rem; height: 38px; width: auto; flex: initial; margin: 0; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);">✨ Auto-fill with Gemini AI</button>
+                    </div>
+                    <p class="section-desc">Enter the item specifications below.</p>
+
+
+
+                <form id="itemForm" class="multi-section-form">
                     
-                    <div class="form-group">
-                        <label for="type">Type</label>
-                        <select id="type" name="type">
-                            <option value="">Select Type</option>
-                            <option value="Parent">Parent</option>
-                            <option value="Child">Child</option>
-                        </select>
-                    </div>
+                    <fieldset class="form-section">
+                        <legend class="section-legend">📝 General Information</legend>
+                        <div class="form-grid">
 
-                    <div class="form-group">
-                        <label for="itemGroup">Item Group</label>
-                        <select id="itemGroup" name="itemGroup">
-                            <option value="">Select Group</option>
-                            <option value="1">Finished Goods - Paper</option>
-                            <option value="2">Finished Goods - Non Paper</option>
-                            <option value="3">Semi Product</option>
-                            <option value="4">Raw Material</option>
-                            <option value="5">Consume</option>
-                            <option value="6">Packaging</option>
-                            <option value="F">Fixed Asset</option>
-                            <option value="S">Service</option>
-                            <option value="L">Sales - Discounts, DN, CN</option>
-                            <option value="M">Marketing</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="type">Type</label>
+                                <select id="type" name="type">
+                                    <option value="">Select Type</option>
+                                    <option value="Parent">Parent</option>
+                                    <option value="Child">Child</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="subGroup">Item Sub-Group</label>
-                        <select id="subGroup" name="subGroup">
-                            <option value="">Select Sub-Group</option>
-                            <option value="CZ">Cutsize</option>
-                            <option value="GC">Cutsize (Guillotine)</option>
-                            <option value="GK">Cutsize (Guillotine) (Small Pack)</option>
-                            <option value="CK">Cutsize (Small Pack)</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="subGroup">Item Sub-Group</label>
+                                <select id="subGroup" name="subGroup">
+                                    <option value="">Select Sub-Group</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="domExp">Domestic/Export</label>
-                        <select id="domExp" name="domExp">
-                            <option value="">Select Region</option>
-                            <option value="E">Export</option>
-                            <option value="D">Domestic</option>
-                            <option value="M">Export (Mat Change)</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="itemGroup">Item Group</label>
+                                <select id="itemGroup" name="itemGroup">
+                                    <option value="">Select Group</option>
+                                    <option value="1">Finished Goods - Paper</option>
+                                    <option value="2">Finished Goods - Non Paper</option>
+                                    <option value="3">Semi Product</option>
+                                    <option value="4">Raw Material</option>
+                                    <option value="5">Consume</option>
+                                    <option value="6">Packaging</option>
+                                    <option value="F">Fixed Asset</option>
+                                    <option value="S">Service</option>
+                                    <option value="L">Sales - Discounts, DN, CN</option>
+                                    <option value="M">Marketing</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="brand">Brand</label>
-                        <select id="brand" name="brand">
-                            <option value="">Select Brand</option>
-                            <option value="AL">Alpine</option>
-                            <option value="AP">aA-PRINT</option>
-                            <option value="BP">Big Paper</option>
-                            <option value="BU">Big Paper APC</option>
-                            <option value="CA">Calipage</option>
-                            <option value="C1">DA Colour Print</option>
-                            <option value="C3">DA Colour Print (Promotion)</option>
-                            <option value="DC">Double A Colour</option>
-                            <option value="DA">Double A</option>
-                            <option value="DZ">Double A (1759)</option>
-                            <option value="DY">Double A (Promotion)</option>
-                            <option value="D1">Double A FSC</option>
-                            <option value="D2">Double A FSC France</option>
-                            <option value="D3">Double A FSC Australia</option>
-                            <option value="D4">Double A FSC (CIE163)</option>
-                            <option value="DN">Double A China</option>
-                            <option value="DG">Double A Green</option>
-                            <option value="DK">Double A Korea</option>
-                            <option value="DU">Double A APC</option>
-                            <option value="DS">Double A USA</option>
-                            <option value="DR">Double A Nigeria</option>
-                            <option value="DP">Double A Philippines</option>
-                            <option value="DI">Double A India</option>
-                            <option value="AC">Double A Care</option>
-                            <option value="EZ">EZ Copy Blue</option>
-                            <option value="EG">Eagle Green</option>
-                            <option value="ER">Eagle Red</option>
-                            <option value="FS">FlagShip</option>
-                            <option value="GK">Giant King Kong</option>
-                            <option value="GP">GreenImpact</option>
-                            <option value="HP">Hi-Plus</option>
-                            <option value="HN">Hi-Plus China</option>
-                            <option value="HE">Hi-Plus Eng</option>
-                            <option value="HK">Hi-Plus Korea</option>
-                            <option value="HU">Hi-Plus APC</option>
-                            <option value="HF">Hi-Plus Alizay</option>
-                            <option value="HB">Hyper Buro</option>
-                            <option value="LY">Lyreco</option>
-                            <option value="OK">OK</option>
-                            <option value="OG">One Green</option>
-                            <option value="1K">One K</option>
-                            <option value="PG">Pergamy</option>
-                            <option value="PM">Premier</option>
-                            <option value="BB">Q-Biz Blue</option>
-                            <option value="BR">Q-Biz Red</option>
-                            <option value="QB">Quality Blue</option>
-                            <option value="QG">Quality Green</option>
-                            <option value="QO">Quality Orange</option>
-                            <option value="FO">Quality Orange FSC</option>
-                            <option value="QP">Quality Purple</option>
-                            <option value="FP">Quality Purple FSC</option>
-                            <option value="QR">Quality Red</option>
-                            <option value="QY">Quality Yellow</option>
-                            <option value="RF">Reflex</option>
-                            <option value="R1">Reflex FSC</option>
-                            <option value="RC">Reflex Colour</option>
-                            <option value="ZG">Shih-Tzu Green</option>
-                            <option value="ZP">Shih-Tzu Pink</option>
-                            <option value="SB">Siberian</option>
-                            <option value="SC">Smart Copy</option>
-                            <option value="SE">Smart Copy ECO</option>
-                            <option value="SU">Smart Copy APC</option>
-                            <option value="ST">Smartist</option>
-                            <option value="SF">Smartist FSC France</option>
-                            <option value="SN">Smartist China</option>
-                            <option value="SA">Smartist Alizay</option>
-                            <option value="SK">Smartist Korea</option>
-                            <option value="SG">So Good</option>
-                            <option value="SR">Speed Red</option>
-                            <option value="SY">Speed Yellow</option>
-                            <option value="T2">Top Print 92</option>
-                            <option value="T7">Top Print 97</option>
-                            <option value="TB">Turbo</option>
-                            <option value="WT">Winter</option>
-                            <option value="WU">Winter APC</option>
-                            <option value="WB">White Box</option>
-                            <option value="QA">Quality - AA</option>
-                            <option value="QH">Quality - HTP</option>
-                            <option value="QL">Quality</option>
-                            <option value="ON">One</option>
-                            <option value="OF">OFM</option>
-                            <option value="SI">Sunrise</option>
-                            <option value="WM">W.B. Mason</option>
-                            <option value="OM">OfficeMate</option>
-                            <option value="FC">Fair Copy</option>
-                            <option value="OP">OnPoint</option>
-                            <option value="GB">Global</option>
-                            <option value="LM">Link Max</option>
-                            <option value="SM">Simon</option>
-                            <option value="NB">No Brand</option>
-                            <option value="ST">Shih-Tzu</option>
-                            <option value="AR">aro</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="domExp">Domestic/Export</label>
+                                <select id="domExp" name="domExp">
+                                    <option value="">Select Region</option>
+                                    <option value="E">Export</option>
+                                    <option value="D">Domestic</option>
+                                    <option value="M">Export (Mat Change)</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="gram">Gram (GSM)</label>
-                        <input type="number" id="gram" name="gram" placeholder="e.g. 080" min="0" max="999" step="1">
-                    </div>
+                            <div class="form-group">
+                                <label for="calcShipCountry">Ship to Country</label>
+                                <select id="calcShipCountry" name="calcShipCountry">
+                                    <option value="">Select Country</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="size">Size</label>
-                        <input type="text" id="size" name="size" placeholder="e.g. A4, 210x297">
-                    </div>
+                            <div class="form-group">
+                                <label for="brand">Brand</label>
+                                <select id="brand" name="brand">
+                                    <option value="">Select Brand</option>
+                                    <option value="AL">Alpine</option>
+                                    <option value="AP">aA-PRINT</option>
+                                    <option value="BP">Big Paper</option>
+                                    <option value="BU">Big Paper APC</option>
+                                    <option value="CA">Calipage</option>
+                                    <option value="C1">DA Colour Print</option>
+                                    <option value="C3">DA Colour Print (Promotion)</option>
+                                    <option value="DC">Double A Colour</option>
+                                    <option value="DA">Double A</option>
+                                    <option value="DZ">Double A (1759)</option>
+                                    <option value="DY">Double A (Promotion)</option>
+                                    <option value="D1">Double A FSC</option>
+                                    <option value="D2">Double A FSC France</option>
+                                    <option value="D3">Double A FSC Australia</option>
+                                    <option value="D4">Double A FSC (CIE163)</option>
+                                    <option value="DN">Double A China</option>
+                                    <option value="DG">Double A Green</option>
+                                    <option value="DK">Double A Korea</option>
+                                    <option value="DU">Double A APC</option>
+                                    <option value="DS">Double A USA</option>
+                                    <option value="DR">Double A Nigeria</option>
+                                    <option value="DP">Double A Philippines</option>
+                                    <option value="DI">Double A India</option>
+                                    <option value="AC">Double A Care</option>
+                                    <option value="EZ">EZ Copy Blue</option>
+                                    <option value="EG">Eagle Green</option>
+                                    <option value="ER">Eagle Red</option>
+                                    <option value="FS">FlagShip</option>
+                                    <option value="GK">Giant King Kong</option>
+                                    <option value="GP">GreenImpact</option>
+                                    <option value="HP">Hi-Plus</option>
+                                    <option value="HN">Hi-Plus China</option>
+                                    <option value="HE">Hi-Plus Eng</option>
+                                    <option value="HK">Hi-Plus Korea</option>
+                                    <option value="HU">Hi-Plus APC</option>
+                                    <option value="HF">Hi-Plus Alizay</option>
+                                    <option value="HB">Hyper Buro</option>
+                                    <option value="LY">Lyreco</option>
+                                    <option value="OK">OK</option>
+                                    <option value="OG">One Green</option>
+                                    <option value="1K">One K</option>
+                                    <option value="PG">Pergamy</option>
+                                    <option value="PM">Premier</option>
+                                    <option value="BB">Q-Biz Blue</option>
+                                    <option value="BR">Q-Biz Red</option>
+                                    <option value="QB">Quality Blue</option>
+                                    <option value="QG">Quality Green</option>
+                                    <option value="QO">Quality Orange</option>
+                                    <option value="FO">Quality Orange FSC</option>
+                                    <option value="QP">Quality Purple</option>
+                                    <option value="FP">Quality Purple FSC</option>
+                                    <option value="QR">Quality Red</option>
+                                    <option value="QY">Quality Yellow</option>
+                                    <option value="RF">Reflex</option>
+                                    <option value="R1">Reflex FSC</option>
+                                    <option value="RC">Reflex Colour</option>
+                                    <option value="ZG">Shih-Tzu Green</option>
+                                    <option value="ZP">Shih-Tzu Pink</option>
+                                    <option value="SB">Siberian</option>
+                                    <option value="SC">Smart Copy</option>
+                                    <option value="SE">Smart Copy ECO</option>
+                                    <option value="SU">Smart Copy APC</option>
+                                    <option value="ST">Smartist</option>
+                                    <option value="SF">Smartist FSC France</option>
+                                    <option value="SN">Smartist China</option>
+                                    <option value="SA">Smartist Alizay</option>
+                                    <option value="SK">Smartist Korea</option>
+                                    <option value="SG">So Good</option>
+                                    <option value="SR">Speed Red</option>
+                                    <option value="SY">Speed Yellow</option>
+                                    <option value="T2">Top Print 92</option>
+                                    <option value="T7">Top Print 97</option>
+                                    <option value="TB">Turbo</option>
+                                    <option value="WT">Winter</option>
+                                    <option value="WU">Winter APC</option>
+                                    <option value="WB">White Box</option>
+                                    <option value="QA">Quality - AA</option>
+                                    <option value="QH">Quality - HTP</option>
+                                    <option value="QL">Quality</option>
+                                    <option value="ON">One</option>
+                                    <option value="OF">OFM</option>
+                                    <option value="SI">Sunrise</option>
+                                    <option value="WM">W.B. Mason</option>
+                                    <option value="OM">OfficeMate</option>
+                                    <option value="FC">Fair Copy</option>
+                                    <option value="OP">OnPoint</option>
+                                    <option value="GB">Global</option>
+                                    <option value="LM">Link Max</option>
+                                    <option value="SM">Simon</option>
+                                    <option value="NB">No Brand</option>
+                                    <option value="ST">Shih-Tzu</option>
+                                    <option value="AR">aro</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="sheet">Sheet</label>
-                        <input type="text" id="sheet" name="sheet" placeholder="e.g. 500">
-                    </div>
+                            <div class="form-group">
+                                <label for="grade">Grade</label>
+                                <select id="grade" name="grade">
+                                    <option value="">Select Grade</option>
+                                    <option value="A-COPY">A-COPY</option>
+                                    <option value="A-COPY HIGH SHADE">A-COPY HIGH SHADE</option>
+                                    <option value="aA-COPY (CIE150)">aA-COPY (CIE150)</option>
+                                    <option value="aA-COPY 150 (FSC MIX70%)">aA-COPY 150 (FSC MIX70%)</option>
+                                    <option value="aA-COPY 150 (PEFC)">aA-COPY 150 (PEFC)</option>
+                                    <option value="aA-Copy Green">aA-Copy Green</option>
+                                    <option value="aA-PRINT">aA-PRINT</option>
+                                    <option value="B-A-COPY">B-A-COPY</option>
+                                    <option value="B-A-COPY HIGH SHADE">B-A-COPY HIGH SHADE</option>
+                                    <option value="B-aA-COPY (CIE150)">B-aA-COPY (CIE150)</option>
+                                    <option value="B-aA-PRINT">B-aA-PRINT</option>
+                                    <option value="B-Hi Copy">B-Hi Copy</option>
+                                    <option value="B-Hi Copy+">B-Hi Copy+</option>
+                                    <option value="B-NEW Q COPY (CIE145)">B-NEW Q COPY (CIE145)</option>
+                                    <option value="B-SMART COPY (CIE145)">B-SMART COPY (CIE145)</option>
+                                    <option value="C-A-COPY">C-A-COPY</option>
+                                    <option value="C-aA-COPY (CIE150)">C-aA-COPY (CIE150)</option>
+                                    <option value="C-aA-COPY GREEN">C-aA-COPY GREEN</option>
+                                    <option value="C-aA-PRINT">C-aA-PRINT</option>
+                                    <option value="C-SMART PRINT">C-SMART PRINT</option>
+                                    <option value="CM">CM</option>
+                                    <option value="DA COLOUR PRINT 150">DA COLOUR PRINT 150</option>
+                                    <option value="DA COLOUR PRINT 150 (FSC MIX70%)">DA COLOUR PRINT 150 (FSC MIX70%)</option>
+                                    <option value="DA COLOUR PRINT 150 (PEFC)">DA COLOUR PRINT 150 (PEFC)</option>
+                                    <option value="HI COPY">HI COPY</option>
+                                    <option value="HI COPY+">HI COPY+</option>
+                                    <option value="HI-WC">HI-WC</option>
+                                    <option value="HONEY COMB">HONEY COMB</option>
+                                    <option value="JING JAI">JING JAI</option>
+                                    <option value="KT">KT</option>
+                                    <option value="NEW Q COPY (CIE145)">NEW Q COPY (CIE145)</option>
+                                    <option value="NEW Q COPY (FSC MIX70%)">NEW Q COPY (FSC MIX70%)</option>
+                                    <option value="NEW Q COPY (PEFC)">NEW Q COPY (PEFC)</option>
+                                    <option value="REFLEX (FSC MIX70%)">REFLEX (FSC MIX70%)</option>
+                                    <option value="REFLEX (PEFC)">REFLEX (PEFC)</option>
+                                    <option value="Reject">Reject</option>
+                                    <option value="SMART COPY (CIE145)">SMART COPY (CIE145)</option>
+                                    <option value="SMART PRINT">SMART PRINT</option>
+                                    <option value="WOL">WOL</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="layer">Layer</label>
-                        <select id="layer" name="layer">
-                            <option value="">Select Layer</option>
-                            <option value="2L">2L</option>
-                            <option value="3L">3L</option>
-                            <option value="4L">4L</option>
-                            <option value="5L">5L</option>
-                            <option value="6L">6L</option>
-                            <option value="8L">8L</option>
-                            <option value="9L">9L</option>
-                            <option value="16L">16L</option>
-                            <option value="17L">17L</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="gram">Gram (GSM)</label>
+                                <input type="number" id="gram" name="gram" placeholder="e.g. 080" min="0" max="999" step="1">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="wrapType">Wrap Type</label>
-                        <select id="wrapType" name="wrapType">
-                            <option value="">Select Wrap Type</option>
-                            <option value="Box AUTO">Box AUTO</option>
-                            <option value="Box MN">Box MN</option>
-                            <option value="Box MN (CVB)">Box MN (CVB)</option>
-                            <option value="SHR">SHR</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="size">Size</label>
+                                <input type="text" id="size" name="size" placeholder="e.g. A4, 210x297">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="palletType">Pallet Type</label>
-                        <select id="palletType" name="palletType">
-                            <option value="">Select Pallet</option>
-                            <option value="N">N</option>
-                            <option value="S">S</option>
-                            <option value="SS">SS</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="sheet">Sheet</label>
+                                <input type="text" id="sheet" name="sheet" placeholder="e.g. 500">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="reamBox">REAM / BOX</label>
-                        <select id="reamBox" name="reamBox">
-                            <option value="">Select REAM/BOX</option>
-                            <option value="1R">1R</option>
-                            <option value="2R">2R</option>
-                            <option value="3R">3R</option>
-                            <option value="4R">4R</option>
-                            <option value="5R">5R</option>
-                            <option value="8R">8R</option>
-                            <option value="10R">10R</option>
-                            <option value="10P">10P</option>
-                            <option value="24P">24P</option>
-                            <option value="CVB">CVB</option>
-                            <option value="None">None</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="reamPallet">Ream per Pallet</label>
+                                <input type="number" id="reamPallet" name="reamPallet" placeholder="e.g. 200" min="0" step="1">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="palletSize">Pallet Size</label>
-                        <select id="palletSize" name="palletSize">
-                            <option value="">Select Pallet Size</option>
-                            <option value="Pallet 25.5x36 inch BPO">Pallet 25.5x36 inch BPO</option>
-                            <option value="Pallet 25.5x38.5 inch">Pallet 25.5x38.5 inch</option>
-                            <option value="Pallet 26.8x34.6 inch (68x88 cm)">Pallet 26.8x34.6 inch (68x88 cm)</option>
-                            <option value="Pallet 30.3x38.2 inch (77x97 cm)">Pallet 30.3x38.2 inch (77x97 cm)</option>
-                            <option value="Pallet 31.5x47.2 inch (80x120 cm)">Pallet 31.5x47.2 inch (80x120 cm)</option>
-                            <option value="Pallet 35.5x47.5 inch">Pallet 35.5x47.5 inch</option>
-                            <option value="Pallet 37x45 inch">Pallet 37x45 inch</option>
-                            <option value="Pallet DIY 24.5x35.5 inch">Pallet DIY 24.5x35.5 inch</option>
-                            <option value="Pallet DIY 26.8x34.6 inch (68x88 cm)">Pallet DIY 26.8x34.6 inch (68x88 cm)</option>
-                            <option value="Pallet DIY 31.5x47.2 inch (80x120 cm)">Pallet DIY 31.5x47.2 inch (80x120 cm)</option>
-                            <option value="Pallet DIY 36x47.5 inch">Pallet DIY 36x47.5 inch</option>
-                            <option value="Pallet DIY 37x42 inch">Pallet DIY 37x42 inch</option>
-                            <option value="Pallet DIY 37x45 inch">Pallet DIY 37x45 inch</option>
-                            <option value="Pallet DIY 37x45 inch Shortleg">Pallet DIY 37x45 inch Shortleg</option>
-                            <option value="Pallet DIY 44x50 inch">Pallet DIY 44x50 inch</option>
-                            <option value="Pallet EURO 26.8x34.6 inch (680x880 mm)">Pallet EURO 26.8x34.6 inch (680x880 mm)</option>
-                            <option value="Pallet EURO 31.5x47.2 inch (80x120 cm)">Pallet EURO 31.5x47.2 inch (80x120 cm)</option>
-                            <option value="Pallet Special 22x38.5 Inch">Pallet Special 22x38.5 Inch</option>
-                            <option value="Pallet Special 26.5x38.5 inch">Pallet Special 26.5x38.5 inch</option>
-                            <option value="Pallet Special 37.5x51.5 inch">Pallet Special 37.5x51.5 inch</option>
-                            <option value="Slip Sheet - Plastic 1016x1143x3 mm">Slip Sheet - Plastic 1016x1143x3 mm</option>
-                            <option value="Slip Sheet - Plastic 1060x1170x1 mm">Slip Sheet - Plastic 1060x1170x1 mm</option>
-                            <option value="Slip Sheet - Plastic  Size 1016x1143x1.5 mm">Slip Sheet - Plastic  Size 1016x1143x1.5 mm</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="layer">Layer</label>
+                                <select id="layer" name="layer">
+                                    <option value="">Select Layer</option>
+                                    <option value="2L">2L</option>
+                                    <option value="3L">3L</option>
+                                    <option value="4L">4L</option>
+                                    <option value="5L">5L</option>
+                                    <option value="6L">6L</option>
+                                    <option value="8L">8L</option>
+                                    <option value="9L">9L</option>
+                                    <option value="10L">10L</option>
+                                    <option value="11L">11L</option>
+                                    <option value="12L">12L</option>
+                                    <option value="16L">16L</option>
+                                    <option value="17L">17L</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="location">Location for Work Order</label>
-                        <select id="location" name="location">
-                            <option value="">Select Location</option>
-                            <option value="PHTP_Production">PHTP_Production</option>
-                            <option value="PM1,2 (Roll)_Production">PM1,2 (Roll)_Production</option>
-                            <option value="PM1_Production">PM1_Production</option>
-                            <option value="PM2_Production">PM2_Production</option>
-                            <option value="PM3_Production">PM3_Production</option>
-                            <option value="PM HTP_Production">PM HTP_Production</option>
-                            <option value="CM">CM</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="wrapType">Wrap Type</label>
+                                <select id="wrapType" name="wrapType">
+                                    <option value="">Select Wrap Type</option>
+                                    <option value="Box AUTO">Box AUTO</option>
+                                    <option value="Box MN">Box MN</option>
+                                    <option value="Box MN (CVB)">Box MN (CVB)</option>
+                                    <option value="SHR">SHR</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="category">Item Category</label>
-                        <select id="category" name="category">
-                            <option value="">Select Category</option>
-                            <option value="Australia">Australia</option>
-                            <option value="France">France</option>
-                            <option value="Germany">Germany</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="palletType">Pallet Type</label>
+                                <select id="palletType" name="palletType">
+                                    <option value="">Select Pallet</option>
+                                    <option value="N">N</option>
+                                    <option value="S">S</option>
+                                    <option value="SS">SS</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="grade">Grade</label>
-                        <select id="grade" name="grade">
-                            <option value="">Select Grade</option>
-                            <option value="aA-COPY 150 (FSC MIX70%)">aA-COPY 150 (FSC MIX70%)</option>
-                            <option value="aA-COPY (CIE150)">aA-COPY (CIE150)</option>
-                            <option value="aA-Copy Green">aA-Copy Green</option>
-                            <option value="aA-PRINT">aA-PRINT</option>
-                            <option value="A-COPY">A-COPY</option>
-                            <option value="A-COPY HIGH SHADE">A-COPY HIGH SHADE</option>
-                            <option value="NEW Q COPY (CIE145)">NEW Q COPY (CIE145)</option>
-                            <option value="SMART COPY (CIE145)">SMART COPY (CIE145)</option>
-                            <option value="HI COPY">HI COPY</option>
-                            <option value="DA COLOUR PRINT 150 (FSC MIX70%)">DA COLOUR PRINT 150 (FSC MIX70%)</option>
-                            <option value="DA COLOUR PRINT 150">DA COLOUR PRINT 150</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="reamBox">REAM / BOX</label>
+                                <select id="reamBox" name="reamBox">
+                                    <option value="">Select REAM/BOX</option>
+                                    <option value="1R">1 Ream</option>
+                                    <option value="2R">2 Ream</option>
+                                    <option value="3R">3 Ream</option>
+                                    <option value="4R">4 Ream</option>
+                                    <option value="5R">5 Ream</option>
+                                    <option value="8R">8 Ream</option>
+                                    <option value="10R">10 Ream</option>
+                                    <option value="5P">5 Pack</option>
+                                    <option value="6P">6 Pack</option>
+                                    <option value="10P">10 Pack</option>
+                                    <option value="24P">24 pack</option>
+                                    <option value="40P">40 Pack</option>
+                                    <option value="48P">48 Pack</option>
+                                    <option value="CVB ไม่ห่อรีม">CVB ไม่ห่อรีม</option>
+                                </select>
+                                <div id="specialReamContainer" style="display: none; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <input type="checkbox" id="isSpecialReam" name="isSpecialReam" style="width: auto;">
+                                    <label for="isSpecialReam" style="font-size: 0.85rem; cursor: pointer; color: var(--primary); margin: 0;">Special Ream? (แสดงในชื่อสินค้า)</label>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="reamPallet">Ream per Pallet</label>
-                        <input type="number" id="reamPallet" name="reamPallet" placeholder="e.g. 200" min="0" step="1">
-                    </div>
+                            <div class="form-group">
+                                <label for="palletSize">Pallet Size</label>
+                                <select id="palletSize" name="palletSize">
+                                    <option value="">Select Pallet Size</option>
+                                    <option value="Pallet 25.5x36 inch BPO">Pallet 25.5x36 inch BPO</option>
+                                    <option value="Pallet 25.5x38.5 inch">Pallet 25.5x38.5 inch</option>
+                                    <option value="Pallet 26.8x34.6 inch (68x88 cm)">Pallet 26.8x34.6 inch (68x88 cm)</option>
+                                    <option value="Pallet 30.3x38.2 inch (77x97 cm)">Pallet 30.3x38.2 inch (77x97 cm)</option>
+                                    <option value="Pallet 31.5x47.2 inch (80x120 cm)">Pallet 31.5x47.2 inch (80x120 cm)</option>
+                                    <option value="Pallet 35.5x47.5 inch">Pallet 35.5x47.5 inch</option>
+                                    <option value="Pallet 37x45 inch">Pallet 37x45 inch</option>
+                                    <option value="Pallet DIY 24.5x35.5 inch">Pallet DIY 24.5x35.5 inch</option>
+                                    <option value="Pallet DIY 26.8x34.6 inch (68x88 cm)">Pallet DIY 26.8x34.6 inch (68x88 cm)</option>
+                                    <option value="Pallet DIY 31.5x47.2 inch (80x120 cm)">Pallet DIY 31.5x47.2 inch (80x120 cm)</option>
+                                    <option value="Pallet DIY 36x47.5 inch">Pallet DIY 36x47.5 inch</option>
+                                    <option value="Pallet DIY 37x42 inch">Pallet DIY 37x42 inch</option>
+                                    <option value="Pallet DIY 37x45 inch">Pallet DIY 37x45 inch</option>
+                                    <option value="Pallet DIY 37x45 inch Shortleg">Pallet DIY 37x45 inch Shortleg</option>
+                                    <option value="Pallet DIY 44x50 inch">Pallet DIY 44x50 inch</option>
+                                    <option value="Pallet EURO 26.8x34.6 inch (680x880 mm)">Pallet EURO 26.8x34.6 inch (680x880 mm)</option>
+                                    <option value="Pallet EURO 31.5x47.2 inch (80x120 cm)">Pallet EURO 31.5x47.2 inch (80x120 cm)</option>
+                                    <option value="Pallet Special 22x38.5 Inch">Pallet Special 22x38.5 Inch</option>
+                                    <option value="Pallet Special 26.5x38.5 inch">Pallet Special 26.5x38.5 inch</option>
+                                    <option value="Pallet Special 37.5x51.5 inch">Pallet Special 37.5x51.5 inch</option>
+                                    <option value="Slip Sheet - Plastic 1016x1143x3 mm">Slip Sheet - Plastic 1016x1143x3 mm</option>
+                                    <option value="Slip Sheet - Plastic 1060x1170x1 mm">Slip Sheet - Plastic 1060x1170x1 mm</option>
+                                    <option value="Slip Sheet - Plastic  Size 1016x1143x1.5 mm">Slip Sheet - Plastic  Size 1016x1143x1.5 mm</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location">Location for Work Order</label>
+                                <div id="location" class="checkbox-group-container">
+                                    <p style="font-size: 0.8rem; color: var(--text-muted);">Select Sub-Group first</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Item Category</label>
+                                <select id="category" name="category">
+                                    <option value="">Select Category</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="France">France</option>
+                                    <option value="Germany">Germany</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend class="section-legend">🔗 SAP Information</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>SAP Code1</label><input type="text" name="sapCode1"></div>
+                            <div class="form-group"><label>SAP Code2</label><input type="text" name="sapCode2"></div>
+                            <div class="form-group"><label>SAP Name</label><input type="text" name="sapName"></div>
+                        </div>
+                    </fieldset>
+
+
+                    
 
                 </form>
             </section>
 
             <section class="card output-section">
-                <h2>2. Automated Calculation</h2>
+                <h2>⚙️ 3. Automated Calculation (ระบบคำนวณ)</h2>
                 <p class="section-desc">Generated instantly based on your input.</p>
                 
                 <div id="duplicateAlert" class="alert warning hidden">
@@ -343,36 +450,193 @@
                     </div>
                 </div>
 
-                <div class="result-display">
-                    <div class="result-item highlight">
-                        <div class="result-label">Item Code</div>
-                        <div class="result-value" id="resItemCode">-</div>
-                    </div>
-                    
-                    <div class="result-item highlight">
-                        <div class="result-label">Item Name</div>
-                        <div class="result-value" id="resItemName">-</div>
-                    </div>
-                    
-                    <div class="result-row">
-                        <div class="result-item">
-                            <div class="result-label">Sale Unit (UOM)</div>
-                            <div class="result-value" id="resUom">-</div>
+                <div class="multi-section-form">
+                    <fieldset class="form-section section-info">
+                        <legend class="section-legend">📦 Item Information</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>MPS Color</label><input type="text" name="calcMpsColor" readonly></div>
+                            <div class="form-group"><label>BOI</label><input type="text" name="calcBoi" readonly></div>
+                            <div class="form-group"><label>Weight of Unit</label><input type="text" name="weightOfUnit" readonly></div>
+                            <div class="form-group"><label>Internal ID_Parent</label><input type="text" name="internalIdParent" readonly></div>
+                            <div class="form-group"><label>SubItem of Item Code</label><input type="text" name="subitemItemCode" readonly></div>
+                            <div class="form-group full-width"><label>SubItem of Item Name</label><input type="text" name="subitemItemName" readonly></div>
+                            <div class="form-group"><label>Brand Group</label><input type="text" name="brandGroup" readonly></div>
                         </div>
-                        <div class="result-item">
-                            <div class="result-label">Standard/Net Weight</div>
-                            <div class="result-value" id="resWeight">-</div>
+                    </fieldset>
+
+                    <fieldset class="form-section section-other">
+                        <legend class="section-legend">📊 Other Information</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>ความสูงสินค้า (Inch)</label><input type="text" name="heightInch" readonly></div>
+                            <div class="form-group"><label>Pallet Height (inch)</label><input type="text" name="palletHeightInch" readonly></div>
+                            <div class="form-group"><label>Standard/Net Weight (KG)</label><input type="text" name="stdNetWeightKg" readonly></div>
+                            <div class="form-group"><label>Gross Weight Markup (%)</label><input type="text" name="grossWeightMarkup" readonly></div>
+                            <div class="form-group"><label>Gross Weight</label><input type="text" name="calcGrossWeight" readonly></div>
+                            <div class="form-group"><label>Country of Origin</label><input type="text" name="countryOfOrigin" readonly></div>
+                            <div class="form-group"><label>HS Code</label><input type="text" name="hsCode" readonly></div>
+                            <div class="form-group"><label>Commodities</label><input type="text" name="commodities" readonly></div>
+                            <div class="form-group"><label>Block PM</label><input type="text" name="blockPm" readonly></div>
+                            <div class="form-group"><label>Sheet/Pallet</label><input type="text" name="sheetPallet" readonly></div>
                         </div>
-                    </div>
+                    </fieldset>
+
+                    <fieldset class="form-section section-class">
+                        <legend class="section-legend">🏷️ Classification Detail</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Subsidiary</label><input type="text" name="subsidiary" readonly></div>
+                            <div class="form-group"><label>Class (no hierarchy)</label><input type="text" name="classNoHierarchy" readonly></div>
+                            <div class="form-group"><label>Catagory Group</label><input type="text" name="catagoryGroup" readonly></div>
+                            <div class="form-group"><label>Mixed Pallet</label><input type="text" name="mixedPallet" readonly></div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section section-uom">
+                        <legend class="section-legend">📐 UOM Detail</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Unit Type</label><input type="text" name="unitTypeUom" readonly></div>
+                            <div class="form-group"><label>KG</label><input type="text" name="kg" readonly></div>
+                            <div class="form-group"><label>Ream/Pack</label><input type="text" name="reamPack" readonly></div>
+                            <div class="form-group"><label>UOM1</label><input type="text" name="uom1" readonly></div>
+                            <div class="form-group"><label>UOM2</label><input type="text" name="uom2" readonly></div>
+                            <div class="form-group"><label>Box</label><input type="text" name="box" readonly></div>
+                            <div class="form-group"><label>Pallet</label><input type="text" name="palletUom" readonly></div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section section-uom-type">
+                        <legend class="section-legend">⚖️ Unit of Measure</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Primary Units Type</label><input type="text" name="primaryUnitsType" readonly></div>
+                            <div class="form-group"><label>Primary Stock Unit</label><input type="text" name="primaryStockUnit" readonly></div>
+                            <div class="form-group"><label>Primary Purchase Unit</label><input type="text" name="primaryPurchaseUnit" readonly></div>
+                            <div class="form-group"><label>Primary Sale Unit</label><input type="text" name="primarySaleUnit" readonly></div>
+                            <div class="form-group"><label>Primary Consumption Unit</label><input type="text" name="primaryConsumptionUnit" readonly></div>
+                            <div class="form-group"><label>Primary Unit Type</label><input type="text" name="primaryUnitType" readonly></div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section section-mfg">
+                        <legend class="section-legend">🏭 MFG Detail</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>MFG Item Batch Qty</label><input type="text" name="mfgItemBatchQty" readonly></div>
+                            <div class="form-group"><label>Item Mapping DCS</label><input type="text" name="itemMappingDcs" readonly></div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section section-mrp">
+                        <legend class="section-legend">📅 MRP Detail</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>MRP Active</label><input type="text" name="mrpActive" readonly></div>
+                            <div class="form-group"><label>MFG Include in Auto Transfer Order</label><input type="text" name="mfgIncludeAutoTransfer" readonly></div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section section-acc">
+                        <legend class="section-legend">💰 Account Detail</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Expense/COGS Account</label><input type="text" name="expenseCogsAccount" readonly></div>
+                            <div class="form-group"><label>Expense/COGS Account_ID</label><input type="text" name="expenseCogsAccountId" readonly></div>
+                            <div class="form-group"><label>Asset Account</label><input type="text" name="assetAccount" readonly></div>
+                            <div class="form-group"><label>Asset Account_ID</label><input type="text" name="assetAccountId" readonly></div>
+                            <div class="form-group"><label>Income Account</label><input type="text" name="incomeAccount" readonly></div>
+                            <div class="form-group"><label>Income Account_ID</label><input type="text" name="incomeAccountId" readonly></div>
+                            <div class="form-group"><label>Scrap Account</label><input type="text" name="scrapAccount" readonly></div>
+                            <div class="form-group"><label>WIP Account</label><input type="text" name="wipAccount" readonly></div>
+                            <div class="form-group"><label>Tax Schedule</label><input type="text" name="taxSchedule" readonly></div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section section-web">
+                        <legend class="section-legend">🌐 Web Store Detail</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Display in Web Site</label><input type="text" name="displayInWebSite" readonly></div>
+                            <div class="form-group full-width"><label>Page Title</label><input type="text" name="pageTitle" readonly></div>
+                            <div class="form-group full-width"><label>Web Store Display Name</label><input type="text" name="webStoreDisplayName" readonly></div>
+                            <div class="form-group"><label>SCA Item Sub-Type</label><input type="text" name="scaItemSubType" readonly></div>
+                            <div class="form-group full-width"><label>URL Component</label><input type="text" name="urlComponent" readonly></div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section section-wms">
+                        <legend class="section-legend">📍 WMS Detail</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>TWMS Use Pallet</label><input type="text" name="twmsUsePallet" readonly></div>
+                            <div class="form-group"><label>TWMS PRE-ASSIGN LOT</label><input type="text" name="twmsPreAssignLot" readonly></div>
+                            <div class="form-group"><label>TWMS PRE-ASSIGN PALLET</label><input type="text" name="calcTwmsPreAssignPallet" readonly></div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="action-bar" style="margin-top: 1.5rem;">
+                    <button type="button" id="btnReset" class="btn btn-secondary">Reset Form</button>
+                    <button type="button" id="btnSubmitRequest" class="btn btn-primary" style="background: linear-gradient(135deg, #6366f1, #7c3aed);">📤 Submit Request</button>
+                    <button type="button" id="btnExportCsv" class="btn btn-secondary" style="flex: 0.5;">Export CSV</button>
                 </div>
 
-                <div class="action-bar">
-                    <button id="btnReset" class="btn btn-secondary">Reset Form</button>
-                    <button id="btnSubmit" class="btn btn-primary">Create Item in NetSuite</button>
+                <!-- Submit Success Message -->
+                <div id="submitSuccess" class="submit-success hidden">
+                    <span>✅</span>
+                    <span id="submitSuccessText">ส่งคำขอสร้าง Item สำเร็จแล้ว!</span>
                 </div>
+
             </section>
+            </div>
         </main>
     </div>
+
+    <!-- ✨ Premium Gemini AI Auto-fill Modal -->
+    <div id="aiModal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>✨ Auto-fill Specs with Gemini AI</h3>
+                <button type="button" id="btnCloseAI" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">Paste unstructured specifications, vendor descriptions, or client requests below. Gemini AI will analyze the text, extract correct fields matching your CSV Master Data, and fill the form automatically.</p>
+                
+                <textarea id="aiInput" placeholder="Paste your raw text or request here... e.g. ขอรหัสสินค้าใหม่ ดับเบิ้ลเอ เอสี่ 80แกรม ห้าร้อยแผ่น ส่งนอกไปฝรั่งเศส เกรด Smart Copy..."></textarea>
+                
+                <div class="preset-chips-container">
+                    <span class="chips-label">🎯 Click to try a preset:</span>
+                    <div class="preset-chips">
+                        <span class="chip" onclick="document.getElementById('aiInput').value = 'ขอสร้าง Double A ขนาด A4 80 แกรม 500 แผ่น/รีม ส่งออกนอกไปประเทศฝรั่งเศส เกรด A-COPY ชนิด Child';">Double A A4 80gsm</span>
+                        <span class="chip" onclick="document.getElementById('aiInput').value = 'แบรนด์ Alpine เกรด WOL ขนาด A3 กระดาษหนา 120gsm ส่งออกนอก (Mat Change) ไปประเทศออสเตรเลีย ชนิด Child';">Alpine A3 120gsm</span>
+                        <span class="chip" onclick="document.getElementById('aiInput').value = 'กระดาษ Parent แบรนด์ Smartist เกรด WOL GSM 080 ส่งในประเทศ (Domestic)';">Smartist Parent</span>
+                    </div>
+                </div>
+                
+                <div class="modal-settings">
+                    <details>
+                        <summary>⚙️ Google AI Studio API Key (Fallback)</summary>
+                        <div class="settings-content">
+                            <label for="aiKey">Gemini API Key</label>
+                            <input type="password" id="aiKey" placeholder="Enter AIzaSy... (Leave empty inside Google AI Studio preview)">
+                            <p class="field-help">Keys are securely saved in your browser's localStorage and never sent anywhere else.</p>
+                        </div>
+                    </details>
+                </div>
+                
+                <div id="aiError" class="alert error hidden" style="background-color: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 0.75rem; border-radius: 6px; margin: 1rem 0; font-size: 0.9rem;"></div>
+                
+                <div id="aiPreviewContainer" class="hidden">
+                    <h4 style="margin: 1rem 0 0.5rem; color: var(--primary-dark); font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--primary);">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        📊 Extracted Specifications Review
+                    </h4>
+                    <div id="aiPreviewGrid" class="preview-grid"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnAnalyzeAI" class="btn btn-primary" style="background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);">✨ Analyze Text</button>
+                <button type="button" id="btnApplyAI" class="btn btn-primary hidden" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">Apply to Form</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="auth.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
