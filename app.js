@@ -1827,7 +1827,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentUser = getUser();
         const modalFooter = document.getElementById('modalFooter');
         if (modalFooter) {
-            if (currentUser && currentUser.role === 'admin' && (selectedRequest.status === 'pending' || selectedRequest.status === 'in_progress')) {
+            if (currentUser && currentUser.role === 'admin') {
+                // Determine buttons based on request status
+                let buttonsHtml = `<button type="button" class="btn-action btn-export-csv" onclick="exportRequestCSV()">📥 Export CSV</button>`;
+                
+                if (selectedRequest.status === 'pending' || selectedRequest.status === 'in_progress') {
+                    if (selectedRequest.status === 'pending') {
+                        buttonsHtml += `<button type="button" class="btn-action btn-in-progress" onclick="updateStatus('in_progress')">🔄 Mark In Progress</button>`;
+                    }
+                    buttonsHtml += `
+                        <button type="button" class="btn-action btn-complete" onclick="updateStatus('completed')">✅ Mark Completed</button>
+                        <button type="button" class="btn-action btn-reject" onclick="updateStatus('rejected')">❌ Reject</button>
+                    `;
+                } else {
+                    // Status is completed or rejected
+                    buttonsHtml += `<button type="button" class="btn-action btn-complete" onclick="saveAdminEdits()">💾 บันทึกการแก้ไข (Save Changes)</button>`;
+                    
+                    if (selectedRequest.status === 'completed') {
+                        buttonsHtml += `
+                            <button type="button" class="btn-action btn-in-progress" onclick="updateStatus('in_progress')">🔄 Re-open (In Progress)</button>
+                            <button type="button" class="btn-action btn-reject" onclick="updateStatus('rejected')">❌ Change to Reject</button>
+                        `;
+                    } else if (selectedRequest.status === 'rejected') {
+                        buttonsHtml += `
+                            <button type="button" class="btn-action btn-in-progress" onclick="updateStatus('in_progress')">🔄 Re-open (In Progress)</button>
+                            <button type="button" class="btn-action btn-complete" onclick="updateStatus('completed')">✅ Change to Completed</button>
+                        `;
+                    }
+                }
+                
+                // Add Close button
+                buttonsHtml += `<button type="button" class="btn-action btn-secondary-action" onclick="closeUserDetailModal()">ปิด</button>`;
+
                 modalFooter.innerHTML = `
                     <div class="modal-action-group">
                         <div class="action-field">
@@ -1840,10 +1871,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <div class="modal-buttons">
-                        <button type="button" class="btn-action btn-export-csv" onclick="exportRequestCSV()">📥 Export CSV</button>
-                        ${selectedRequest.status === 'pending' ? `<button type="button" class="btn-action btn-in-progress" onclick="updateStatus('in_progress')">🔄 Mark In Progress</button>` : ''}
-                        <button type="button" class="btn-action btn-complete" onclick="updateStatus('completed')">✅ Mark Completed</button>
-                        <button type="button" class="btn-action btn-reject" onclick="updateStatus('rejected')">❌ Reject</button>
+                        ${buttonsHtml}
                     </div>
                 `;
             } else {
@@ -1874,11 +1902,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const updateData = {
             status: newStatus,
             processed_by: admin.emp_id,
-            processed_at: new Date().toISOString()
+            processed_at: new Date().toISOString(),
+            erp_internal_id: erpId.trim(),
+            admin_note: note.trim()
         };
-
-        if (erpId) updateData.erp_internal_id = erpId;
-        if (note) updateData.admin_note = note;
 
         const { error } = await supabaseClient
             .from('item_requests')
@@ -1890,6 +1917,36 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        closeUserDetailModal();
+        loadMyRequests();
+    };
+
+    // === Save Admin Edits (ID and Note) ===
+    window.saveAdminEdits = async function() {
+        if (!selectedRequest) return;
+
+        const erpId = document.getElementById('erpInternalId')?.value || '';
+        const note = document.getElementById('adminNote')?.value || '';
+        const admin = getUser();
+
+        const updateData = {
+            erp_internal_id: erpId.trim(),
+            admin_note: note.trim(),
+            processed_by: admin.emp_id,
+            processed_at: new Date().toISOString()
+        };
+
+        const { error } = await supabaseClient
+            .from('item_requests')
+            .update(updateData)
+            .eq('id', selectedRequest.id);
+
+        if (error) {
+            alert('บันทึกการแก้ไขไม่สำเร็จ: ' + error.message);
+            return;
+        }
+
+        alert('บันทึกการแก้ไขสำเร็จเรียบร้อยแล้ว!');
         closeUserDetailModal();
         loadMyRequests();
     };
