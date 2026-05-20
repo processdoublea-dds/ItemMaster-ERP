@@ -1,13 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DA-ERP | Item Code Generator</title>
+    <title>PaperMaster Pro | Item Technical Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <style>
+        /* Custom modal overrides */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.hidden {
+            display: none !important;
+        }
+        .modal-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 720px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes modalSlideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+        }
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .modal-close:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .modal-footer {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            background: #fafbfc;
+            border-radius: 0 0 16px 16px;
+        }
+        .modal-action-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .action-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .action-field label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #64748b;
+            text-align: left;
+        }
+        .action-field input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .action-field input:focus {
+            outline: none;
+            border-color: #1e3a8a;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .btn-action {
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-action:hover {
+            transform: translateY(-1px);
+        }
+        .btn-export-csv {
+            background: #f0fdf4;
+            color: #15803d;
+            border: 1px solid #86efac;
+        }
+        .btn-export-csv:hover { background: #dcfce7; }
+        .btn-in-progress {
+            background: #dbeafe;
+            color: #1e3a8a;
+            border: 1px solid #bfdbfe;
+        }
+        .btn-in-progress:hover { background: #bfdbfe; }
+        .btn-complete {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+        .btn-complete:hover { box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3); }
+        .btn-reject {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        .btn-reject:hover { background: #fee2e2; }
+        .btn-secondary-action {
+            background: #f1f5f9;
+            color: #0f172a;
+            border: 1px solid #e2e8f0;
+        }
+        @media (max-width: 768px) {
+            .modal-action-group {
+                grid-template-columns: 1fr;
+            }
+            .modal-buttons {
+                flex-direction: column;
+            }
+            .btn-action {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        /* Sections Styling */
+        .detail-section {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .detail-section-header {
+            background: #f1f5f9;
+            padding: 0.75rem 1rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+        .detail-section-body {
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            background: #ffffff;
+        }
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .detail-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .detail-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+    </style>
     <script>
         // Inline Auth Guard
         if (!sessionStorage.getItem('itemgen_session')) {
@@ -16,627 +222,889 @@
     </script>
 </head>
 <body>
-    <div class="app-container">
-        <header class="app-header">
-            <div class="logo">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-                    <path d="M8 21H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M12 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <div class="app-layout">
+        <!-- LEFT SIDEBAR -->
+        <aside class="app-sidebar" id="appSidebar">
+            <!-- Sidebar Collapse Button -->
+            <button type="button" class="sidebar-toggle-btn" id="sidebarToggle" title="ยุบ/ขยาย เมนู">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition: transform 0.3s ease;">
+                    <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <h1>🏢 Item Code Generator</h1>
+            </button>
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h3>Item Master</h3>
+                    <span>Technical Portal</span>
+                </div>
             </div>
-            <p class="subtitle">DA-ERP · Streamlined product data creation and NetSuite integration</p>
-        </header>
-
-        <!-- User Bar (populated by auth.js) -->
-        <div id="userBar"></div>
-
-
-        <!-- Sticky Result Banner: Item Code & Item Name -->
-        <div class="result-banner" id="resultBanner">
-            <div class="result-banner-item">
-                <span class="result-banner-label">Item Code</span>
-                <span class="result-banner-value" id="bannerItemCode">-</span>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item active" id="navDashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="9" rx="1"/>
+                        <rect x="14" y="3" width="7" height="5" rx="1"/>
+                        <rect x="14" y="12" width="7" height="9" rx="1"/>
+                        <rect x="3" y="16" width="7" height="5" rx="1"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="index.html?tab=create" class="nav-item" id="navItemRequests">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+                    </svg>
+                    <span>Item Requests</span>
+                </a>
+                <a href="master_data.html" class="nav-item" id="navBulkUpdates">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                    </svg>
+                    <span>Bulk Updates</span>
+                </a>
+                <a href="admin_users.html" class="nav-item" id="navPermissions">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span>Permissions</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" id="navSettings">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+                <a href="#" class="nav-item" id="navSupport">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
+                    </svg>
+                    <span>Support</span>
+                </a>
             </div>
-            <div class="result-banner-divider"></div>
-            <div class="result-banner-item">
-                <span class="result-banner-label">Item Name</span>
-                <span class="result-banner-value" id="bannerItemName">-</span>
-            </div>
-        </div>
+        </aside>
 
-        <main class="main-content">
-            <!-- My Requests Section (Dashboard) -->
-            <section class="card" id="myRequestsSection">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2>📋 1. My Requests (คำขอของฉัน)</h2>
-                    <button type="button" id="btnShowRequestForm" class="btn btn-primary" style="background: linear-gradient(135deg, #10b981, #059669);">➕ New Item Request</button>
-                </div>
-                <p class="section-desc">รายการคำขอสร้าง Item ที่คุณส่ง</p>
-                <div class="request-filters">
-                    <button type="button" class="filter-btn active" data-filter="all">ทั้งหมด</button>
-                    <button type="button" class="filter-btn" data-filter="pending">⏳ รออนุมัติ</button>
-                    <button type="button" class="filter-btn" data-filter="completed">✅ เสร็จ</button>
-                    <button type="button" class="filter-btn" data-filter="rejected">❌ ปฏิเสธ</button>
-                </div>
-                <div id="requestList" class="request-list">
-                    <div class="request-empty">กำลังโหลด...</div>
-                </div>
-            </section>
-
-            <!-- Form Container (Hidden by default) -->
-            <div id="requestFormContainer" class="hidden">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2 style="margin:0;">Create New Item Code</h2>
-                    <button type="button" id="btnHideRequestForm" class="btn btn-secondary">🔙 Back to Dashboard</button>
-                </div>
-
-                <section class="card input-section">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-                        <h2 style="margin: 0; display: flex; align-items: center; gap: 0.75rem;">✏️ 2. Manual Input (กรอกข้อมูล)</h2>
-                        <button type="button" id="btnTriggerAI" class="btn btn-primary" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); padding: 0.5rem 1rem; font-size: 0.85rem; height: 38px; width: auto; flex: initial; margin: 0; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);">✨ Auto-fill with Gemini AI</button>
-                    </div>
-                    <p class="section-desc">Enter the item specifications below.</p>
-
-
-
-                <form id="itemForm" class="multi-section-form">
-                    
-                    <fieldset class="form-section">
-                        <legend class="section-legend">📝 General Information</legend>
-                        <div class="form-grid">
-
-                            <div class="form-group">
-                                <label for="type">Type</label>
-                                <select id="type" name="type">
-                                    <option value="">Select Type</option>
-                                    <option value="Parent">Parent</option>
-                                    <option value="Child">Child</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="subGroup">Item Sub-Group</label>
-                                <select id="subGroup" name="subGroup">
-                                    <option value="">Select Sub-Group</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="itemGroup">Item Group</label>
-                                <select id="itemGroup" name="itemGroup">
-                                    <option value="">Select Group</option>
-                                    <option value="1">Finished Goods - Paper</option>
-                                    <option value="2">Finished Goods - Non Paper</option>
-                                    <option value="3">Semi Product</option>
-                                    <option value="4">Raw Material</option>
-                                    <option value="5">Consume</option>
-                                    <option value="6">Packaging</option>
-                                    <option value="F">Fixed Asset</option>
-                                    <option value="S">Service</option>
-                                    <option value="L">Sales - Discounts, DN, CN</option>
-                                    <option value="M">Marketing</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="domExp">Domestic/Export</label>
-                                <select id="domExp" name="domExp">
-                                    <option value="">Select Region</option>
-                                    <option value="E">Export</option>
-                                    <option value="D">Domestic</option>
-                                    <option value="M">Export (Mat Change)</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="calcShipCountry">Ship to Country</label>
-                                <select id="calcShipCountry" name="calcShipCountry">
-                                    <option value="">Select Country</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="brand">Brand</label>
-                                <select id="brand" name="brand">
-                                    <option value="">Select Brand</option>
-                                    <option value="AL">Alpine</option>
-                                    <option value="AP">aA-PRINT</option>
-                                    <option value="BP">Big Paper</option>
-                                    <option value="BU">Big Paper APC</option>
-                                    <option value="CA">Calipage</option>
-                                    <option value="C1">DA Colour Print</option>
-                                    <option value="C3">DA Colour Print (Promotion)</option>
-                                    <option value="DC">Double A Colour</option>
-                                    <option value="DA">Double A</option>
-                                    <option value="DZ">Double A (1759)</option>
-                                    <option value="DY">Double A (Promotion)</option>
-                                    <option value="D1">Double A FSC</option>
-                                    <option value="D2">Double A FSC France</option>
-                                    <option value="D3">Double A FSC Australia</option>
-                                    <option value="D4">Double A FSC (CIE163)</option>
-                                    <option value="DN">Double A China</option>
-                                    <option value="DG">Double A Green</option>
-                                    <option value="DK">Double A Korea</option>
-                                    <option value="DU">Double A APC</option>
-                                    <option value="DS">Double A USA</option>
-                                    <option value="DR">Double A Nigeria</option>
-                                    <option value="DP">Double A Philippines</option>
-                                    <option value="DI">Double A India</option>
-                                    <option value="AC">Double A Care</option>
-                                    <option value="EZ">EZ Copy Blue</option>
-                                    <option value="EG">Eagle Green</option>
-                                    <option value="ER">Eagle Red</option>
-                                    <option value="FS">FlagShip</option>
-                                    <option value="GK">Giant King Kong</option>
-                                    <option value="GP">GreenImpact</option>
-                                    <option value="HP">Hi-Plus</option>
-                                    <option value="HN">Hi-Plus China</option>
-                                    <option value="HE">Hi-Plus Eng</option>
-                                    <option value="HK">Hi-Plus Korea</option>
-                                    <option value="HU">Hi-Plus APC</option>
-                                    <option value="HF">Hi-Plus Alizay</option>
-                                    <option value="HB">Hyper Buro</option>
-                                    <option value="LY">Lyreco</option>
-                                    <option value="OK">OK</option>
-                                    <option value="OG">One Green</option>
-                                    <option value="1K">One K</option>
-                                    <option value="PG">Pergamy</option>
-                                    <option value="PM">Premier</option>
-                                    <option value="BB">Q-Biz Blue</option>
-                                    <option value="BR">Q-Biz Red</option>
-                                    <option value="QB">Quality Blue</option>
-                                    <option value="QG">Quality Green</option>
-                                    <option value="QO">Quality Orange</option>
-                                    <option value="FO">Quality Orange FSC</option>
-                                    <option value="QP">Quality Purple</option>
-                                    <option value="FP">Quality Purple FSC</option>
-                                    <option value="QR">Quality Red</option>
-                                    <option value="QY">Quality Yellow</option>
-                                    <option value="RF">Reflex</option>
-                                    <option value="R1">Reflex FSC</option>
-                                    <option value="RC">Reflex Colour</option>
-                                    <option value="ZG">Shih-Tzu Green</option>
-                                    <option value="ZP">Shih-Tzu Pink</option>
-                                    <option value="SB">Siberian</option>
-                                    <option value="SC">Smart Copy</option>
-                                    <option value="SE">Smart Copy ECO</option>
-                                    <option value="SU">Smart Copy APC</option>
-                                    <option value="ST">Smartist</option>
-                                    <option value="SF">Smartist FSC France</option>
-                                    <option value="SN">Smartist China</option>
-                                    <option value="SA">Smartist Alizay</option>
-                                    <option value="SK">Smartist Korea</option>
-                                    <option value="SG">So Good</option>
-                                    <option value="SR">Speed Red</option>
-                                    <option value="SY">Speed Yellow</option>
-                                    <option value="T2">Top Print 92</option>
-                                    <option value="T7">Top Print 97</option>
-                                    <option value="TB">Turbo</option>
-                                    <option value="WT">Winter</option>
-                                    <option value="WU">Winter APC</option>
-                                    <option value="WB">White Box</option>
-                                    <option value="QA">Quality - AA</option>
-                                    <option value="QH">Quality - HTP</option>
-                                    <option value="QL">Quality</option>
-                                    <option value="ON">One</option>
-                                    <option value="OF">OFM</option>
-                                    <option value="SI">Sunrise</option>
-                                    <option value="WM">W.B. Mason</option>
-                                    <option value="OM">OfficeMate</option>
-                                    <option value="FC">Fair Copy</option>
-                                    <option value="OP">OnPoint</option>
-                                    <option value="GB">Global</option>
-                                    <option value="LM">Link Max</option>
-                                    <option value="SM">Simon</option>
-                                    <option value="NB">No Brand</option>
-                                    <option value="ST">Shih-Tzu</option>
-                                    <option value="AR">aro</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="grade">Grade</label>
-                                <select id="grade" name="grade">
-                                    <option value="">Select Grade</option>
-                                    <option value="A-COPY">A-COPY</option>
-                                    <option value="A-COPY HIGH SHADE">A-COPY HIGH SHADE</option>
-                                    <option value="aA-COPY (CIE150)">aA-COPY (CIE150)</option>
-                                    <option value="aA-COPY 150 (FSC MIX70%)">aA-COPY 150 (FSC MIX70%)</option>
-                                    <option value="aA-COPY 150 (PEFC)">aA-COPY 150 (PEFC)</option>
-                                    <option value="aA-Copy Green">aA-Copy Green</option>
-                                    <option value="aA-PRINT">aA-PRINT</option>
-                                    <option value="B-A-COPY">B-A-COPY</option>
-                                    <option value="B-A-COPY HIGH SHADE">B-A-COPY HIGH SHADE</option>
-                                    <option value="B-aA-COPY (CIE150)">B-aA-COPY (CIE150)</option>
-                                    <option value="B-aA-PRINT">B-aA-PRINT</option>
-                                    <option value="B-Hi Copy">B-Hi Copy</option>
-                                    <option value="B-Hi Copy+">B-Hi Copy+</option>
-                                    <option value="B-NEW Q COPY (CIE145)">B-NEW Q COPY (CIE145)</option>
-                                    <option value="B-SMART COPY (CIE145)">B-SMART COPY (CIE145)</option>
-                                    <option value="C-A-COPY">C-A-COPY</option>
-                                    <option value="C-aA-COPY (CIE150)">C-aA-COPY (CIE150)</option>
-                                    <option value="C-aA-COPY GREEN">C-aA-COPY GREEN</option>
-                                    <option value="C-aA-PRINT">C-aA-PRINT</option>
-                                    <option value="C-SMART PRINT">C-SMART PRINT</option>
-                                    <option value="CM">CM</option>
-                                    <option value="DA COLOUR PRINT 150">DA COLOUR PRINT 150</option>
-                                    <option value="DA COLOUR PRINT 150 (FSC MIX70%)">DA COLOUR PRINT 150 (FSC MIX70%)</option>
-                                    <option value="DA COLOUR PRINT 150 (PEFC)">DA COLOUR PRINT 150 (PEFC)</option>
-                                    <option value="HI COPY">HI COPY</option>
-                                    <option value="HI COPY+">HI COPY+</option>
-                                    <option value="HI-WC">HI-WC</option>
-                                    <option value="HONEY COMB">HONEY COMB</option>
-                                    <option value="JING JAI">JING JAI</option>
-                                    <option value="KT">KT</option>
-                                    <option value="NEW Q COPY (CIE145)">NEW Q COPY (CIE145)</option>
-                                    <option value="NEW Q COPY (FSC MIX70%)">NEW Q COPY (FSC MIX70%)</option>
-                                    <option value="NEW Q COPY (PEFC)">NEW Q COPY (PEFC)</option>
-                                    <option value="REFLEX (FSC MIX70%)">REFLEX (FSC MIX70%)</option>
-                                    <option value="REFLEX (PEFC)">REFLEX (PEFC)</option>
-                                    <option value="Reject">Reject</option>
-                                    <option value="SMART COPY (CIE145)">SMART COPY (CIE145)</option>
-                                    <option value="SMART PRINT">SMART PRINT</option>
-                                    <option value="WOL">WOL</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="gram">Gram (GSM)</label>
-                                <input type="number" id="gram" name="gram" placeholder="e.g. 080" min="0" max="999" step="1">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="size">Size</label>
-                                <input type="text" id="size" name="size" placeholder="e.g. A4, 210x297">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sheet">Sheet</label>
-                                <input type="text" id="sheet" name="sheet" placeholder="e.g. 500">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="reamPallet">Ream per Pallet</label>
-                                <input type="number" id="reamPallet" name="reamPallet" placeholder="e.g. 200" min="0" step="1">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="layer">Layer</label>
-                                <select id="layer" name="layer">
-                                    <option value="">Select Layer</option>
-                                    <option value="2L">2L</option>
-                                    <option value="3L">3L</option>
-                                    <option value="4L">4L</option>
-                                    <option value="5L">5L</option>
-                                    <option value="6L">6L</option>
-                                    <option value="8L">8L</option>
-                                    <option value="9L">9L</option>
-                                    <option value="10L">10L</option>
-                                    <option value="11L">11L</option>
-                                    <option value="12L">12L</option>
-                                    <option value="16L">16L</option>
-                                    <option value="17L">17L</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="wrapType">Wrap Type</label>
-                                <select id="wrapType" name="wrapType">
-                                    <option value="">Select Wrap Type</option>
-                                    <option value="Box AUTO">Box AUTO</option>
-                                    <option value="Box MN">Box MN</option>
-                                    <option value="Box MN (CVB)">Box MN (CVB)</option>
-                                    <option value="SHR">SHR</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="palletType">Pallet Type</label>
-                                <select id="palletType" name="palletType">
-                                    <option value="">Select Pallet</option>
-                                    <option value="N">N</option>
-                                    <option value="S">S</option>
-                                    <option value="SS">SS</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="reamBox">REAM / BOX</label>
-                                <select id="reamBox" name="reamBox">
-                                    <option value="">Select REAM/BOX</option>
-                                    <option value="1R">1 Ream</option>
-                                    <option value="2R">2 Ream</option>
-                                    <option value="3R">3 Ream</option>
-                                    <option value="4R">4 Ream</option>
-                                    <option value="5R">5 Ream</option>
-                                    <option value="8R">8 Ream</option>
-                                    <option value="10R">10 Ream</option>
-                                    <option value="5P">5 Pack</option>
-                                    <option value="6P">6 Pack</option>
-                                    <option value="10P">10 Pack</option>
-                                    <option value="24P">24 pack</option>
-                                    <option value="40P">40 Pack</option>
-                                    <option value="48P">48 Pack</option>
-                                    <option value="CVB ไม่ห่อรีม">CVB ไม่ห่อรีม</option>
-                                </select>
-                                <div id="specialReamContainer" style="display: none; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
-                                    <input type="checkbox" id="isSpecialReam" name="isSpecialReam" style="width: auto;">
-                                    <label for="isSpecialReam" style="font-size: 0.85rem; cursor: pointer; color: var(--primary); margin: 0;">Special Ream? (แสดงในชื่อสินค้า)</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="palletSize">Pallet Size</label>
-                                <select id="palletSize" name="palletSize">
-                                    <option value="">Select Pallet Size</option>
-                                    <option value="Pallet 25.5x36 inch BPO">Pallet 25.5x36 inch BPO</option>
-                                    <option value="Pallet 25.5x38.5 inch">Pallet 25.5x38.5 inch</option>
-                                    <option value="Pallet 26.8x34.6 inch (68x88 cm)">Pallet 26.8x34.6 inch (68x88 cm)</option>
-                                    <option value="Pallet 30.3x38.2 inch (77x97 cm)">Pallet 30.3x38.2 inch (77x97 cm)</option>
-                                    <option value="Pallet 31.5x47.2 inch (80x120 cm)">Pallet 31.5x47.2 inch (80x120 cm)</option>
-                                    <option value="Pallet 35.5x47.5 inch">Pallet 35.5x47.5 inch</option>
-                                    <option value="Pallet 37x45 inch">Pallet 37x45 inch</option>
-                                    <option value="Pallet DIY 24.5x35.5 inch">Pallet DIY 24.5x35.5 inch</option>
-                                    <option value="Pallet DIY 26.8x34.6 inch (68x88 cm)">Pallet DIY 26.8x34.6 inch (68x88 cm)</option>
-                                    <option value="Pallet DIY 31.5x47.2 inch (80x120 cm)">Pallet DIY 31.5x47.2 inch (80x120 cm)</option>
-                                    <option value="Pallet DIY 36x47.5 inch">Pallet DIY 36x47.5 inch</option>
-                                    <option value="Pallet DIY 37x42 inch">Pallet DIY 37x42 inch</option>
-                                    <option value="Pallet DIY 37x45 inch">Pallet DIY 37x45 inch</option>
-                                    <option value="Pallet DIY 37x45 inch Shortleg">Pallet DIY 37x45 inch Shortleg</option>
-                                    <option value="Pallet DIY 44x50 inch">Pallet DIY 44x50 inch</option>
-                                    <option value="Pallet EURO 26.8x34.6 inch (680x880 mm)">Pallet EURO 26.8x34.6 inch (680x880 mm)</option>
-                                    <option value="Pallet EURO 31.5x47.2 inch (80x120 cm)">Pallet EURO 31.5x47.2 inch (80x120 cm)</option>
-                                    <option value="Pallet Special 22x38.5 Inch">Pallet Special 22x38.5 Inch</option>
-                                    <option value="Pallet Special 26.5x38.5 inch">Pallet Special 26.5x38.5 inch</option>
-                                    <option value="Pallet Special 37.5x51.5 inch">Pallet Special 37.5x51.5 inch</option>
-                                    <option value="Slip Sheet - Plastic 1016x1143x3 mm">Slip Sheet - Plastic 1016x1143x3 mm</option>
-                                    <option value="Slip Sheet - Plastic 1060x1170x1 mm">Slip Sheet - Plastic 1060x1170x1 mm</option>
-                                    <option value="Slip Sheet - Plastic  Size 1016x1143x1.5 mm">Slip Sheet - Plastic  Size 1016x1143x1.5 mm</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="location">Location for Work Order</label>
-                                <div id="location" class="checkbox-group-container">
-                                    <p style="font-size: 0.8rem; color: var(--text-muted);">Select Sub-Group first</p>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="category">Item Category</label>
-                                <select id="category" name="category">
-                                    <option value="">Select Category</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="France">France</option>
-                                    <option value="Germany">Germany</option>
-                                </select>
-                            </div>
-
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section">
-                        <legend class="section-legend">🔗 SAP Information</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>SAP Code1</label><input type="text" name="sapCode1"></div>
-                            <div class="form-group"><label>SAP Code2</label><input type="text" name="sapCode2"></div>
-                            <div class="form-group"><label>SAP Name</label><input type="text" name="sapName"></div>
-                        </div>
-                    </fieldset>
-
-
-                    
-
-                </form>
-            </section>
-
-            <section class="card output-section">
-                <h2>⚙️ 3. Automated Calculation (ระบบคำนวณ)</h2>
-                <p class="section-desc">Generated instantly based on your input.</p>
-                
-                <div id="duplicateAlert" class="alert warning hidden">
-                    <div class="alert-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 9V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M12 17.01L12.01 16.9989" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+        <!-- MAIN CONTENT PANEL -->
+        <main class="app-main">
+            <!-- TOP BAR -->
+            <header class="app-top-header">
+                <div class="header-app-name">PaperMaster Pro</div>
+                <div class="header-search">
+                    <div class="search-input-wrap">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/>
                         </svg>
-                    </div>
-                    <div class="alert-content">
-                        <strong>Duplicate Item Code Detected!</strong>
-                        <p>This item code already exists in the NetSuite List sheet. Please review your inputs.</p>
+                        <input type="text" id="globalSearchInput" placeholder="ค้นหารายการ...">
                     </div>
                 </div>
-
-                <div class="multi-section-form">
-                    <fieldset class="form-section section-info">
-                        <legend class="section-legend">📦 Item Information</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>MPS Color</label><input type="text" name="calcMpsColor" readonly></div>
-                            <div class="form-group"><label>BOI</label><input type="text" name="calcBoi" readonly></div>
-                            <div class="form-group"><label>Weight of Unit</label><input type="text" name="weightOfUnit" readonly></div>
-                            <div class="form-group"><label>Internal ID_Parent</label><input type="text" name="internalIdParent" readonly></div>
-                            <div class="form-group"><label>SubItem of Item Code</label><input type="text" name="subitemItemCode" readonly></div>
-                            <div class="form-group full-width"><label>SubItem of Item Name</label><input type="text" name="subitemItemName" readonly></div>
-                            <div class="form-group"><label>Brand Group</label><input type="text" name="brandGroup" readonly></div>
+                <div class="header-actions">
+                    <button class="header-btn" title="Notifications">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                        <span class="notification-badge"></span>
+                    </button>
+                    <button class="header-btn" title="Help">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
+                        </svg>
+                    </button>
+                    <div class="user-avatar-wrap" id="profileToggle">
+                        <div style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.1; margin-right: 2px;">
+                            <span id="headerUserName" style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">-</span>
+                            <span id="headerUserRole" style="font-size: 0.65rem; font-weight: 700; color: #1e3a8a; background: #dbeafe; padding: 2px 6px; border-radius: 4px; margin-top: 2px;">-</span>
                         </div>
-                    </fieldset>
-
-                    <fieldset class="form-section section-other">
-                        <legend class="section-legend">📊 Other Information</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>ความสูงสินค้า (Inch)</label><input type="text" name="heightInch" readonly></div>
-                            <div class="form-group"><label>Pallet Height (inch)</label><input type="text" name="palletHeightInch" readonly></div>
-                            <div class="form-group"><label>Standard/Net Weight (KG)</label><input type="text" name="stdNetWeightKg" readonly></div>
-                            <div class="form-group"><label>Gross Weight Markup (%)</label><input type="text" name="grossWeightMarkup" readonly></div>
-                            <div class="form-group"><label>Gross Weight</label><input type="text" name="calcGrossWeight" readonly></div>
-                            <div class="form-group"><label>Country of Origin</label><input type="text" name="countryOfOrigin" readonly></div>
-                            <div class="form-group"><label>HS Code</label><input type="text" name="hsCode" readonly></div>
-                            <div class="form-group"><label>Commodities</label><input type="text" name="commodities" readonly></div>
-                            <div class="form-group"><label>Block PM</label><input type="text" name="blockPm" readonly></div>
-                            <div class="form-group"><label>Sheet/Pallet</label><input type="text" name="sheetPallet" readonly></div>
+                        <div class="user-avatar-initials" id="userInitials">--</div>
+                        <!-- Profile Dropdown Menu -->
+                        <div class="profile-dropdown hidden" id="profileDropdown">
+                            <div class="profile-dropdown-header">
+                                <div class="profile-dropdown-avatar" id="dropdownAvatar">JD</div>
+                                <div class="profile-dropdown-info">
+                                    <span class="profile-dropdown-name" id="dropdownName">User</span>
+                                    <span class="profile-dropdown-role" id="dropdownRole">user</span>
+                                </div>
+                            </div>
+                            <div class="profile-dropdown-meta" id="dropdownMeta"></div>
+                            <div class="profile-dropdown-divider"></div>
+                            <button type="button" class="profile-dropdown-logout" onclick="logout()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                    <polyline points="16 17 21 12 16 7"/>
+                                    <line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                                ออกจากระบบ
+                            </button>
                         </div>
-                    </fieldset>
-
-                    <fieldset class="form-section section-class">
-                        <legend class="section-legend">🏷️ Classification Detail</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>Subsidiary</label><input type="text" name="subsidiary" readonly></div>
-                            <div class="form-group"><label>Class (no hierarchy)</label><input type="text" name="classNoHierarchy" readonly></div>
-                            <div class="form-group"><label>Catagory Group</label><input type="text" name="catagoryGroup" readonly></div>
-                            <div class="form-group"><label>Mixed Pallet</label><input type="text" name="mixedPallet" readonly></div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section section-uom">
-                        <legend class="section-legend">📐 UOM Detail</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>Unit Type</label><input type="text" name="unitTypeUom" readonly></div>
-                            <div class="form-group"><label>KG</label><input type="text" name="kg" readonly></div>
-                            <div class="form-group"><label>Ream/Pack</label><input type="text" name="reamPack" readonly></div>
-                            <div class="form-group"><label>UOM1</label><input type="text" name="uom1" readonly></div>
-                            <div class="form-group"><label>UOM2</label><input type="text" name="uom2" readonly></div>
-                            <div class="form-group"><label>Box</label><input type="text" name="box" readonly></div>
-                            <div class="form-group"><label>Pallet</label><input type="text" name="palletUom" readonly></div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section section-uom-type">
-                        <legend class="section-legend">⚖️ Unit of Measure</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>Primary Units Type</label><input type="text" name="primaryUnitsType" readonly></div>
-                            <div class="form-group"><label>Primary Stock Unit</label><input type="text" name="primaryStockUnit" readonly></div>
-                            <div class="form-group"><label>Primary Purchase Unit</label><input type="text" name="primaryPurchaseUnit" readonly></div>
-                            <div class="form-group"><label>Primary Sale Unit</label><input type="text" name="primarySaleUnit" readonly></div>
-                            <div class="form-group"><label>Primary Consumption Unit</label><input type="text" name="primaryConsumptionUnit" readonly></div>
-                            <div class="form-group"><label>Primary Unit Type</label><input type="text" name="primaryUnitType" readonly></div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section section-mfg">
-                        <legend class="section-legend">🏭 MFG Detail</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>MFG Item Batch Qty</label><input type="text" name="mfgItemBatchQty" readonly></div>
-                            <div class="form-group"><label>Item Mapping DCS</label><input type="text" name="itemMappingDcs" readonly></div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section section-mrp">
-                        <legend class="section-legend">📅 MRP Detail</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>MRP Active</label><input type="text" name="mrpActive" readonly></div>
-                            <div class="form-group"><label>MFG Include in Auto Transfer Order</label><input type="text" name="mfgIncludeAutoTransfer" readonly></div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section section-acc">
-                        <legend class="section-legend">💰 Account Detail</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>Expense/COGS Account</label><input type="text" name="expenseCogsAccount" readonly></div>
-                            <div class="form-group"><label>Expense/COGS Account_ID</label><input type="text" name="expenseCogsAccountId" readonly></div>
-                            <div class="form-group"><label>Asset Account</label><input type="text" name="assetAccount" readonly></div>
-                            <div class="form-group"><label>Asset Account_ID</label><input type="text" name="assetAccountId" readonly></div>
-                            <div class="form-group"><label>Income Account</label><input type="text" name="incomeAccount" readonly></div>
-                            <div class="form-group"><label>Income Account_ID</label><input type="text" name="incomeAccountId" readonly></div>
-                            <div class="form-group"><label>Scrap Account</label><input type="text" name="scrapAccount" readonly></div>
-                            <div class="form-group"><label>WIP Account</label><input type="text" name="wipAccount" readonly></div>
-                            <div class="form-group"><label>Tax Schedule</label><input type="text" name="taxSchedule" readonly></div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section section-web">
-                        <legend class="section-legend">🌐 Web Store Detail</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>Display in Web Site</label><input type="text" name="displayInWebSite" readonly></div>
-                            <div class="form-group full-width"><label>Page Title</label><input type="text" name="pageTitle" readonly></div>
-                            <div class="form-group full-width"><label>Web Store Display Name</label><input type="text" name="webStoreDisplayName" readonly></div>
-                            <div class="form-group"><label>SCA Item Sub-Type</label><input type="text" name="scaItemSubType" readonly></div>
-                            <div class="form-group full-width"><label>URL Component</label><input type="text" name="urlComponent" readonly></div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section section-wms">
-                        <legend class="section-legend">📍 WMS Detail</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>TWMS Use Pallet</label><input type="text" name="twmsUsePallet" readonly></div>
-                            <div class="form-group"><label>TWMS PRE-ASSIGN LOT</label><input type="text" name="twmsPreAssignLot" readonly></div>
-                            <div class="form-group"><label>TWMS PRE-ASSIGN PALLET</label><input type="text" name="calcTwmsPreAssignPallet" readonly></div>
-                        </div>
-                    </fieldset>
+                        <!-- Hidden userBar for backward compat -->
+                        <div id="userBar" style="display:none;"></div>
+                    </div>
                 </div>
-                <div class="action-bar" style="margin-top: 1.5rem;">
-                    <button type="button" id="btnReset" class="btn btn-secondary">Reset Form</button>
-                    <button type="button" id="btnSubmitRequest" class="btn btn-primary" style="background: linear-gradient(135deg, #6366f1, #7c3aed);">📤 Submit Request</button>
-                    <button type="button" id="btnExportCsv" class="btn btn-secondary" style="flex: 0.5;">Export CSV</button>
+            </header>
+
+            <!-- APP CONTENT WRAPPER -->
+            <div class="app-content">
+                <!-- Sticky Result Banner: Item Code & Item Name -->
+                <div class="result-banner" id="resultBanner">
+                    <div class="result-banner-item">
+                        <span class="result-banner-label">Item Code</span>
+                        <span class="result-banner-value" id="bannerItemCode">-</span>
+                    </div>
+                    <div class="result-banner-divider"></div>
+                    <div class="result-banner-item">
+                        <span class="result-banner-label">Item Name</span>
+                        <span class="result-banner-value" id="bannerItemName">-</span>
+                    </div>
                 </div>
 
-                <!-- Submit Success Message -->
-                <div id="submitSuccess" class="submit-success hidden">
-                    <span>✅</span>
-                    <span id="submitSuccessText">ส่งคำขอสร้าง Item สำเร็จแล้ว!</span>
-                </div>
+                <!-- MAIN DISPLAY SECTIONS -->
+                <div class="main-content">
+                    
+                    <!-- MY REQUESTS SECTION (DASHBOARD) -->
+                    <section id="myRequestsSection" class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                            <h2 style="margin: 0; font-size: 1.5rem !important;">ภาพรวมการขอรหัสสินค้า</h2>
+                            <div style="display: flex; gap: 0.75rem;">
+                                <button type="button" id="btnExportDashboard" class="btn" style="background: #ffffff; border: 1.5px solid #e2e8f0; color: #475569; display: flex; align-items: center; gap: 0.5rem; font-weight: 700; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                                    </svg>
+                                    Export
+                                </button>
+                                <button type="button" id="btnShowRequestForm" class="btn btn-primary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; border-radius: 8px; cursor: pointer;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M12 5v14M5 12h14"/>
+                                    </svg>
+                                    สร้างคำขอใหม่
+                                </button>
+                            </div>
+                        </div>
+                        <p style="color: #64748b; font-size: 0.9rem; margin-top: 0rem; margin-bottom: 2rem;">สรุปข้อมูลคำขอเพิ่ม/แก้ไข Item Master ประจำวัน</p>
 
-            </section>
+                        <!-- Stats Grid -->
+                        <div class="stats-grid" id="statsGrid" style="cursor: pointer;">
+                            <div class="stat-card total" data-filter="all">
+                                <div class="stat-icon">📄</div>
+                                <div class="stat-info">
+                                    <span class="stat-label">คำขอทั้งหมด</span>
+                                    <span class="stat-value" id="statTotalRequests">-</span>
+                                </div>
+                            </div>
+                            <div class="stat-card pending" data-filter="pending">
+                                <div class="stat-icon">⏳</div>
+                                <div class="stat-info">
+                                    <span class="stat-label">รอดำเนินการ</span>
+                                    <span class="stat-value" id="statPendingRequests">-</span>
+                                </div>
+                            </div>
+                            <div class="stat-card approved" data-filter="completed">
+                                <div class="stat-icon">✅</div>
+                                <div class="stat-info">
+                                    <span class="stat-label">อนุมัติแล้ว</span>
+                                    <span class="stat-value" id="statApprovedRequests">-</span>
+                                </div>
+                            </div>
+                            <div class="stat-card rejected" data-filter="rejected">
+                                <div class="stat-icon">❌</div>
+                                <div class="stat-info">
+                                    <span class="stat-label">ถูกปฏิเสธ</span>
+                                    <span class="stat-value" id="statRejectedRequests">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Table Area -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; margin-bottom: 1rem; border-top: 1px solid #e2e8f0; padding-top: 1.5rem;">
+                            <h3 style="font-weight: 700; color: #0f172a; margin: 0;">รายการคำขอล่าสุด</h3>
+                        </div>
+
+                        <div class="queue-table-wrap" style="overflow-x: auto; background: white; border-radius: 8px; border: 1px solid #e2e8f0;">
+                            <table class="queue-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid #f1f5f9; background: #f8fafc;">
+                                        <th style="padding: 12px; font-weight: 800; color: #475569;">วันที่สร้าง</th>
+                                        <th style="padding: 12px; font-weight: 800; color: #475569;">ผู้ขอ</th>
+                                        <th style="padding: 12px; font-weight: 800; color: #475569;">Item Code</th>
+                                        <th style="padding: 12px; font-weight: 800; color: #475569;">Item Name</th>
+                                        <th style="padding: 12px; font-weight: 800; color: #475569;">สถานะ</th>
+                                        <th style="padding: 12px; font-weight: 800; color: #475569;">ERP ID</th>
+                                        <th style="padding: 12px; font-weight: 800; color: #475569;">หมายเหตุ</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="requestList">
+                                    <tr><td colspan="8" class="table-empty" style="text-align: center; padding: 2rem; color: #64748b;">กำลังโหลดข้อมูลรายการคำขอ...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- CREATION WIZARD CONTROLLER (STEPPER FORM CONTAINER) -->
+                    <div id="requestFormContainer" class="hidden">
+                        
+                        <!-- Header & Back Button -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <div>
+                                <h1 style="font-size: 1.75rem; font-weight: 800; color: #0f172a; margin: 0;">สร้างคำขอสินค้าใหม่</h1>
+                                <p style="color: #64748b; font-size: 0.9rem; margin: 0;">กรอกข้อมูลจำเพาะสำหรับรหัสสินค้ากระดาษใหม่</p>
+                            </div>
+                            <button type="button" id="btnHideRequestForm" class="btn btn-secondary" style="border: 1.5px solid #e2e8f0; display: flex; align-items: center; gap: 0.5rem; font-weight: 700; cursor: pointer;">
+                                🔙 Back to Dashboard
+                            </button>
+                        </div>
+
+                        <!-- Stepper Tracker -->
+                        <div class="wizard-stepper">
+                            <div class="step-progress-bar" id="stepProgressBar"></div>
+                            <div class="stepper-item active" id="step1Header" onclick="goToWizardStep(1)">
+                                <div class="step-counter">1</div>
+                                <div class="step-label">ข้อมูลพื้นฐาน</div>
+                            </div>
+                            <div class="stepper-item" id="step2Header" onclick="goToWizardStep(2)">
+                                <div class="step-counter">2</div>
+                                <div class="step-label">คุณสมบัติทางเทคนิค</div>
+                            </div>
+                            <div class="stepper-item" id="step3Header" onclick="goToWizardStep(3)">
+                                <div class="step-counter">3</div>
+                                <div class="step-label">การตรวจสอบ</div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 1 CONTENT: MANUAL SPECS INPUT -->
+                        <div class="wizard-step-content" id="step1Content">
+                            <section class="card input-section">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                                    <h3 style="margin: 0; font-weight: 800; font-size: 1.2rem; color: #0f172a;">📝 1. ข้อมูลพื้นฐานสินค้า (Manual Input)</h3>
+                                </div>
+                                
+                                <form id="itemForm" class="multi-section-form">
+                                    <!-- General Info Fieldset -->
+                                    <fieldset class="form-section">
+                                        <div class="form-section-header">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+                                            </svg>
+                                            <span>General Information (ข้อมูลทั่วไป)</span>
+                                        </div>
+                                        <div class="form-grid">
+                                            <div class="form-group">
+                                                <label for="type">Type</label>
+                                                <select id="type" name="type">
+                                                    <option value="">Select Type</option>
+                                                    <option value="Parent">Parent</option>
+                                                    <option value="Child">Child</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="subGroup">Item Sub-Group</label>
+                                                <select id="subGroup" name="subGroup">
+                                                    <option value="">Select Sub-Group</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="itemGroup">Item Group</label>
+                                                <select id="itemGroup" name="itemGroup">
+                                                    <option value="">Select Group</option>
+                                                    <option value="1">Finished Goods - Paper</option>
+                                                    <option value="2">Finished Goods - Non Paper</option>
+                                                    <option value="3">Semi Product</option>
+                                                    <option value="4">Raw Material</option>
+                                                    <option value="5">Consume</option>
+                                                    <option value="6">Packaging</option>
+                                                    <option value="F">Fixed Asset</option>
+                                                    <option value="S">Service</option>
+                                                    <option value="L">Sales - Discounts, DN, CN</option>
+                                                    <option value="M">Marketing</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="domExp">Domestic/Export</label>
+                                                <select id="domExp" name="domExp">
+                                                    <option value="">Select Region</option>
+                                                    <option value="E">Export</option>
+                                                    <option value="D">Domestic</option>
+                                                    <option value="M">Export (Mat Change)</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="calcShipCountry">Ship to Country</label>
+                                                <select id="calcShipCountry" name="calcShipCountry">
+                                                    <option value="">Select Country</option>
+                                                </select>
+                                                <div id="specialStickerContainer" style="display: none; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                                                    <input type="checkbox" id="isSpecialSticker" name="isSpecialSticker" style="width: auto;">
+                                                    <label for="isSpecialSticker" style="font-size: 0.85rem; cursor: pointer; color: var(--primary); margin: 0;">Special Sticker? (แสดง Country Prefix ท้ายชื่อสินค้า)</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="brand">Brand</label>
+                                                <select id="brand" name="brand">
+                                                    <option value="">Select Brand</option>
+                                                    <option value="AL">Alpine</option>
+                                                    <option value="AP">aA-PRINT</option>
+                                                    <option value="BP">Big Paper</option>
+                                                    <option value="BU">Big Paper APC</option>
+                                                    <option value="CA">Calipage</option>
+                                                    <option value="C1">DA Colour Print</option>
+                                                    <option value="C3">DA Colour Print (Promotion)</option>
+                                                    <option value="DC">Double A Colour</option>
+                                                    <option value="DA">Double A</option>
+                                                    <option value="DZ">Double A (1759)</option>
+                                                    <option value="DY">Double A (Promotion)</option>
+                                                    <option value="D1">Double A FSC</option>
+                                                    <option value="D2">Double A FSC France</option>
+                                                    <option value="D3">Double A FSC Australia</option>
+                                                    <option value="D4">Double A FSC (CIE163)</option>
+                                                    <option value="DN">Double A China</option>
+                                                    <option value="DG">Double A Green</option>
+                                                    <option value="DK">Double A Korea</option>
+                                                    <option value="DU">Double A APC</option>
+                                                    <option value="DS">Double A USA</option>
+                                                    <option value="DR">Double A Nigeria</option>
+                                                    <option value="DP">Double A Philippines</option>
+                                                    <option value="DI">Double A India</option>
+                                                    <option value="AC">Double A Care</option>
+                                                    <option value="EZ">EZ Copy Blue</option>
+                                                    <option value="EG">Eagle Green</option>
+                                                    <option value="ER">Eagle Red</option>
+                                                    <option value="FS">FlagShip</option>
+                                                    <option value="GK">Giant King Kong</option>
+                                                    <option value="GP">GreenImpact</option>
+                                                    <option value="HP">Hi-Plus</option>
+                                                    <option value="HN">Hi-Plus China</option>
+                                                    <option value="HE">Hi-Plus Eng</option>
+                                                    <option value="HK">Hi-Plus Korea</option>
+                                                    <option value="HU">Hi-Plus APC</option>
+                                                    <option value="HF">Hi-Plus Alizay</option>
+                                                    <option value="HB">Hyper Buro</option>
+                                                    <option value="LY">Lyreco</option>
+                                                    <option value="OK">OK</option>
+                                                    <option value="OG">One Green</option>
+                                                    <option value="1K">One K</option>
+                                                    <option value="PG">Pergamy</option>
+                                                    <option value="PM">Premier</option>
+                                                    <option value="BB">Q-Biz Blue</option>
+                                                    <option value="BR">Q-Biz Red</option>
+                                                    <option value="QB">Quality Blue</option>
+                                                    <option value="QG">Quality Green</option>
+                                                    <option value="QO">Quality Orange</option>
+                                                    <option value="FO">Quality Orange FSC</option>
+                                                    <option value="QP">Quality Purple</option>
+                                                    <option value="FP">Quality Purple FSC</option>
+                                                    <option value="QR">Quality Red</option>
+                                                    <option value="QY">Quality Yellow</option>
+                                                    <option value="RF">Reflex</option>
+                                                    <option value="R1">Reflex FSC</option>
+                                                    <option value="RC">Reflex Colour</option>
+                                                    <option value="ZG">Shih-Tzu Green</option>
+                                                    <option value="ZP">Shih-Tzu Pink</option>
+                                                    <option value="SB">Siberian</option>
+                                                    <option value="SC">Smart Copy</option>
+                                                    <option value="SE">Smart Copy ECO</option>
+                                                    <option value="SU">Smart Copy APC</option>
+                                                    <option value="ST">Smartist</option>
+                                                    <option value="SF">Smartist FSC France</option>
+                                                    <option value="SN">Smartist China</option>
+                                                    <option value="SA">Smartist Alizay</option>
+                                                    <option value="SK">Smartist Korea</option>
+                                                    <option value="SG">So Good</option>
+                                                    <option value="SR">Speed Red</option>
+                                                    <option value="SY">Speed Yellow</option>
+                                                    <option value="T2">Top Print 92</option>
+                                                    <option value="T7">Top Print 97</option>
+                                                    <option value="TB">Turbo</option>
+                                                    <option value="WT">Winter</option>
+                                                    <option value="WU">Winter APC</option>
+                                                    <option value="WB">White Box</option>
+                                                    <option value="QA">Quality - AA</option>
+                                                    <option value="QH">Quality - HTP</option>
+                                                    <option value="QL">Quality</option>
+                                                    <option value="ON">One</option>
+                                                    <option value="OF">OFM</option>
+                                                    <option value="SI">Sunrise</option>
+                                                    <option value="WM">W.B. Mason</option>
+                                                    <option value="OM">OfficeMate</option>
+                                                    <option value="FC">Fair Copy</option>
+                                                    <option value="OP">OnPoint</option>
+                                                    <option value="GB">Global</option>
+                                                    <option value="LM">Link Max</option>
+                                                    <option value="SM">Simon</option>
+                                                    <option value="NB">No Brand</option>
+                                                    <option value="ST">Shih-Tzu</option>
+                                                    <option value="AR">aro</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="grade">Grade</label>
+                                                <select id="grade" name="grade">
+                                                    <option value="">Select Grade</option>
+                                                    <option value="A-COPY">A-COPY</option>
+                                                    <option value="A-COPY HIGH SHADE">A-COPY HIGH SHADE</option>
+                                                    <option value="aA-COPY (CIE150)">aA-COPY (CIE150)</option>
+                                                    <option value="aA-COPY 150 (FSC MIX70%)">aA-COPY 150 (FSC MIX70%)</option>
+                                                    <option value="aA-COPY 150 (PEFC)">aA-COPY 150 (PEFC)</option>
+                                                    <option value="aA-Copy Green">aA-Copy Green</option>
+                                                    <option value="aA-PRINT">aA-PRINT</option>
+                                                    <option value="B-A-COPY">B-A-COPY</option>
+                                                    <option value="B-A-COPY HIGH SHADE">B-A-COPY HIGH SHADE</option>
+                                                    <option value="B-aA-COPY (CIE150)">B-aA-COPY (CIE150)</option>
+                                                    <option value="B-aA-PRINT">B-aA-PRINT</option>
+                                                    <option value="B-Hi Copy">B-Hi Copy</option>
+                                                    <option value="B-Hi Copy+">B-Hi Copy+</option>
+                                                    <option value="B-NEW Q COPY (CIE145)">B-NEW Q COPY (CIE145)</option>
+                                                    <option value="B-SMART COPY (CIE145)">B-SMART COPY (CIE145)</option>
+                                                    <option value="C-A-COPY">C-A-COPY</option>
+                                                    <option value="C-aA-COPY (CIE150)">C-aA-COPY (CIE150)</option>
+                                                    <option value="C-aA-COPY GREEN">C-aA-COPY GREEN</option>
+                                                    <option value="C-aA-PRINT">C-aA-PRINT</option>
+                                                    <option value="C-SMART PRINT">C-SMART PRINT</option>
+                                                    <option value="CM">CM</option>
+                                                    <option value="DA COLOUR PRINT 150">DA COLOUR PRINT 150</option>
+                                                    <option value="DA COLOUR PRINT 150 (FSC MIX70%)">DA COLOUR PRINT 150 (FSC MIX70%)</option>
+                                                    <option value="DA COLOUR PRINT 150 (PEFC)">DA COLOUR PRINT 150 (PEFC)</option>
+                                                    <option value="HI COPY">HI COPY</option>
+                                                    <option value="HI COPY+">HI COPY+</option>
+                                                    <option value="HI-WC">HI-WC</option>
+                                                    <option value="HONEY COMB">HONEY COMB</option>
+                                                    <option value="JING JAI">JING JAI</option>
+                                                    <option value="KT">KT</option>
+                                                    <option value="NEW Q COPY (CIE145)">NEW Q COPY (CIE145)</option>
+                                                    <option value="NEW Q COPY (FSC MIX70%)">NEW Q COPY (FSC MIX70%)</option>
+                                                    <option value="NEW Q COPY (PEFC)">NEW Q COPY (PEFC)</option>
+                                                    <option value="REFLEX (FSC MIX70%)">REFLEX (FSC MIX70%)</option>
+                                                    <option value="REFLEX (PEFC)">REFLEX (PEFC)</option>
+                                                    <option value="Reject">Reject</option>
+                                                    <option value="SMART COPY (CIE145)">SMART COPY (CIE145)</option>
+                                                    <option value="SMART PRINT">SMART PRINT</option>
+                                                    <option value="WOL">WOL</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="gram">Gram (GSM)</label>
+                                                <input type="number" id="gram" name="gram" placeholder="e.g. 080" min="0" max="999" step="1">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="size">Size</label>
+                                                <input type="text" id="size" name="size" placeholder="e.g. A4, 210x297">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="sheet">Sheet</label>
+                                                <input type="text" id="sheet" name="sheet" placeholder="e.g. 500">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="reamPallet">Ream per Pallet</label>
+                                                <input type="number" id="reamPallet" name="reamPallet" placeholder="e.g. 200" min="0" step="1">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="layer">Layer</label>
+                                                <select id="layer" name="layer">
+                                                    <option value="">Select Layer</option>
+                                                    <option value="2L">2L</option>
+                                                    <option value="3L">3L</option>
+                                                    <option value="4L">4L</option>
+                                                    <option value="5L">5L</option>
+                                                    <option value="6L">6L</option>
+                                                    <option value="8L">8L</option>
+                                                    <option value="9L">9L</option>
+                                                    <option value="10L">10L</option>
+                                                    <option value="11L">11L</option>
+                                                    <option value="12L">12L</option>
+                                                    <option value="16L">16L</option>
+                                                    <option value="17L">17L</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="wrapType">Wrap Type</label>
+                                                <select id="wrapType" name="wrapType">
+                                                    <option value="">Select Wrap Type</option>
+                                                    <option value="Box AUTO">Box AUTO</option>
+                                                    <option value="Box MN">Box MN</option>
+                                                    <option value="Box MN (CVB)">Box MN (CVB)</option>
+                                                    <option value="SHR">SHR</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="palletType">Pallet Type</label>
+                                                <select id="palletType" name="palletType">
+                                                    <option value="">Select Pallet</option>
+                                                    <option value="N">N</option>
+                                                    <option value="S">S</option>
+                                                    <option value="SS">SS</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="reamBox">REAM / BOX</label>
+                                                <select id="reamBox" name="reamBox">
+                                                    <option value="">Select REAM/BOX</option>
+                                                    <option value="1R">1 Ream</option>
+                                                    <option value="2R">2 Ream</option>
+                                                    <option value="3R">3 Ream</option>
+                                                    <option value="4R">4 Ream</option>
+                                                    <option value="5R">5 Ream</option>
+                                                    <option value="8R">8 Ream</option>
+                                                    <option value="10R">10 Ream</option>
+                                                    <option value="5P">5 Pack</option>
+                                                    <option value="6P">6 Pack</option>
+                                                    <option value="10P">10 Pack</option>
+                                                    <option value="24P">24 pack</option>
+                                                    <option value="40P">40 Pack</option>
+                                                    <option value="48P">48 Pack</option>
+                                                    <option value="CVB ไม่ห่อรีม">CVB ไม่ห่อรีม</option>
+                                                </select>
+                                                <div id="specialReamContainer" style="display: none; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                                                    <input type="checkbox" id="isSpecialReam" name="isSpecialReam" style="width: auto;">
+                                                    <label for="isSpecialReam" style="font-size: 0.85rem; cursor: pointer; color: var(--primary); margin: 0;">Special Ream? (แสดงในชื่อสินค้า)</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="palletSize">Pallet Size</label>
+                                                <select id="palletSize" name="palletSize">
+                                                    <option value="">Select Pallet Size</option>
+                                                    <option value="Pallet 25.5x36 inch BPO">Pallet 25.5x36 inch BPO</option>
+                                                    <option value="Pallet 25.5x38.5 inch">Pallet 25.5x38.5 inch</option>
+                                                    <option value="Pallet 26.8x34.6 inch (68x88 cm)">Pallet 26.8x34.6 inch (68x88 cm)</option>
+                                                    <option value="Pallet 30.3x38.2 inch (77x97 cm)">Pallet 30.3x38.2 inch (77x97 cm)</option>
+                                                    <option value="Pallet 31.5x47.2 inch (80x120 cm)">Pallet 31.5x47.2 inch (80x120 cm)</option>
+                                                    <option value="Pallet 35.5x47.5 inch">Pallet 35.5x47.5 inch</option>
+                                                    <option value="Pallet 37x45 inch">Pallet 37x45 inch</option>
+                                                    <option value="Pallet DIY 24.5x35.5 inch">Pallet DIY 24.5x35.5 inch</option>
+                                                    <option value="Pallet DIY 26.8x34.6 inch (68x88 cm)">Pallet DIY 26.8x34.6 inch (68x88 cm)</option>
+                                                    <option value="Pallet DIY 31.5x47.2 inch (80x120 cm)">Pallet DIY 31.5x47.2 inch (80x120 cm)</option>
+                                                    <option value="Pallet DIY 36x47.5 inch">Pallet DIY 36x47.5 inch</option>
+                                                    <option value="Pallet DIY 37x42 inch">Pallet DIY 37x42 inch</option>
+                                                    <option value="Pallet DIY 37x45 inch">Pallet DIY 37x45 inch</option>
+                                                    <option value="Pallet DIY 37x45 inch Shortleg">Pallet DIY 37x45 inch Shortleg</option>
+                                                    <option value="Pallet DIY 44x50 inch">Pallet DIY 44x50 inch</option>
+                                                    <option value="Pallet EURO 26.8x34.6 inch (680x880 mm)">Pallet EURO 26.8x34.6 inch (680x880 mm)</option>
+                                                    <option value="Pallet EURO 31.5x47.2 inch (80x120 cm)">Pallet EURO 31.5x47.2 inch (80x120 cm)</option>
+                                                    <option value="Pallet Special 22x38.5 Inch">Pallet Special 22x38.5 Inch</option>
+                                                    <option value="Pallet Special 26.5x38.5 inch">Pallet Special 26.5x38.5 inch</option>
+                                                    <option value="Pallet Special 37.5x51.5 inch">Pallet Special 37.5x51.5 inch</option>
+                                                    <option value="Slip Sheet - Plastic 1016x1143x3 mm">Slip Sheet - Plastic 1016x1143x3 mm</option>
+                                                    <option value="Slip Sheet - Plastic 1060x1170x1 mm">Slip Sheet - Plastic 1060x1170x1 mm</option>
+                                                    <option value="Slip Sheet - Plastic  Size 1016x1143x1.5 mm">Slip Sheet - Plastic  Size 1016x1143x1.5 mm</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="location">Location for Work Order</label>
+                                                <div id="location" class="checkbox-group-container">
+                                                    <p style="font-size: 0.8rem; color: var(--text-muted);">Select Sub-Group first</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="category">Item Category</label>
+                                                <select id="category" name="category">
+                                                    <option value="">Select Category</option>
+                                                    <option value="Australia">Australia</option>
+                                                    <option value="France">France</option>
+                                                    <option value="Germany">Germany</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <!-- SAP Info Fieldset -->
+                                    <fieldset class="form-section">
+                                        <div class="form-section-header">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                            </svg>
+                                            <span>SAP Information (การจับคู่ระบบเดิม)</span>
+                                        </div>
+                                        <div class="form-grid">
+                                            <div class="form-group"><label>SAP Code1</label><input type="text" name="sapCode1"></div>
+                                            <div class="form-group"><label>SAP Code2</label><input type="text" name="sapCode2"></div>
+                                            <div class="form-group"><label>SAP Name</label><input type="text" name="sapName"></div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+
+                                <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:2rem; border-top:1px solid #e2e8f0; padding-top:1.5rem;">
+                                    <button type="button" class="btn btn-primary" onclick="goToWizardStep(2)" style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1.5rem; border-radius:8px; cursor:pointer;">
+                                        ถัดไป: คุณสมบัติทางเทคนิค ➡️
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- STEP 2 CONTENT: AUTOMATED CALCULATIONS -->
+                        <div class="wizard-step-content hidden" id="step2Content">
+                            <section class="card output-section">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <h3 style="margin: 0; font-weight: 800; font-size: 1.2rem; color: #0f172a;">⚙️ 2. ระบบประมวลผลคำนวณทางเทคนิค (Automated Calculation)</h3>
+                                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">ผลลัพธ์คำนวณที่ได้จากเงื่อนไขใน Master Data (Read-only)</p>
+                                </div>
+
+                                <div class="multi-section-form">
+                                    <fieldset class="form-section">
+                                        <div class="form-section-header">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                            </svg>
+                                            <span>Item Information</span>
+                                        </div>
+                                        <div class="form-grid">
+                                            <div class="form-group"><label>MPS Color</label><input type="text" name="calcMpsColor" readonly></div>
+                                            <div class="form-group"><label>BOI</label><input type="text" name="calcBoi" readonly></div>
+                                            <div class="form-group"><label>Weight of Unit</label><input type="text" name="weightOfUnit" readonly></div>
+                                            <div class="form-group"><label>Internal ID_Parent</label><input type="text" name="internalIdParent" readonly></div>
+                                            <div class="form-group"><label>SubItem of Item Code</label><input type="text" name="subitemItemCode" readonly></div>
+                                            <div class="form-group full-width"><label>SubItem of Item Name</label><input type="text" name="subitemItemName" readonly></div>
+                                            <div class="form-group"><label>Brand Group</label><input type="text" name="brandGroup" readonly></div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="form-section">
+                                        <div class="form-section-header">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"/>
+                                            </svg>
+                                            <span>Other & Weight Information</span>
+                                        </div>
+                                        <div class="form-grid">
+                                            <div class="form-group"><label>ความสูงสินค้า (Inch)</label><input type="text" name="heightInch" readonly></div>
+                                            <div class="form-group"><label>Pallet Height (inch)</label><input type="text" name="palletHeightInch" readonly></div>
+                                            <div class="form-group"><label>Standard/Net Weight (KG)</label><input type="text" name="stdNetWeightKg" readonly></div>
+                                            <div class="form-group"><label>Gross Weight Markup (%)</label><input type="text" name="grossWeightMarkup" readonly></div>
+                                            <div class="form-group"><label>Gross Weight</label><input type="text" name="calcGrossWeight" readonly></div>
+                                            <div class="form-group"><label>Country of Origin</label><input type="text" name="countryOfOrigin" readonly></div>
+                                            <div class="form-group"><label>HS Code</label><input type="text" name="hsCode" readonly></div>
+                                            <div class="form-group"><label>Commodities</label><input type="text" name="commodities" readonly></div>
+                                            <div class="form-group"><label>Block PM</label><input type="text" name="blockPm" readonly></div>
+                                            <div class="form-group"><label>Sheet/Pallet</label><input type="text" name="sheetPallet" readonly></div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="form-section">
+                                        <div class="form-section-header">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                            </svg>
+                                            <span>Class & UOM Detail</span>
+                                        </div>
+                                        <div class="form-grid">
+                                            <div class="form-group"><label>Subsidiary</label><input type="text" name="subsidiary" readonly></div>
+                                            <div class="form-group"><label>Class (no hierarchy)</label><input type="text" name="classNoHierarchy" readonly></div>
+                                            <div class="form-group"><label>Catagory Group</label><input type="text" name="catagoryGroup" readonly></div>
+                                            <div class="form-group"><label>Mixed Pallet</label><input type="text" name="mixedPallet" readonly></div>
+                                            <div class="form-group"><label>Unit Type</label><input type="text" name="unitTypeUom" readonly></div>
+                                            <div class="form-group"><label>KG</label><input type="text" name="kg" readonly></div>
+                                            <div class="form-group"><label>Ream/Pack</label><input type="text" name="reamPack" readonly></div>
+                                            <div class="form-group"><label>UOM1</label><input type="text" name="uom1" readonly></div>
+                                            <div class="form-group"><label>UOM2</label><input type="text" name="uom2" readonly></div>
+                                            <div class="form-group"><label>Box</label><input type="text" name="box" readonly></div>
+                                            <div class="form-group"><label>Pallet</label><input type="text" name="palletUom" readonly></div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="form-section">
+                                        <div class="form-section-header">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                                            </svg>
+                                            <span>Primary Units of Measure</span>
+                                        </div>
+                                        <div class="form-grid">
+                                            <div class="form-group"><label>Primary Units Type</label><input type="text" name="primaryUnitsType" readonly></div>
+                                            <div class="form-group"><label>Primary Stock Unit</label><input type="text" name="primaryStockUnit" readonly></div>
+                                            <div class="form-group"><label>Primary Purchase Unit</label><input type="text" name="primaryPurchaseUnit" readonly></div>
+                                            <div class="form-group"><label>Primary Sale Unit</label><input type="text" name="primarySaleUnit" readonly></div>
+                                            <div class="form-group"><label>Primary Consumption Unit</label><input type="text" name="primaryConsumptionUnit" readonly></div>
+                                            <div class="form-group"><label>Primary Unit Type</label><input type="text" name="primaryUnitType" readonly></div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="form-section">
+                                        <div class="form-section-header">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                            </svg>
+                                            <span>MFG, MRP & Account Mapping</span>
+                                        </div>
+                                        <div class="form-grid">
+                                            <div class="form-group"><label>MFG Item Batch Qty</label><input type="text" name="mfgItemBatchQty" readonly></div>
+                                            <div class="form-group"><label>Item Mapping DCS</label><input type="text" name="itemMappingDcs" readonly></div>
+                                            <div class="form-group"><label>MRP Active</label><input type="text" name="mrpActive" readonly></div>
+                                            <div class="form-group"><label>MFG Include in Auto TO</label><input type="text" name="mfgIncludeAutoTransfer" readonly></div>
+                                            <div class="form-group"><label>Expense/COGS Account</label><input type="text" name="expenseCogsAccount" readonly></div>
+                                            <div class="form-group"><label>Expense/COGS Account_ID</label><input type="text" name="expenseCogsAccountId" readonly></div>
+                                            <div class="form-group"><label>Asset Account</label><input type="text" name="assetAccount" readonly></div>
+                                            <div class="form-group"><label>Asset Account_ID</label><input type="text" name="assetAccountId" readonly></div>
+                                            <div class="form-group"><label>Income Account</label><input type="text" name="incomeAccount" readonly></div>
+                                            <div class="form-group"><label>Income Account_ID</label><input type="text" name="incomeAccountId" readonly></div>
+                                            <div class="form-group"><label>Scrap Account</label><input type="text" name="scrapAccount" readonly></div>
+                                            <div class="form-group"><label>WIP Account</label><input type="text" name="wipAccount" readonly></div>
+                                            <div class="form-group"><label>Tax Schedule</label><input type="text" name="taxSchedule" readonly></div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="form-section">
+                                        <div class="form-section-header">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                            </svg>
+                                            <span>Web Store & WMS Detail</span>
+                                        </div>
+                                        <div class="form-grid">
+                                            <div class="form-group"><label>Display in Web Site</label><input type="text" name="displayInWebSite" readonly></div>
+                                            <div class="form-group full-width"><label>Page Title</label><input type="text" name="pageTitle" readonly></div>
+                                            <div class="form-group full-width"><label>Web Store Display Name</label><input type="text" name="webStoreDisplayName" readonly></div>
+                                            <div class="form-group"><label>SCA Item Sub-Type</label><input type="text" name="scaItemSubType" readonly></div>
+                                            <div class="form-group full-width"><label>URL Component</label><input type="text" name="urlComponent" readonly></div>
+                                            <div class="form-group"><label>TWMS Use Pallet</label><input type="text" name="twmsUsePallet" readonly></div>
+                                            <div class="form-group"><label>TWMS PRE-ASSIGN LOT</label><input type="text" name="twmsPreAssignLot" readonly></div>
+                                            <div class="form-group"><label>TWMS PRE-ASSIGN PALLET</label><input type="text" name="calcTwmsPreAssignPallet" readonly></div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div style="display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; border-top:1px solid #e2e8f0; padding-top:1.5rem;">
+                                    <button type="button" class="btn btn-secondary" onclick="goToWizardStep(1)" style="padding:0.6rem 1.5rem; border-radius:8px; cursor:pointer;">
+                                        ⬅️ ย้อนกลับ
+                                    </button>
+                                    <button type="button" class="btn btn-primary" onclick="goToWizardStep(3)" style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1.5rem; border-radius:8px; cursor:pointer;">
+                                        ถัดไป: ตรวจสอบและส่งคำขอ ➡️
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- STEP 3 CONTENT: FINAL REVIEW AND SUBMISSION -->
+                        <div class="wizard-step-content hidden" id="step3Content">
+                            <section class="card">
+                                <div class="form-section-header">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>ตรวจสอบความถูกต้องของข้อมูล (Verification)</span>
+                                </div>
+                                <p style="font-size:0.9rem; color:#475569; margin-bottom:1.5rem; line-height: 1.6;">
+                                    กรุณาตรวจสอบโครงสร้างรหัสสินค้า (Item Code) และชื่อสินค้าที่ประมวลผลได้ หากตรวจพบข้อผิดพลาดหรือรหัสซ้ำ กรุณาย้อนกลับไปแก้ไขค่าทางเทคนิคในขั้นตอนก่อนหน้า
+                                </p>
+
+                                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:1.5rem; display:flex; flex-direction:column; gap:1.25rem; margin-bottom: 2rem;">
+                                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:1rem;">
+                                        <strong style="color:#0f172a; font-size:0.95rem;">รหัสสินค้าที่จะถูกสร้าง (Item Code):</strong>
+                                        <span id="reviewItemCode" style="font-family:monospace; font-weight:800; color:#1e3a8a; font-size:1.35rem; letter-spacing: 0.02em;">-</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:1rem;">
+                                        <strong style="color:#0f172a; font-size:0.95rem;">ชื่อแสดงผลของสินค้า (Item Name):</strong>
+                                        <span id="reviewItemName" style="font-weight:700; color:#0f172a; font-size:1rem; text-align:right;">-</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                                        <strong style="color:#0f172a; font-size:0.95rem;">กลุ่มสับกรุ๊ปสินค้า (Sub-Group):</strong>
+                                        <span id="reviewSubGroup" style="font-weight:700; color:#475569; font-size:0.95rem;">-</span>
+                                    </div>
+
+
+                                <!-- Duplicate Warning Alert Box -->
+                                <div id="duplicateAlert" class="alert error hidden" style="background-color: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+                                    <div style="display:flex; gap: 12px; align-items:flex-start;">
+                                        <span id="duplicateAlertIcon" style="font-size: 1.25rem;">🚨</span>
+                                        <div style="width: 100%;">
+                                            <strong id="duplicateAlertTitle" style="display:block; margin-bottom:4px;">ตรวจพบรหัสสินค้าซ้ำในระบบ! (Duplicate Item Code)</strong>
+                                            <p id="duplicateAlertDesc" style="font-size:0.85rem; margin:0; opacity:0.9;">
+                                                รหัสสินค้านี้มีอยู่แล้วในฐานข้อมูล ERP กรุณาแก้ไขคุณสมบัติทางเทคนิคเพื่อป้องกันปัญหารหัสทับซ้อน
+                                            </p>
+                                            <div class="alert-content" style="margin-top: 0.5rem;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="action-bar" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                                    <button type="button" class="btn btn-secondary" onclick="goToWizardStep(2)" style="padding:0.6rem 1.5rem; border-radius:8px; cursor:pointer;">
+                                        ⬅️ ย้อนกลับ
+                                    </button>
+                                    <button type="button" id="btnSubmitRequest" class="btn btn-primary" style="background:#1e3a8a !important; flex:1; padding:0.6rem 2rem; font-weight:700; font-size:1rem; border-radius:8px; cursor:pointer;">
+                                        📤 ยืนยันและส่งคำขอรหัสสินค้า
+                                    </button>
+                                    <button type="button" id="btnReset" class="btn btn-secondary" style="border:1.5px solid #e2e8f0; border-radius:8px; cursor:pointer;">
+                                        ล้างฟอร์ม
+                                    </button>
+                                    <button type="button" id="btnExportCsv" class="btn btn-secondary" style="border:1.5px solid #e2e8f0; border-radius:8px; cursor:pointer;">
+                                        Export CSV
+                                    </button>
+                                </div>
+
+                                <!-- Submit Success Message -->
+                                <div id="submitSuccess" class="submit-success hidden" style="margin-top: 1.5rem;">
+                                    <span>✅</span>
+                                    <span id="submitSuccessText">ส่งคำขอสร้าง Item สำเร็จแล้ว!</span>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- ✨ Premium Gemini AI Auto-fill Modal -->
-    <div id="aiModal" class="modal-backdrop hidden">
+
+    <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Detail Modal Overlay -->
+    <div class="modal-overlay hidden" id="detailModal">
         <div class="modal-card">
             <div class="modal-header">
-                <h3>✨ Auto-fill Specs with Gemini AI</h3>
-                <button type="button" id="btnCloseAI" class="btn-close">&times;</button>
+                <h3>📄 รายละเอียดคำขอสร้างสินค้า</h3>
+                <button type="button" class="modal-close" id="modalClose">✕</button>
             </div>
-            <div class="modal-body">
-                <p class="modal-desc">Paste unstructured specifications, vendor descriptions, or client requests below. Gemini AI will analyze the text, extract correct fields matching your CSV Master Data, and fill the form automatically.</p>
-                
-                <textarea id="aiInput" placeholder="Paste your raw text or request here... e.g. ขอรหัสสินค้าใหม่ ดับเบิ้ลเอ เอสี่ 80แกรม ห้าร้อยแผ่น ส่งนอกไปฝรั่งเศส เกรด Smart Copy..."></textarea>
-                
-                <div class="preset-chips-container">
-                    <span class="chips-label">🎯 Click to try a preset:</span>
-                    <div class="preset-chips">
-                        <span class="chip" onclick="document.getElementById('aiInput').value = 'ขอสร้าง Double A ขนาด A4 80 แกรม 500 แผ่น/รีม ส่งออกนอกไปประเทศฝรั่งเศส เกรด A-COPY ชนิด Child';">Double A A4 80gsm</span>
-                        <span class="chip" onclick="document.getElementById('aiInput').value = 'แบรนด์ Alpine เกรด WOL ขนาด A3 กระดาษหนา 120gsm ส่งออกนอก (Mat Change) ไปประเทศออสเตรเลีย ชนิด Child';">Alpine A3 120gsm</span>
-                        <span class="chip" onclick="document.getElementById('aiInput').value = 'กระดาษ Parent แบรนด์ Smartist เกรด WOL GSM 080 ส่งในประเทศ (Domestic)';">Smartist Parent</span>
-                    </div>
-                </div>
-                
-                <div class="modal-settings">
-                    <details>
-                        <summary>⚙️ Google AI Studio API Key (Fallback)</summary>
-                        <div class="settings-content">
-                            <label for="aiKey">Gemini API Key</label>
-                            <input type="password" id="aiKey" placeholder="Enter AIzaSy... (Leave empty inside Google AI Studio preview)">
-                            <p class="field-help">Keys are securely saved in your browser's localStorage and never sent anywhere else.</p>
-                        </div>
-                    </details>
-                </div>
-                
-                <div id="aiError" class="alert error hidden" style="background-color: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 0.75rem; border-radius: 6px; margin: 1rem 0; font-size: 0.9rem;"></div>
-                
-                <div id="aiPreviewContainer" class="hidden">
-                    <h4 style="margin: 1rem 0 0.5rem; color: var(--primary-dark); font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--primary);">
-                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        📊 Extracted Specifications Review
-                    </h4>
-                    <div id="aiPreviewGrid" class="preview-grid"></div>
-                </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Populated by JS -->
             </div>
-            <div class="modal-footer">
-                <button type="button" id="btnAnalyzeAI" class="btn btn-primary" style="background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);">✨ Analyze Text</button>
-                <button type="button" id="btnApplyAI" class="btn btn-primary hidden" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">Apply to Form</button>
+            <div class="modal-footer" id="modalFooter">
+                <button type="button" class="btn btn-secondary" onclick="closeUserDetailModal()" style="padding: 0.5rem 1.5rem; font-weight: 700;">ปิด</button>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="auth.js"></script>
     <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('appSidebar');
+            const layout = document.querySelector('.app-layout');
+            const toggleBtn = document.getElementById('sidebarToggle');
+            
+            // Check session storage for saved sidebar state
+            const isCollapsed = sessionStorage.getItem('sidebar_collapsed') === 'true';
+            if (isCollapsed && sidebar && layout) {
+                sidebar.classList.add('collapsed');
+                layout.classList.add('sidebar-collapsed');
+            }
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('collapsed');
+                    layout.classList.toggle('sidebar-collapsed');
+                    sessionStorage.setItem('sidebar_collapsed', sidebar.classList.contains('collapsed'));
+                });
+            }
+        });
+    </script>
 </body>
 </html>
+

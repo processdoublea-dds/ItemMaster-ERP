@@ -4,11 +4,30 @@
 function collectFormData() {
     const formDataObj = {};
     const allFields = document.querySelectorAll('.form-group input, .form-group select, .checkbox-group-container');
+    
     allFields.forEach(field => {
-        const lbl = field.closest('.form-group')?.querySelector('label');
+        // Skip search inputs from the custom select component to prevent overwriting
+        if (field.classList.contains('searchable-select-search')) return;
+        
+        // Find the most specific label for this field
+        let lbl = null;
+        if (field.id) {
+            lbl = document.querySelector(`label[for="${field.id}"]`);
+        }
+        
+        // Fallback to the first label in the group if no specific label is found
+        if (!lbl) {
+            if (field.classList.contains('checkbox-group-container')) {
+                lbl = field.parentElement.querySelector('label');
+            } else {
+                lbl = field.closest('.form-group')?.querySelector('label');
+            }
+        }
+        
         if (lbl) {
             const key = lbl.innerText.trim();
             let val = '';
+            
             if (field.classList.contains('checkbox-group-container')) {
                 const checked = field.querySelectorAll('input[type="checkbox"]:checked');
                 val = Array.from(checked).map(c => c.value).join(', ');
@@ -16,12 +35,173 @@ function collectFormData() {
                 const t = field.options[field.selectedIndex].text;
                 val = t.startsWith('Select ') ? '' : t;
             } else if (field.tagName === 'INPUT') {
-                val = field.value || '';
+                if (field.type === 'checkbox') {
+                    val = field.checked ? 'Yes' : 'No';
+                } else if (field.type === 'radio') {
+                    if (field.checked) val = field.value || 'Yes';
+                    else return; // Ignore unchecked radios
+                } else {
+                    val = field.value || '';
+                }
             }
-            formDataObj[key] = val;
+            
+            // Don't overwrite a valid value with an empty one (helps with grouped inputs)
+            if (val !== '' || !formDataObj[key]) {
+                formDataObj[key] = val;
+            }
         }
     });
     return formDataObj;
+}
+
+// Dynamic Searchable Select Component for dropdowns with > 10 options
+function updateSearchableSelect(select) {
+    if (!select) return;
+    
+    // Count active options (excluding empty placeholder)
+    const optionsCount = Array.from(select.options).filter(opt => opt.value !== "").length;
+    
+    if (optionsCount <= 10) {
+        // If it previously had a search wrapper, remove it and restore native select
+        const wrapper = select.nextElementSibling;
+        if (wrapper && wrapper.classList.contains('searchable-select-wrapper')) {
+            wrapper.remove();
+            select.style.display = '';
+        }
+        return;
+    }
+    
+    // Find or create wrapper
+    let wrapper = select.nextElementSibling;
+    if (!wrapper || !wrapper.classList.contains('searchable-select-wrapper')) {
+        wrapper = document.createElement('div');
+        wrapper.className = 'searchable-select-wrapper';
+        
+        const toggle = document.createElement('div');
+        toggle.className = 'searchable-select-toggle';
+        
+        const toggleText = document.createElement('span');
+        toggleText.className = 'searchable-select-text';
+        toggle.appendChild(toggleText);
+        
+        const toggleArrow = document.createElement('span');
+        toggleArrow.innerHTML = '&#9662;';
+        toggleArrow.style.color = '#64748b';
+        toggleArrow.style.fontSize = '0.75rem';
+        toggle.appendChild(toggleArrow);
+        
+        const panel = document.createElement('div');
+        panel.className = 'searchable-select-panel hidden';
+        
+        const searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.className = 'searchable-select-search';
+        searchInput.placeholder = 'ค้นหา...';
+        
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'searchable-select-options';
+        
+        panel.appendChild(searchInput);
+        panel.appendChild(optionsContainer);
+        wrapper.appendChild(toggle);
+        wrapper.appendChild(panel);
+        
+        select.parentNode.insertBefore(wrapper, select.nextSibling);
+        select.style.display = 'none';
+        
+        // Toggle panel open/close
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.querySelectorAll('.searchable-select-panel').forEach(p => {
+                if (p !== panel) p.classList.add('hidden');
+            });
+            panel.classList.toggle('hidden');
+            if (!panel.classList.contains('hidden')) {
+                searchInput.focus();
+                searchInput.value = '';
+                // Trigger option filter reset
+                const items = optionsContainer.querySelectorAll('.searchable-select-option');
+                items.forEach(item => item.style.display = '');
+            }
+        });
+        
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!wrapper.contains(e.target)) {
+                panel.classList.add('hidden');
+            }
+        });
+        
+        // Search filter logic
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase().trim();
+            const items = optionsContainer.querySelectorAll('.searchable-select-option');
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
+    
+    const toggleText = wrapper.querySelector('.searchable-select-text');
+    const optionsContainer = wrapper.querySelector('.searchable-select-options');
+    
+    // Sync current select value to UI
+    const currentOpt = select.options[select.selectedIndex];
+    toggleText.textContent = currentOpt ? currentOpt.textContent : 'Select...';
+    
+    // Populate options
+    optionsContainer.innerHTML = '';
+    Array.from(select.options).forEach(opt => {
+        const item = document.createElement('div');
+        item.className = 'searchable-select-option';
+        item.textContent = opt.textContent;
+        item.dataset.value = opt.value;
+        
+        if (opt.selected) {
+            item.classList.add('selected');
+        }
+        
+        item.addEventListener('click', () => {
+            select.value = opt.value;
+            // Dispatch standard change event on native select
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+            select.dispatchEvent(new Event('input', { bubbles: true }));
+            toggleText.textContent = opt.textContent;
+            wrapper.querySelector('.searchable-select-panel').classList.add('hidden');
+        });
+        
+        optionsContainer.appendChild(item);
+    });
+    
+    // Sync external/programmatic updates to native select back to the custom select wrapper
+    if (!select._hasSearchableObserver) {
+        select._hasSearchableObserver = true;
+        select.addEventListener('change', () => {
+            const activeOpt = select.options[select.selectedIndex];
+            toggleText.textContent = activeOpt ? activeOpt.textContent : 'Select...';
+            
+            const items = optionsContainer.querySelectorAll('.searchable-select-option');
+            items.forEach(item => {
+                if (item.dataset.value === select.value) {
+                    item.classList.add('selected');
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+        });
+    }
+}
+
+function initSearchableSelects() {
+    const selects = document.querySelectorAll('#itemForm select');
+    selects.forEach(select => {
+        updateSearchableSelect(select);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,20 +220,76 @@ document.addEventListener('DOMContentLoaded', () => {
     const duplicateAlert = document.getElementById('duplicateAlert');
     const btnReset = document.getElementById('btnReset');
 
-    // --- UI Toggle Logic (Dashboard vs Form) ---
+    // --- UI Toggle Logic (Dashboard vs Form) & Navigation Bar Sync ---
     const btnShowRequestForm = document.getElementById('btnShowRequestForm');
     const btnHideRequestForm = document.getElementById('btnHideRequestForm');
     const requestFormContainer = document.getElementById('requestFormContainer');
     const myRequestsSection = document.getElementById('myRequestsSection');
     const resultBanner = document.getElementById('resultBanner');
+    const headerSearch = document.querySelector('.header-search');
+
+    const navDashboard = document.getElementById('navDashboard');
+    const navItemRequests = document.getElementById('navItemRequests');
 
     if (resultBanner) resultBanner.style.display = 'none';
+
+    // Wizard Stepper Control Logic
+    window.goToWizardStep = function(stepNum) {
+        const steps = [1, 2, 3];
+        steps.forEach(num => {
+            const content = document.getElementById(`step${num}Content`);
+            const header = document.getElementById(`step${num}Header`);
+            if (content) {
+                if (num === stepNum) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            }
+            if (header) {
+                header.classList.remove('active', 'completed');
+                if (num === stepNum) {
+                    header.classList.add('active');
+                } else if (num < stepNum) {
+                    header.classList.add('completed');
+                }
+            }
+        });
+
+        // Progress line transition
+        const progressBar = document.getElementById('stepProgressBar');
+        if (progressBar) {
+            const percent = ((stepNum - 1) / 2) * 100;
+            progressBar.style.width = `${percent}%`;
+        }
+
+        // Review data populations on Step 3
+        if (stepNum === 3) {
+            const rCode = document.getElementById('reviewItemCode');
+            const rName = document.getElementById('reviewItemName');
+            const rGroup = document.getElementById('reviewSubGroup');
+            const subGroupSelect = document.getElementById('subGroup');
+            
+            if (rCode && bannerItemCode) rCode.textContent = bannerItemCode.textContent || '-';
+            if (rName && bannerItemName) rName.textContent = bannerItemName.textContent || '-';
+            if (rGroup && subGroupSelect) {
+                const opt = subGroupSelect.options[subGroupSelect.selectedIndex];
+                rGroup.textContent = (opt && opt.value) ? opt.text : '-';
+            }
+        }
+    };
 
     if (btnShowRequestForm && requestFormContainer) {
         btnShowRequestForm.addEventListener('click', () => {
             requestFormContainer.classList.remove('hidden');
             myRequestsSection.classList.add('hidden');
             if (resultBanner) resultBanner.style.display = 'flex';
+            if (headerSearch) headerSearch.style.display = 'none';
+            
+            if (navItemRequests) navItemRequests.classList.add('active');
+            if (navDashboard) navDashboard.classList.remove('active');
+            
+            goToWizardStep(1);
         });
     }
 
@@ -62,6 +298,81 @@ document.addEventListener('DOMContentLoaded', () => {
             requestFormContainer.classList.add('hidden');
             myRequestsSection.classList.remove('hidden');
             if (resultBanner) resultBanner.style.display = 'none';
+            if (headerSearch) headerSearch.style.display = 'block';
+            
+            if (navDashboard) navDashboard.classList.add('active');
+            if (navItemRequests) navItemRequests.classList.remove('active');
+            
+            // Clear URL param to keep path clean
+            if (window.history.pushState) {
+                const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.pushState({path:newurl}, '', newurl);
+            }
+        });
+    }
+
+    // Handle URL ?tab=create parameter on load
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('tab') === 'create') {
+        if (requestFormContainer && myRequestsSection) {
+            requestFormContainer.classList.remove('hidden');
+            myRequestsSection.classList.add('hidden');
+            if (resultBanner) resultBanner.style.display = 'flex';
+            if (headerSearch) headerSearch.style.display = 'none';
+            if (navItemRequests) navItemRequests.classList.add('active');
+            if (navDashboard) navDashboard.classList.remove('active');
+            goToWizardStep(1);
+        }
+    }
+
+    // Set User Initials avatar + Profile Dropdown
+    const user = getUser();
+    if (user) {
+        const userInitials = document.getElementById('userInitials');
+        const dropdownAvatar = document.getElementById('dropdownAvatar');
+        const dropdownName = document.getElementById('dropdownName');
+        const dropdownRole = document.getElementById('dropdownRole');
+        const dropdownMeta = document.getElementById('dropdownMeta');
+
+        const nameParts = (user.full_name || '').split(' ');
+        let initials = '';
+        if (nameParts.length > 0 && nameParts[0]) initials += nameParts[0][0];
+        if (nameParts.length > 1 && nameParts[1]) initials += nameParts[1][0];
+        const initialsText = (initials || user.email || 'US').substring(0, 2).toUpperCase();
+
+        if (userInitials) userInitials.textContent = initialsText;
+        if (dropdownAvatar) dropdownAvatar.textContent = initialsText;
+        if (dropdownName) dropdownName.textContent = user.full_name || user.email || 'User';
+        if (dropdownRole) {
+            const roleLabel = user.role === 'admin' ? '🛡️ Admin' : '👤 User';
+            dropdownRole.textContent = roleLabel;
+        }
+        if (dropdownMeta) {
+            let metaParts = [];
+            if (user.department) metaParts.push(`📂 ${user.department}`);
+            if (user.position) metaParts.push(`💼 ${user.position}`);
+            if (user.email) metaParts.push(`✉️ ${user.email}`);
+            dropdownMeta.innerHTML = metaParts.join('<br>');
+        }
+
+
+    }
+
+    // Global Top Search filter for Dashboard Table rows
+    const globalSearchInput = document.getElementById('globalSearchInput');
+    if (globalSearchInput) {
+        globalSearchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const rows = document.querySelectorAll('.request-row');
+            rows.forEach(row => {
+                const code = row.querySelector('.request-code')?.textContent.toLowerCase() || '';
+                const name = row.querySelector('.request-name')?.textContent.toLowerCase() || '';
+                if (code.includes(query) || name.includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
         });
     }
 
@@ -75,6 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnReset.addEventListener('click', () => {
         form.reset();
+        initSearchableSelects();
         updateCalculations();
     });
 
@@ -247,6 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Restore value if possible
         if (currentVal) subGroupSelect.value = currentVal;
+        updateSearchableSelect(subGroupSelect);
     }
 
     function populateCountries() {
@@ -280,6 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Restore value if possible
         if (currentVal) countrySelect.value = currentVal;
+        updateSearchableSelect(countrySelect);
     }
 
     async function loadCSVData() {
@@ -306,12 +620,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (typeof supabaseClient !== 'undefined' && supabaseClient) {
                 const { data, error } = await supabaseClient
                     .from('item_requests')
-                    .select('item_code, item_name, internal_id');
+                    .select('item_code, item_name, erp_internal_id');
                 if (!error && data) {
                     dbItems = data.map(r => ({
                         'Item Code': r.item_code,
                         'Item Name': r.item_name,
-                        'Internal ID': r.internal_id
+                        'Internal ID': r.erp_internal_id
                     }));
                 }
             }
@@ -324,6 +638,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 master: itemMasterData.length,
                 db: dbItems.length
             });
+            initSearchableSelects();
             updateCalculations();
         } catch (error) {
             console.error('Error loading CSV data:', error);
@@ -412,6 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
             grade: getVal('grade'),
             reamPallet: getVal('reamPallet'),
             isSpecialReam: document.getElementById('isSpecialReam')?.checked || false,
+            isSpecialSticker: document.getElementById('isSpecialSticker')?.checked || false,
             calcShipCountry: getVal('calcShipCountry')
         };
 
@@ -419,11 +735,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const specialReamContainer = document.getElementById('specialReamContainer');
         const isSpecialReamCheckbox = document.getElementById('isSpecialReam');
         if (specialReamContainer && isSpecialReamCheckbox) {
-            const isReamBoxSelected = vals.reamBox && vals.reamBox !== 'None';
+            const isReamBoxSelected = vals.reamBox && vals.reamBox !== 'None' && vals.reamBox !== '';
             specialReamContainer.style.display = isReamBoxSelected ? 'flex' : 'none';
-            if (!isReamBoxSelected) {
+            if (isReamBoxSelected) {
+                // Auto-determine special ream: any value except 5R, 10R, and CVB (like CVB ไม่ห่อรีม)
+                const isSpecial = !['5R', '10R'].includes(vals.reamBox) && !vals.reamBox.includes('CVB');
+                isSpecialReamCheckbox.checked = isSpecial;
+                vals.isSpecialReam = isSpecial;
+            } else {
                 isSpecialReamCheckbox.checked = false;
                 vals.isSpecialReam = false;
+            }
+        }
+
+        // Visibility toggle for Special Sticker
+        const specialStickerContainer = document.getElementById('specialStickerContainer');
+        const isSpecialStickerCheckbox = document.getElementById('isSpecialSticker');
+        if (specialStickerContainer && isSpecialStickerCheckbox) {
+            const isCountrySelected = vals.calcShipCountry && vals.calcShipCountry !== 'None' && vals.calcShipCountry !== '';
+            specialStickerContainer.style.display = isCountrySelected ? 'flex' : 'none';
+            if (!isCountrySelected) {
+                isSpecialStickerCheckbox.checked = false;
+                vals.isSpecialSticker = false;
             }
         }
 
@@ -481,8 +814,12 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (vals.wrapType === 'Box MN (CVB)') wrapTypeAbbr = 'CVB';
         else if (vals.wrapType === 'SHR') wrapTypeAbbr = 'SHR';
 
-        if (wrapTypeAbbr && ['CZ', 'CK', 'GC', 'GK'].includes(subGroupDigit)) {
-            itemNameParts.push(wrapTypeAbbr);
+        if (wrapTypeAbbr) {
+            if (wrapTypeAbbr === 'CVB') {
+                itemNameParts.push('CVB');
+            } else if (['CZ', 'CK', 'GC', 'GK'].includes(subGroupDigit)) {
+                itemNameParts.push(wrapTypeAbbr);
+            }
         }
         if (vals.layer && vals.layer !== 'None') itemNameParts.push(vals.layer);
         if (vals.reamBox && vals.reamBox !== 'None' && vals.isSpecialReam) {
@@ -496,6 +833,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (vals.grade && vals.grade.includes('FSC')) itemNameParts.push('FSC MIX70%');
         if (vals.palletSize === 'DIY') itemNameParts.push('T');
         if (vals.palletSize === 'EU/EURO') itemNameParts.push('E');
+        if (vals.isSpecialSticker && listData) {
+            const countrySelect = document.getElementById('calcShipCountry');
+            const countryName = countrySelect && countrySelect.selectedIndex >= 0 ? countrySelect.options[countrySelect.selectedIndex].text : '';
+            if (countryName && !countryName.startsWith('Select ')) {
+                const countryRow = listData.find(r => (r['Country'] || '').trim().toLowerCase() === countryName.trim().toLowerCase());
+                if (countryRow && countryRow['Country Prefix NS']) {
+                    itemNameParts.push(countryRow['Country Prefix NS'].trim());
+                }
+            }
+        }
 
         const finalItemName = itemNameParts.join(' ').trim() || '-';
 
@@ -515,12 +862,24 @@ document.addEventListener('DOMContentLoaded', () => {
         let itemCodeParts = [];
         let prefix = vals.itemGroup || '';
         
+        // Check if Domestic/Export contains Matchange, Type is Child, and look up the Country Prefix NS
+        const isMatchange = vals.domExp === 'M' || domExpText.toLowerCase().includes('matchange') || domExpText.toLowerCase().includes('mat change');
+        const isChild = vals.type && vals.type.toLowerCase() === 'child';
+        let countryPrefix = '';
+        if (isMatchange && isChild && vals.category && listData) {
+            const countryRow = listData.find(r => (r['Country'] || '').trim().toLowerCase() === vals.category.trim().toLowerCase());
+            if (countryRow && countryRow['Country Prefix NS']) {
+                countryPrefix = countryRow['Country Prefix NS'].trim();
+            }
+        }
+
         if (patternRow) {
             prefix += patternRow['Digit'] || '';
             if (patternRow['Domistic&Export'] === 'Yes') {
                 prefix += vals.domExp || '';
             }
             if (prefix) itemCodeParts.push(prefix);
+            if (countryPrefix) itemCodeParts.push(countryPrefix);
 
             if (patternRow['Brand'] === 'Yes' && vals.brand) itemCodeParts.push(vals.brand);
             if (patternRow['Grade'] === 'Yes' && vals.grade) {
@@ -539,6 +898,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fallback to old logic if no pattern found
             prefix += (subGroupDigit === 'Extra' ? 'EX' : (subGroupDigit || '')) + (vals.domExp || '');
             if (prefix) itemCodeParts.push(prefix);
+            if (countryPrefix) itemCodeParts.push(countryPrefix);
             if (vals.brand) itemCodeParts.push(vals.brand);
             if (vals.gram) itemCodeParts.push(String(vals.gram).padStart(3, '0'));
             if (sizeCode) itemCodeParts.push(sizeCode);
@@ -553,16 +913,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- Running No. lookup from ItemMaster.csv & DB ---
         const itemCodePrefix = itemCodeParts.join('-');
         let runningNo = '001';
+        let existingMatchItems = [];
+        let pendingMatchItems = [];
+
         if (itemCodePrefix && combinedMaster.length > 0) {
-            const searchPrefix = itemCodePrefix + '-';
             let maxRunning = 0;
-            combinedMaster.forEach(row => {
+            
+            // Check in ItemMaster (Existing)
+            itemMasterData.forEach(row => {
                 const code = (row['Item Code'] || '').trim();
                 const segments = code.split('-');
-                // Structural match: must have exactly 1 more segment than our prefix list (for the running number)
                 if (segments.length === itemCodeParts.length + 1) {
                     const codePrefix = segments.slice(0, -1).join('-');
                     if (codePrefix === itemCodePrefix) {
+                        existingMatchItems.push({
+                            code: code,
+                            name: row['Item Name'] || '-'
+                        });
                         const lastSeg = segments[segments.length - 1];
                         const num = parseInt(lastSeg, 10);
                         if (!isNaN(num) && num > maxRunning) {
@@ -571,9 +938,79 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
+
+            // Check in DB Items (Pending Requests)
+            dbItems.forEach(row => {
+                const code = (row['Item Code'] || '').trim();
+                const segments = code.split('-');
+                if (segments.length === itemCodeParts.length + 1) {
+                    const codePrefix = segments.slice(0, -1).join('-');
+                    if (codePrefix === itemCodePrefix) {
+                        pendingMatchItems.push({
+                            code: code,
+                            name: row['Item Name'] || '-',
+                            status: row['Status'] || 'pending'
+                        });
+                        const lastSeg = segments[segments.length - 1];
+                        const num = parseInt(lastSeg, 10);
+                        if (!isNaN(num) && num > maxRunning) {
+                            maxRunning = num;
+                        }
+                    }
+                }
+            });
+
             runningNo = String(maxRunning + 1).padStart(3, '0');
         }
         itemCodeParts.push(runningNo);
+
+        // Update Summary Tables UI
+        const runningSummarySection = document.getElementById('runningSummarySection');
+        const existingItemsTableBody = document.getElementById('existingItemsTableBody');
+        const pendingItemsTableBody = document.getElementById('pendingItemsTableBody');
+
+        if (runningSummarySection && existingItemsTableBody && pendingItemsTableBody) {
+            if (existingMatchItems.length > 0 || pendingMatchItems.length > 0) {
+                runningSummarySection.style.display = 'block';
+
+                // Populate Existing
+                if (existingMatchItems.length > 0) {
+                    existingItemsTableBody.innerHTML = existingMatchItems.map(item => `
+                        <tr>
+                            <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-family: monospace;">${item.code}</td>
+                            <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">${item.name}</td>
+                        </tr>
+                    `).join('');
+                } else {
+                    existingItemsTableBody.innerHTML = `<tr><td colspan="2" style="padding: 8px; border-bottom: 1px solid #e2e8f0; text-align: center; color: #64748b;">ไม่มีรายการในระบบ</td></tr>`;
+                }
+
+                // Populate Pending
+                if (pendingMatchItems.length > 0) {
+                    const statusMap = {
+                        pending: { label: '⏳ รออนุมัติ', cls: 'status-pending' },
+                        in_progress: { label: '🔄 กำลังดำเนินการ', cls: 'status-progress' },
+                        completed: { label: '✅ เสร็จสิ้น', cls: 'status-completed' },
+                        rejected: { label: '❌ ปฏิเสธ', cls: 'status-rejected' }
+                    };
+                    
+                    pendingItemsTableBody.innerHTML = pendingMatchItems.map(item => {
+                        const st = statusMap[item.status] || { label: item.status, cls: '' };
+                        return `
+                        <tr>
+                            <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-family: monospace;">${item.code}</td>
+                            <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">${item.name}</td>
+                            <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;"><span class="request-status ${st.cls}" style="padding: 2px 6px; font-size: 0.75rem;">${st.label}</span></td>
+                        </tr>
+                        `;
+                    }).join('');
+                } else {
+                    pendingItemsTableBody.innerHTML = `<tr><td colspan="3" style="padding: 8px; border-bottom: 1px solid #e2e8f0; text-align: center; color: #64748b;">ไม่มีรายการรอสร้าง</td></tr>`;
+                }
+            } else {
+                runningSummarySection.style.display = 'none';
+            }
+        }
 
         let finalItemCode = Object.values(vals).some(v => v !== '') && itemCodeParts.length > 2 
             ? itemCodeParts.join('-') 
@@ -672,14 +1109,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 6. Primary Sale Unit
         let primarySaleUnit = '';
+        const hasLayer = vals.layer && vals.layer !== 'None' && vals.layer !== '';
+        
         if (vals.type === 'Parent') {
-            primarySaleUnit = 'KG';
-        } else if (vals.domExp === 'E' || vals.domExp === 'M') {
-            primarySaleUnit = 'MT';
-        } else if (vals.domExp === 'D') {
-            primarySaleUnit = 'Ream';
-        } else if (['Australia', 'Germany'].includes(vals.category)) {
-            primarySaleUnit = 'Carton';
+            if (vals.category && ['australia', 'germany'].includes(vals.category.trim().toLowerCase())) {
+                primarySaleUnit = 'Carton';
+            } else {
+                primarySaleUnit = 'KG';
+            }
+        } else if (vals.type === 'Child') {
+            if (vals.domExp === 'E' || vals.domExp === 'M') {
+                primarySaleUnit = hasLayer ? 'MT' : 'Carton';
+            } else if (vals.domExp === 'D') {
+                primarySaleUnit = hasLayer ? 'Ream' : 'Box';
+            }
         }
         setOutput('primarySaleUnit', primarySaleUnit);
 
@@ -900,40 +1343,104 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Update Duplicate Alert & History
-        if (matchedItem || historyItems.length > 0) {
+        if (matchedItem || historyItems.length > 0 || pendingMatchItems.length > 0) {
             duplicateAlert.classList.remove('hidden');
+            
+            const alertIcon = document.getElementById('duplicateAlertIcon');
+            const alertTitle = document.getElementById('duplicateAlertTitle');
+            const alertDesc = document.getElementById('duplicateAlertDesc');
+            
+            if (matchedItem) {
+                // Style as red warning alert
+                duplicateAlert.style.backgroundColor = '#fef2f2';
+                duplicateAlert.style.border = '1px solid #fecaca';
+                duplicateAlert.style.color = '#991b1b';
+                if (alertIcon) alertIcon.textContent = '🚨';
+                if (alertTitle) alertTitle.textContent = 'ตรวจพบรหัสสินค้าซ้ำในระบบ! (Duplicate Item Code)';
+                if (alertDesc) alertDesc.textContent = 'รหัสสินค้านี้มีอยู่แล้วในฐานข้อมูล ERP กรุณาแก้ไขคุณสมบัติทางเทคนิคเพื่อป้องกันปัญหารหัสทับซ้อน';
+            } else {
+                // Style as blue info alert
+                duplicateAlert.style.backgroundColor = '#f0f9ff';
+                duplicateAlert.style.border = '1px solid #bae6fd';
+                duplicateAlert.style.color = '#0369a1';
+                if (alertIcon) alertIcon.textContent = 'ℹ️';
+                if (alertTitle) alertTitle.textContent = 'ประวัติรหัสสินค้าที่มีอยู่ก่อนหน้า (Existing Item History)';
+                if (alertDesc) alertDesc.textContent = 'รหัสสินค้านี้ยังไม่มีการสร้างในระบบ สามารถสร้างได้ทันที ด้านล่างคือรายการรหัสสินค้าที่เคยมีอยู่ก่อนหน้า หรืออยู่ระหว่างรออนุมัติในกลุ่มเดียวกัน';
+            }
+
             const alertContent = duplicateAlert.querySelector('.alert-content');
             if (alertContent) {
                 let html = '';
-                
                 if (matchedItem) {
                     html += `
-                        <strong style="color: #b91c1c;">⚠️ พบข้อมูลซ้ำในระบบ! (Duplicate Found)</strong>
-                        <div style="margin: 0.5rem 0; padding: 0.5rem; background: #fee2e2; border-radius: 4px; font-size: 0.85rem;">
-                            <p><strong>Code:</strong> ${matchedItem['Item Code']}</p>
-                            <p><strong>Name:</strong> ${matchedItem['Item Name']}</p>
+                        <div style="margin: 0.5rem 0; padding: 0.75rem; background: #ffffff; border: 1.5px solid #b91c1c; border-radius: 8px; font-size: 0.85rem; color: #000000; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                            <p style="margin: 0 0 0.25rem 0;"><strong>Duplicate Code:</strong> <span style="font-family: monospace; font-weight: bold; color: #b91c1c;">${matchedItem['Item Code']}</span></p>
+                            <p style="margin: 0;"><strong>Duplicate Name:</strong> ${matchedItem['Item Name']}</p>
                         </div>
                     `;
                 }
 
                 if (historyItems.length > 0) {
+                    const sectionTitleColor = matchedItem ? '#991b1b' : '#0369a1';
                     html += `
                         <div style="margin-top: 0.8rem;">
-                            <strong style="font-size: 0.9rem;">📚 รายการที่มีอยู่ก่อนหน้า (History):</strong>
-                            <table style="width: 100%; margin-top: 0.3rem; border-collapse: collapse; font-size: 0.8rem;">
-                                <thead style="border-bottom: 1px solid #fed7aa;">
-                                    <tr>
-                                        <th style="text-align: left; padding: 2px;">Item Code</th>
-                                        <th style="text-align: left; padding: 2px;">Item Name</th>
+                            <strong style="font-size: 0.85rem; color: ${sectionTitleColor}; display: block; margin-bottom: 0.25rem;">📚 รายการที่มีอยู่ก่อนหน้าในระบบ (Existing Items):</strong>
+                            <table style="width: 100%; border-collapse: separate; border-spacing: 0; background-color: #ffffff; border: 1px solid #000000; border-radius: 8px; overflow: hidden; font-size: 0.8rem; color: #000000;">
+                                <thead>
+                                    <tr style="background-color: #f3f4f6;">
+                                        <th style="text-align: left; padding: 6px 10px; border-bottom: 1px solid #000000; border-right: 1px solid #000000; font-weight: 700;">Item Code</th>
+                                        <th style="text-align: left; padding: 6px 10px; border-bottom: 1px solid #000000; font-weight: 700;">Item Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    ${historyItems.map(h => `
-                                        <tr>
-                                            <td style="padding: 2px; color: #4338ca;">${h['Item Code']}</td>
-                                            <td style="padding: 2px;">${h['Item Name']}</td>
-                                        </tr>
-                                    `).join('')}
+                                    ${historyItems.map((h, index) => {
+                                        const isLast = index === historyItems.length - 1;
+                                        const borderBottom = isLast ? '' : 'border-bottom: 1px solid #000000;';
+                                        return `
+                                            <tr>
+                                                <td style="padding: 6px 10px; border-right: 1px solid #000000; ${borderBottom} font-family: monospace; font-weight: bold; color: #000000;">${h['Item Code']}</td>
+                                                <td style="padding: 6px 10px; ${borderBottom} color: #334155;">${h['Item Name']}</td>
+                                            </tr>
+                                        `;
+                                    }).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                }
+
+                if (pendingMatchItems && pendingMatchItems.length > 0) {
+                    const statusMap = {
+                        pending: { label: '⏳ รออนุมัติ', cls: 'status-pending' },
+                        in_progress: { label: '🔄 กำลังดำเนินการ', cls: 'status-progress' },
+                        completed: { label: '✅ เสร็จสิ้น', cls: 'status-completed' },
+                        rejected: { label: '❌ ปฏิเสธ', cls: 'status-rejected' }
+                    };
+
+                    html += `
+                        <div style="margin-top: 1.2rem;">
+                            <strong style="font-size: 0.85rem; color: #b45309; display: block; margin-bottom: 0.25rem;">⏳ รายการรอสร้าง (Pending Requests):</strong>
+                            <table style="width: 100%; border-collapse: separate; border-spacing: 0; background-color: #fffbeb; border: 1px solid #d97706; border-radius: 8px; overflow: hidden; font-size: 0.8rem; color: #000000;">
+                                <thead>
+                                    <tr style="background-color: #fde68a;">
+                                        <th style="text-align: left; padding: 6px 10px; border-bottom: 1px solid #d97706; border-right: 1px solid #d97706; font-weight: 700; width: 30%;">Item Code</th>
+                                        <th style="text-align: left; padding: 6px 10px; border-bottom: 1px solid #d97706; border-right: 1px solid #d97706; font-weight: 700;">Item Name</th>
+                                        <th style="text-align: left; padding: 6px 10px; border-bottom: 1px solid #d97706; font-weight: 700; width: 25%;">สถานะ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${pendingMatchItems.map((h, index) => {
+                                        const isLast = index === pendingMatchItems.length - 1;
+                                        const borderBottom = isLast ? '' : 'border-bottom: 1px solid #d97706;';
+                                        const st = statusMap[h.status] || { label: h.status };
+                                        return `
+                                            <tr>
+                                                <td style="padding: 6px 10px; border-right: 1px solid #d97706; ${borderBottom} font-family: monospace; font-weight: bold; color: #000000;">${h.code}</td>
+                                                <td style="padding: 6px 10px; border-right: 1px solid #d97706; ${borderBottom} color: #334155;">${h.name}</td>
+                                                <td style="padding: 6px 10px; ${borderBottom} font-weight: bold; color: #b45309;">${st.label}</td>
+                                            </tr>
+                                        `;
+                                    }).join('')}
                                 </tbody>
                             </table>
                         </div>
@@ -1052,33 +1559,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === My Requests ===
     let currentFilter = 'all';
+    let allUserRequests = [];
+    let selectedRequest = null;
+
+    async function loadStats() {
+        const user = getUser();
+        if (!user) return;
+
+        let query = supabaseClient.from('item_requests').select('status');
+        if (user.role !== 'admin') {
+            query = query.eq('requested_by', user.emp_id);
+        }
+
+        const { data, error } = await query;
+
+        if (error || !data) return;
+
+        const counts = { total: data.length, pending: 0, completed: 0, rejected: 0 };
+        data.forEach(r => {
+            if (r.status === 'pending') counts.pending++;
+            else if (r.status === 'completed' || r.status === 'in_progress') counts.completed++;
+            else if (r.status === 'rejected') counts.rejected++;
+        });
+
+        const totalEl = document.getElementById('statTotalRequests');
+        const pendingEl = document.getElementById('statPendingRequests');
+        const approvedEl = document.getElementById('statApprovedRequests');
+        const rejectedEl = document.getElementById('statRejectedRequests');
+
+        if (totalEl) totalEl.textContent = counts.total;
+        if (pendingEl) pendingEl.textContent = counts.pending;
+        if (approvedEl) approvedEl.textContent = counts.completed;
+        if (rejectedEl) rejectedEl.textContent = counts.rejected;
+    }
 
     async function loadMyRequests() {
         const user = getUser();
         if (!user) return;
 
+        // Load stats to keep counts up to date
+        loadStats();
+
         let query = supabaseClient
             .from('item_requests')
             .select('*')
-            .eq('requested_by', user.emp_id)
             .order('created_at', { ascending: false })
             .limit(50);
+
+        if (user.role !== 'admin') {
+            query = query.eq('requested_by', user.emp_id);
+        }
 
         if (currentFilter !== 'all') {
             query = query.eq('status', currentFilter);
         }
 
         const { data, error } = await query;
+        allUserRequests = data || [];
         const requestList = document.getElementById('requestList');
 
         if (error) {
-            requestList.innerHTML = '<div class="request-empty">โหลดข้อมูลไม่สำเร็จ</div>';
+            requestList.innerHTML = '<tr><td colspan="8" class="table-empty" style="text-align: center; padding: 2rem; color: #64748b;">โหลดข้อมูลไม่สำเร็จ</td></tr>';
             return;
         }
 
         if (!data || data.length === 0) {
-            requestList.innerHTML = '<div class="request-empty">ยังไม่มีคำขอ</div>';
+            requestList.innerHTML = '<tr><td colspan="8" class="table-empty" style="text-align: center; padding: 2rem; color: #64748b;">ยังไม่มีคำขอ</td></tr>';
             return;
+        }
+
+        // Fetch users to get department info for the requesters
+        const { data: usersData } = await supabaseClient.from('users').select('emp_id, department');
+        const deptMap = {};
+        if (usersData) {
+            usersData.forEach(u => deptMap[u.emp_id] = u.department || '-');
         }
 
         requestList.innerHTML = data.map(req => {
@@ -1094,458 +1648,312 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             const st = statusMap[req.status] || { label: req.status, cls: '' };
 
-            return `<div class="request-row">
-                <div class="request-info">
-                    <span class="request-code">${req.item_code || '-'}</span>
-                    <span class="request-name">${req.item_name || '-'}</span>
-                </div>
-                <div class="request-meta">
-                    <span class="request-date">${dateStr}</span>
-                    <span class="request-status ${st.cls}">${st.label}</span>
-                </div>
-                ${req.admin_note ? `<div class="request-note">💬 ${req.admin_note}</div>` : ''}
-                ${req.erp_internal_id ? `<div class="request-note">🔗 ERP ID: ${req.erp_internal_id}</div>` : ''}
-            </div>`;
+            const dept = deptMap[req.requested_by] || '-';
+            const requesterHtml = `
+                <div style="font-weight: 600; white-space: nowrap;">${req.requested_name || req.requested_by}</div>
+                <div style="font-size: 0.75rem; color: #64748b; white-space: nowrap;">${dept}</div>
+            `;
+
+            return `<tr class="request-row" onclick="openUserDetail('${req.id}')" style="border-bottom: 1px solid #e2e8f0; transition: background 0.15s; cursor: pointer;">
+                <td style="padding: 12px; white-space: nowrap;" class="request-date">${dateStr}</td>
+                <td style="padding: 12px; white-space: nowrap;">${requesterHtml}</td>
+                <td style="padding: 12px; white-space: nowrap;" class="request-code"><strong>${req.item_code || '-'}</strong></td>
+                <td style="padding: 12px; white-space: nowrap;" class="request-name">${req.item_name || '-'}</td>
+                <td style="padding: 12px; white-space: nowrap;"><span class="request-status ${st.cls}">${st.label}</span></td>
+                <td style="padding: 12px; white-space: nowrap;"><code>${req.erp_internal_id || '-'}</code></td>
+                <td style="padding: 12px; color: #64748b; font-size: 0.85rem;">${req.admin_note ? `💬 ${req.admin_note}` : '-'}</td>
+            </tr>`;
         }).join('');
     }
 
-    // Filter buttons
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.dataset.filter;
-            loadMyRequests();
-        });
-    });
+    // === Open Detail Modal ===
+    window.openUserDetail = function(requestId) {
+        selectedRequest = allUserRequests.find(r => r.id === requestId);
+        if (!selectedRequest) return;
 
-    // ==========================================================================
-    // ✨ PREMIUM GEMINI AI AUTO-FILL LOGIC
-    // ==========================================================================
-    let lastExtractedData = null;
+        const modal = document.getElementById('detailModal');
+        const modalBody = document.getElementById('modalBody');
+        const formData = selectedRequest.form_data || {};
 
-    const aiModal = document.getElementById('aiModal');
-    const btnTriggerAI = document.getElementById('btnTriggerAI');
-    const btnCloseAI = document.getElementById('btnCloseAI');
-    const btnAnalyzeAI = document.getElementById('btnAnalyzeAI');
-    const btnApplyAI = document.getElementById('btnApplyAI');
-    const aiInput = document.getElementById('aiInput');
-    const aiKey = document.getElementById('aiKey');
-    const aiError = document.getElementById('aiError');
-    const aiPreviewContainer = document.getElementById('aiPreviewContainer');
-    const aiPreviewGrid = document.getElementById('aiPreviewGrid');
-
-    // Load saved key
-    if (localStorage.getItem('gemini_api_key')) {
-        aiKey.value = localStorage.getItem('gemini_api_key');
-    }
-    aiKey.addEventListener('input', () => {
-        localStorage.setItem('gemini_api_key', aiKey.value.trim());
-    });
-
-    if (btnTriggerAI) {
-        btnTriggerAI.addEventListener('click', () => {
-            aiModal.classList.remove('hidden');
-            aiError.classList.add('hidden');
-            aiPreviewContainer.classList.add('hidden');
-            btnApplyAI.classList.add('hidden');
-            aiInput.value = '';
-            setTimeout(() => aiInput.focus(), 100);
-        });
-    }
-
-    if (btnCloseAI) {
-        btnCloseAI.addEventListener('click', () => {
-            aiModal.classList.add('hidden');
-        });
-    }
-
-    aiModal.addEventListener('click', (e) => {
-        if (e.target === aiModal) {
-            aiModal.classList.add('hidden');
-        }
-    });
-
-    async function runGeminiExtraction(text) {
-        // Collect dynamic domain options directly from loaded database options
-        const brandSelect = document.getElementById('brand');
-        const allowedBrands = Array.from(brandSelect?.options || []).map(opt => ({
-            code: opt.value,
-            name: opt.text
-        })).filter(o => o.code);
-
-        const gradeSelect = document.getElementById('grade');
-        const allowedGrades = Array.from(gradeSelect?.options || []).map(opt => opt.value).filter(Boolean);
-
-        const allowedSubGroups = (patternData || [])
-            .filter(r => r['Inactive'] !== 'Yes' && r['Item Sub-Group'])
-            .map(r => r['Item Sub-Group'].trim());
-
-        const countriesMap = new Map();
-        listData.forEach(r => {
-            const country = r['Country']?.trim();
-            const prefix = r['Country Prefix NS']?.trim();
-            if (country) {
-                countriesMap.set(country, prefix || country);
-            }
-        });
-        const allowedCountries = Array.from(countriesMap.keys());
-
-        const systemPrompt = `You are an expert product spec analyzer for an ERP item master creation screen.
-Your job is to read unstructured text describing a paper product and extract its properties in JSON format.
-
-IMPORTANT: You must return a valid JSON object ONLY. Do not include any markdown formatting (like \`\`\`json) or extra text.
-
-Here are the precise allowed values for key options from our database schema. You MUST classify to these values if mentioned, otherwise return null:
-
-1. Brand:
-${JSON.stringify(allowedBrands, null, 2)}
-Return the "code" of the matching brand (e.g., "DA" for Double A, "AL" for Alpine).
-
-2. Grade (Paper grade):
-${JSON.stringify(allowedGrades, null, 2)}
-Match to the exact grade name in the list.
-
-3. Item Sub-Group:
-${JSON.stringify(allowedSubGroups, null, 2)}
-Match to the exact sub-group name in the list (e.g. "CZ", "GC", "GK", "CK", "FO").
-
-4. Ship to Country:
-${JSON.stringify(allowedCountries, null, 2)}
-Return the matching country name.
-
-5. Type:
-Only choose from: "Parent" or "Child". If size, sheets, or grams are specified, it is usually a "Child" item.
-
-6. Domestic/Export:
-Select "D" (for Domestic / ส่งในประเทศ) or "E" (for Export / ส่งออกนอก).
-
-Extract the following numeric/text details:
-- gram: GSM weight as integer (e.g., 80)
-- size: Dimensions as text (e.g., "A4", "A3", "8.5x11", "210x297")
-- sheet: Count of sheets as text (e.g., "500")
-- reamPallet: Ream per Pallet as integer
-- layer: Selected layer option (e.g., "2L", "3L", "4L", "5L", "6L", "8L", "10L", "12L", "16L", "17L")
-- wrapType: Selected wrap type option (e.g., "Box AUTO", "Box MN", "Box MN (CVB)", "SHR")
-- palletType: Selected pallet type option (e.g., "N", "S", "SS")
-- reamBox: Selected ream/box option (e.g., "1R", "2R", "3R", "4R", "5R", "8R", "10R", "5P", "6P", "10P", "24P", "40P", "48P", "CVB ไม่ห่อรีม")
-
-Your output JSON must strictly follow this structure:
-{
-  "type": "Parent" | "Child" | null,
-  "subGroup": string | null,
-  "domExp": "D" | "E" | null,
-  "calcShipCountry": string | null,
-  "brand": string | null,
-  "grade": string | null,
-  "gram": number | null,
-  "size": string | null,
-  "sheet": string | null,
-  "reamPallet": number | null,
-  "layer": string | null,
-  "wrapType": string | null,
-  "palletType": string | null,
-  "reamBox": string | null
-}`;
-
-        const key = aiKey.value.trim() || 'DUMMY_KEY_FOR_IFRAME_SHIM';
-        
-        if ((key === 'DUMMY_KEY_FOR_IFRAME_SHIM' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) || key.toUpperCase() === 'MOCK') {
-            console.log("Mocking Gemini response on localhost");
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            const lowerText = text.toLowerCase();
-            if (lowerText.includes('double a') || lowerText.includes('ดับเบิ้ลเอ')) {
-                return {
-                    "type": "Child",
-                    "subGroup": "CZ",
-                    "domExp": "E",
-                    "calcShipCountry": "France",
-                    "brand": "DA",
-                    "grade": "A-COPY",
-                    "gram": 80,
-                    "size": "A4",
-                    "sheet": "500",
-                    "reamPallet": 150,
-                    "layer": "5L",
-                    "wrapType": "Box AUTO",
-                    "palletType": "N",
-                    "reamBox": "5R"
-                };
-            } else if (lowerText.includes('alpine')) {
-                return {
-                    "type": "Child",
-                    "subGroup": "FO",
-                    "domExp": "E",
-                    "calcShipCountry": "Australia",
-                    "brand": "AL",
-                    "grade": "WOL",
-                    "gram": 120,
-                    "size": "A3",
-                    "sheet": "250",
-                    "reamPallet": 100,
-                    "layer": "4L",
-                    "wrapType": "SHR",
-                    "palletType": "S",
-                    "reamBox": "4R"
-                };
-            } else {
-                return {
-                    "type": "Parent",
-                    "subGroup": "CZ",
-                    "domExp": "D",
-                    "calcShipCountry": "Thailand",
-                    "brand": "ST",
-                    "grade": "WOL",
-                    "gram": 80,
-                    "size": null,
-                    "sheet": null,
-                    "reamPallet": null,
-                    "layer": null,
-                    "wrapType": null,
-                    "palletType": null,
-                    "reamBox": null
-                };
-            }
-        }
-
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`;
-        
-        const requestBody = {
-            contents: [
-                {
-                    parts: [
-                        { text: systemPrompt },
-                        { text: `Raw product text to extract: "${text}"` }
-                    ]
-                }
-            ],
-            generationConfig: {
-                responseMimeType: "application/json"
-            }
-        };
-
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+        const sections = [
+            // ── Step 1: ข้อมูลพื้นฐาน ──────────────────────────────────
+            {
+                title: '📋 General Information (ข้อมูลทั่วไป)',
+                keys: [
+                    'Type', 'Item Sub-Group', 'Item Group',
+                    'Domestic/Export', 'Ship to Country',
+                    'Brand', 'Grade', 'Gram (GSM)', 'Size', 'Sheet',
+                    'Ream per Pallet', 'Layer', 'Wrap Type',
+                    'Pallet Type', 'REAM / BOX', 'Pallet Size',
+                    'Location for Work Order', 'Item Category'
+                ]
             },
-            body: JSON.stringify(requestBody)
-        });
-
-        if (!response.ok) {
-            const errText = await response.text();
-            throw new Error(`API error (${response.status}): ${errText}`);
-        }
-
-        const resJson = await response.json();
-        const resultText = resJson?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (!resultText) {
-            throw new Error("No extraction result returned from Gemini");
-        }
-
-        return JSON.parse(resultText);
-    }
-
-    function renderAIPreview(result) {
-        aiPreviewGrid.innerHTML = '';
-        
-        const brandSelect = document.getElementById('brand');
-        const allowedBrands = Array.from(brandSelect?.options || []).map(opt => ({
-            code: opt.value,
-            name: opt.text
-        })).filter(o => o.code);
-
-        const fieldsToDisplay = [
-            { id: 'type', label: 'Type' },
-            { id: 'subGroup', label: 'Item Sub-Group' },
-            { id: 'domExp', label: 'Domestic/Export', displayVal: v => v === 'D' ? 'Domestic (D)' : v === 'E' ? 'Export (E)' : v },
-            { id: 'calcShipCountry', label: 'Ship to Country' },
-            { id: 'brand', label: 'Brand', displayVal: v => {
-                const found = allowedBrands.find(b => b.code === v);
-                return found ? `${found.name} (${v})` : v;
-            }},
-            { id: 'grade', label: 'Grade' },
-            { id: 'gram', label: 'Gram (GSM)' },
-            { id: 'size', label: 'Size' },
-            { id: 'sheet', label: 'Sheet' },
-            { id: 'reamPallet', label: 'Ream per Pallet' },
-            { id: 'layer', label: 'Layer' },
-            { id: 'wrapType', label: 'Wrap Type' },
-            { id: 'palletType', label: 'Pallet Type' },
-            { id: 'reamBox', label: 'Ream/Box' }
+            {
+                title: '🔗 SAP Information (การจับคู่ระบบเดิม)',
+                keys: ['SAP Code1', 'SAP Code2', 'SAP Name']
+            },
+            // ── Step 2: ผลการคำนวณอัตโนมัติ ────────────────────────────
+            {
+                title: '📦 Item Information (ข้อมูลสินค้าที่คำนวณได้)',
+                keys: [
+                    'MPS Color', 'BOI', 'Weight of Unit',
+                    'Internal ID_Parent', 'SubItem of Item Code',
+                    'SubItem of Item Name', 'Brand Group'
+                ]
+            },
+            {
+                title: '⚖️ Other & Weight Information (น้ำหนักและข้อมูลอื่น)',
+                keys: [
+                    'ความสูงสินค้า (Inch)', 'Pallet Height (inch)',
+                    'Standard/Net Weight (KG)', 'Gross Weight Markup (%)',
+                    'Gross Weight', 'Country of Origin',
+                    'HS Code', 'Commodities', 'Block PM', 'Sheet/Pallet'
+                ]
+            },
+            {
+                title: '📐 Class & UOM Detail (คลาสและหน่วยนับ)',
+                keys: [
+                    'Subsidiary', 'Class (no hierarchy)', 'Catagory Group',
+                    'Mixed Pallet', 'Unit Type', 'KG', 'Ream/Pack',
+                    'UOM1', 'UOM2', 'Box', 'Pallet'
+                ]
+            },
+            {
+                title: '📏 Primary Units of Measure (หน่วยนับหลัก)',
+                keys: [
+                    'Primary Units Type', 'Primary Stock Unit',
+                    'Primary Purchase Unit', 'Primary Sale Unit',
+                    'Primary Consumption Unit', 'Primary Unit Type'
+                ]
+            },
+            {
+                title: '🏭 MFG, MRP & Account Mapping (การผลิตและบัญชี)',
+                keys: [
+                    'MFG Item Batch Qty', 'Item Mapping DCS',
+                    'MRP Active', 'MFG Include in Auto TO',
+                    'Expense/COGS Account', 'Expense/COGS Account_ID',
+                    'Asset Account', 'Asset Account_ID',
+                    'Income Account', 'Income Account_ID',
+                    'Scrap Account', 'WIP Account', 'Tax Schedule'
+                ]
+            },
+            {
+                title: '🌐 Web Store & WMS Detail (เว็บสโตร์และคลังสินค้า)',
+                keys: [
+                    'Display in Web Site', 'Page Title',
+                    'Web Store Display Name', 'SCA Item Sub-Type',
+                    'URL Component', 'TWMS Use Pallet',
+                    'TWMS PRE-ASSIGN LOT', 'TWMS PRE-ASSIGN PALLET'
+                ]
+            }
         ];
 
-        fieldsToDisplay.forEach(f => {
-            const val = result[f.id];
-            if (val !== undefined && val !== null && val !== '') {
-                const displayString = f.displayVal ? f.displayVal(val) : val;
-                
-                const card = document.createElement('div');
-                card.className = 'preview-card extracted';
-                
-                const label = document.createElement('span');
-                label.className = 'preview-card-label';
-                label.textContent = f.label;
-                
-                const value = document.createElement('span');
-                value.className = 'preview-card-value';
-                value.textContent = displayString;
-                
-                card.appendChild(label);
-                card.appendChild(value);
-                aiPreviewGrid.appendChild(card);
+        // ── Summary banner at top of modal ──────────────────────────────
+        const statusMap = {
+            pending:     { label: '⏳ รออนุมัติ',         color: '#b45309', bg: '#fef9c3', border: '#fde68a' },
+            in_progress: { label: '🔄 กำลังดำเนินการ',    color: '#1d4ed8', bg: '#eff6ff', border: '#bfdbfe' },
+            completed:   { label: '✅ เสร็จสิ้น',          color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0' },
+            rejected:    { label: '❌ ถูกปฏิเสธ',         color: '#b91c1c', bg: '#fef2f2', border: '#fecaca' }
+        };
+        const st = statusMap[selectedRequest.status] || { label: selectedRequest.status || '-', color: '#475569', bg: '#f8fafc', border: '#e2e8f0' };
+        const createdDate = selectedRequest.created_at
+            ? new Date(selectedRequest.created_at).toLocaleString('th-TH', { dateStyle: 'medium', timeStyle: 'short' })
+            : '-';
+
+        let html = `
+        <div style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; color: white;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+                <div>
+                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.75; margin-bottom: 0.25rem;">Item Code</div>
+                    <div style="font-family: monospace; font-size: 1.5rem; font-weight: 800; letter-spacing: 0.05em;">${selectedRequest.item_code || '-'}</div>
+                </div>
+                <span style="background: ${st.bg}; color: ${st.color}; border: 1px solid ${st.border}; padding: 0.3rem 0.85rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; white-space: nowrap;">${st.label}</span>
+            </div>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                <div style="font-size: 0.7rem; opacity: 0.75; margin-bottom: 0.2rem;">Item Name</div>
+                <div style="font-size: 0.95rem; font-weight: 600; line-height: 1.4;">${selectedRequest.item_name || '-'}</div>
+            </div>
+            ${selectedRequest.erp_internal_id ? `<div style="margin-top: 0.5rem; font-size: 0.78rem; opacity: 0.75;">ERP ID: <strong>${selectedRequest.erp_internal_id}</strong></div>` : ''}
+            <div style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.6;">🕐 ส่งคำขอ: ${createdDate}</div>
+        </div>`;
+
+        let processedKeys = [];
+
+        sections.forEach(sec => {
+            let itemsHtml = '';
+            sec.keys.forEach(k => {
+                processedKeys.push(k);
+                const val = formData[k];
+                if (val !== undefined && val !== '') {
+                    itemsHtml += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">${val}</span></div>`;
+                }
+            });
+
+            if (itemsHtml) {
+                html += `
+                <div class="detail-section">
+                    <div class="detail-section-header">${sec.title}</div>
+                    <div class="detail-section-body">
+                        ${itemsHtml}
+                    </div>
+                </div>`;
             }
         });
 
-        if (aiPreviewGrid.children.length === 0) {
-            aiPreviewGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size: 0.9rem;">No matching attributes could be extracted. Please try different or more detailed text.</p>';
+        let extraHtml = '';
+        Object.keys(formData).forEach(k => {
+            if (!processedKeys.includes(k) && formData[k] !== undefined && formData[k] !== '') {
+                extraHtml += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">${formData[k]}</span></div>`;
+            }
+        });
+
+        if (extraHtml) {
+            html += `
+            <div class="detail-section">
+                <div class="detail-section-header">ข้อมูลเพิ่มเติม (Additional Info)</div>
+                <div class="detail-section-body">
+                    ${extraHtml}
+                </div>
+            </div>`;
+        }
+
+        if (!html) {
+            html = '<div style="text-align:center; padding: 2rem; color: #64748b;">ไม่มีข้อมูลฟอร์ม</div>';
+        }
+
+        modalBody.innerHTML = html;
+
+        // Populate Footer actions based on user role and status
+        const currentUser = getUser();
+        const modalFooter = document.getElementById('modalFooter');
+        if (modalFooter) {
+            if (currentUser && currentUser.role === 'admin' && (selectedRequest.status === 'pending' || selectedRequest.status === 'in_progress')) {
+                modalFooter.innerHTML = `
+                    <div class="modal-action-group">
+                        <div class="action-field">
+                            <label>ERP Internal ID</label>
+                            <input type="text" id="erpInternalId" placeholder="ใส่ Internal ID จาก NetSuite" value="${selectedRequest.erp_internal_id || ''}">
+                        </div>
+                        <div class="action-field">
+                            <label>หมายเหตุ</label>
+                            <input type="text" id="adminNote" placeholder="หมายเหตุ (optional)" value="${selectedRequest.admin_note || ''}">
+                        </div>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn-action btn-export-csv" onclick="exportRequestCSV()">📥 Export CSV</button>
+                        ${selectedRequest.status === 'pending' ? `<button type="button" class="btn-action btn-in-progress" onclick="updateStatus('in_progress')">🔄 Mark In Progress</button>` : ''}
+                        <button type="button" class="btn-action btn-complete" onclick="updateStatus('completed')">✅ Mark Completed</button>
+                        <button type="button" class="btn-action btn-reject" onclick="updateStatus('rejected')">❌ Reject</button>
+                    </div>
+                `;
+            } else {
+                modalFooter.innerHTML = `
+                    <div class="modal-buttons" style="justify-content: flex-end; width: 100%;">
+                        <button type="button" class="btn-action btn-export-csv" onclick="exportRequestCSV()">📥 Export CSV</button>
+                        <button type="button" class="btn-action btn-secondary-action" onclick="closeUserDetailModal()">ปิด</button>
+                    </div>
+                `;
+            }
+        }
+
+        modal.classList.remove('hidden');
+    };
+
+    window.closeUserDetailModal = function() {
+        document.getElementById('detailModal')?.classList.add('hidden');
+    };
+
+    // === Update Status ===
+    window.updateStatus = async function(newStatus) {
+        if (!selectedRequest) return;
+
+        const erpId = document.getElementById('erpInternalId')?.value || '';
+        const note = document.getElementById('adminNote')?.value || '';
+        const admin = getUser();
+
+        const updateData = {
+            status: newStatus,
+            processed_by: admin.emp_id,
+            processed_at: new Date().toISOString()
+        };
+
+        if (erpId) updateData.erp_internal_id = erpId;
+        if (note) updateData.admin_note = note;
+
+        const { error } = await supabaseClient
+            .from('item_requests')
+            .update(updateData)
+            .eq('id', selectedRequest.id);
+
+        if (error) {
+            alert('อัพเดตไม่สำเร็จ: ' + error.message);
+            return;
+        }
+
+        closeUserDetailModal();
+        loadMyRequests();
+    };
+
+    // === Export Request as CSV ===
+    window.exportRequestCSV = function() {
+        if (!selectedRequest || !selectedRequest.form_data) return;
+
+        const formData = selectedRequest.form_data;
+        const headers = Object.keys(formData).map(k => `"${k.replace(/"/g, '""')}"`);
+        const values = Object.values(formData).map(v => `"${String(v || '').replace(/"/g, '""')}"`);
+
+        const csvContent = headers.join(',') + '\n' + values.join(',');
+        const blob = new Blob(["\ufeff" + csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', `Item_${selectedRequest.item_code || 'export'}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const detailModal = document.getElementById('detailModal');
+    if (detailModal) {
+        detailModal.addEventListener('click', (e) => {
+            if (e.target.id === 'detailModal') closeUserDetailModal();
+        });
+        const modalClose = document.getElementById('modalClose');
+        if (modalClose) {
+            modalClose.addEventListener('click', closeUserDetailModal);
         }
     }
 
-    function showAIError(msg) {
-        aiError.textContent = msg;
-        aiError.classList.remove('hidden');
-    }
+    // Filter stats cards
+    const statCards = document.querySelectorAll('.stat-card');
+    
+    function applyFilter(filterValue) {
+        if (currentFilter === filterValue) {
+            currentFilter = 'all';
+        } else {
+            currentFilter = filterValue;
+        }
 
-    if (btnAnalyzeAI) {
-        btnAnalyzeAI.addEventListener('click', async () => {
-            const text = aiInput.value.trim();
-            if (!text) {
-                showAIError("Please enter some text or specifications to analyze.");
-                return;
-            }
-
-            aiError.classList.add('hidden');
-            aiPreviewContainer.classList.add('hidden');
-            btnApplyAI.classList.add('hidden');
-            
-            btnAnalyzeAI.disabled = true;
-            btnAnalyzeAI.classList.add('btn-ai-analyzing');
-            const originalBtnText = btnAnalyzeAI.innerHTML;
-            btnAnalyzeAI.innerHTML = '⚡ Analyzing with Gemini...';
-
-            try {
-                const result = await runGeminiExtraction(text);
-                lastExtractedData = result;
-
-                renderAIPreview(result);
-                
-                aiPreviewContainer.classList.remove('hidden');
-                btnApplyAI.classList.remove('hidden');
-            } catch (err) {
-                console.error("Gemini Extraction Error:", err);
-                showAIError(`Extraction failed: ${err.message || err}`);
-            } finally {
-                btnAnalyzeAI.disabled = false;
-                btnAnalyzeAI.classList.remove('btn-ai-analyzing');
-                btnAnalyzeAI.innerHTML = originalBtnText;
+        statCards.forEach(c => {
+            if (c.dataset.filter === currentFilter) {
+                c.classList.add('active');
+                c.style.borderColor = '#1e3a8a';
+                c.style.backgroundColor = '#eff6ff';
+            } else {
+                c.classList.remove('active');
+                c.style.borderColor = '#e2e8f0';
+                c.style.backgroundColor = '#ffffff';
             }
         });
+
+        loadMyRequests();
     }
 
-    if (btnApplyAI) {
-        btnApplyAI.addEventListener('click', () => {
-            if (!lastExtractedData) return;
-            
-            const data = lastExtractedData;
-            
-            if (data.type) {
-                const el = document.getElementById('type');
-                if (el) el.value = data.type;
-            }
-            
-            if (data.subGroup) {
-                const el = document.getElementById('subGroup');
-                if (el) {
-                    el.value = data.subGroup;
-                    el.dispatchEvent(new Event('change'));
-                }
-            }
-            
-            if (data.domExp) {
-                const el = document.getElementById('domExp');
-                if (el) el.value = data.domExp;
-            }
-            
-            if (data.calcShipCountry) {
-                const countrySelect = document.getElementById('calcShipCountry');
-                if (countrySelect) {
-                    const opt = Array.from(countrySelect.options).find(o => o.text.trim().toLowerCase() === data.calcShipCountry.trim().toLowerCase());
-                    if (opt) {
-                        countrySelect.value = opt.value;
-                    } else {
-                        countrySelect.value = data.calcShipCountry;
-                    }
-                }
-            }
-            
-            if (data.brand) {
-                const el = document.getElementById('brand');
-                if (el) el.value = data.brand;
-            }
-            
-            if (data.grade) {
-                const el = document.getElementById('grade');
-                if (el) el.value = data.grade;
-            }
-            
-            if (data.gram) {
-                const el = document.getElementById('gram');
-                if (el) el.value = data.gram;
-            }
-            
-            if (data.size) {
-                const el = document.getElementById('size');
-                if (el) el.value = data.size;
-            }
-            
-            if (data.sheet) {
-                const el = document.getElementById('sheet');
-                if (el) el.value = data.sheet;
-            }
-            
-            if (data.reamPallet) {
-                const el = document.getElementById('reamPallet');
-                if (el) el.value = data.reamPallet;
-            }
-            
-            if (data.layer) {
-                const el = document.getElementById('layer');
-                if (el) el.value = data.layer;
-            }
-            
-            if (data.wrapType) {
-                const el = document.getElementById('wrapType');
-                if (el) el.value = data.wrapType;
-            }
-            
-            if (data.palletType) {
-                const el = document.getElementById('palletType');
-                if (el) el.value = data.palletType;
-            }
-            
-            if (data.reamBox) {
-                const el = document.getElementById('reamBox');
-                if (el) el.value = data.reamBox;
-            }
-
-            // Recalculate NetSuite codes!
-            updateCalculations();
-            
-            // Hide modal
-            aiModal.classList.add('hidden');
-            
-            // Flash the Result Banner to show the user the generated values!
-            const banner = document.getElementById('resultBanner');
-            if (banner) {
-                banner.style.animation = 'none';
-                setTimeout(() => {
-                    banner.style.animation = 'bannerSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-                }, 10);
-            }
-        });
-    }
+    statCards.forEach(card => {
+        card.addEventListener('click', () => applyFilter(card.dataset.filter));
+    });
 
     loadCSVData();
-    loadMyRequests();
+    applyFilter('all');
 });
