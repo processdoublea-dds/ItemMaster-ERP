@@ -311,6 +311,72 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const btnExportDashboard = document.getElementById('btnExportDashboard');
+    if (btnExportDashboard) {
+        btnExportDashboard.addEventListener('click', () => {
+            if (!allUserRequests || allUserRequests.length === 0) {
+                alert('ไม่มีข้อมูลสำหรับส่งออก');
+                return;
+            }
+            
+            // Define headers
+            const headers = [
+                'วันที่สร้าง',
+                'ผู้ขอ',
+                'รหัสผู้ขอ',
+                'Item Code',
+                'Item Name',
+                'สถานะ',
+                'ERP ID',
+                'หมายเหตุแอดมิน'
+            ];
+            
+            // Map rows
+            const rows = allUserRequests.map(req => {
+                const date = new Date(req.created_at);
+                const dateStr = date.toLocaleDateString('th-TH') + ' ' + date.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
+                
+                const statusMap = {
+                    pending: 'รออนุมัติ',
+                    in_progress: 'กำลังดำเนินการ',
+                    completed: 'เสร็จสิ้น',
+                    rejected: 'ปฏิเสธ'
+                };
+                const statusStr = statusMap[req.status] || req.status;
+                
+                return [
+                    dateStr,
+                    req.requested_name || '-',
+                    req.requested_by || '-',
+                    req.item_code || '-',
+                    req.item_name || '-',
+                    statusStr,
+                    req.erp_internal_id || '-',
+                    req.admin_note || '-'
+                ];
+            });
+            
+            // Build CSV string with BOM for Excel Thai readability
+            const csvContent = "\uFEFF" + [
+                headers.join(','),
+                ...rows.map(row => row.map(val => `"${String(val).replace(/"/g, '""')}"`).join(','))
+            ].join('\n');
+            
+            // Download trigger
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            
+            const filterName = currentFilter === 'all' ? 'ทั้งหมด' : (currentFilter === 'pending' ? 'รออนุมัติ' : (currentFilter === 'completed' ? 'เสร็จสิ้น' : 'ปฏิเสธ'));
+            link.setAttribute("download", `รายการคำขอรหัสสินค้า_${filterName}_${new Date().toISOString().slice(0, 10)}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
+
     // Handle URL ?tab=create parameter on load
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('tab') === 'create') {

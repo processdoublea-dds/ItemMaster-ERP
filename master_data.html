@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaperMaster Pro | Bulk Master Data Updates</title>
+    <title>DA-Item Master | Bulk Master Data Updates</title>
     <meta name="description" content="Manage master data files (CSV) for the Item Code Generator">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,7 +75,7 @@
         <main class="app-main">
             <!-- TOP BAR -->
             <header class="app-top-header">
-                <div class="header-app-name">PaperMaster Pro</div>
+                <div class="header-app-name">DA-Item Master</div>
                 <div class="header-search">
                     <div class="search-input-wrap">
                         <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -249,59 +249,218 @@
     <script src="master_data.js"></script>
     <!-- Support Guide Modal Overlay -->
     <div class="modal-overlay hidden" id="supportModal">
-        <div class="modal-card" style="max-width: 650px;">
+        <div class="modal-card" style="max-width: 800px;">
             <div class="modal-header">
-                <h3>📖 คู่มือขั้นตอนการใช้งานระบบ (Item Master)</h3>
+                <h3>📖 ศูนย์ช่วยเหลือและคู่มือการใช้งานระบบ (DA-Item Master)</h3>
                 <button type="button" class="modal-close" id="supportModalClose">✕</button>
             </div>
-            <div class="modal-body" style="padding: 1.75rem 2rem;">
-                <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1.5rem; line-height: 1.5;">
-                    ขั้นตอนและกระบวนการทำงานสำหรับการขอสร้างรหัสสินค้าใหม่ (Item Code) ภายในระบบ ERP ของกลุ่มบริษัท Double A
-                </p>
-                <div class="timeline-container">
-                    <div class="timeline-step">
-                        <div class="step-badge">1</div>
-                        <div class="step-content">
-                            <h4 class="step-title">เข้าสู่ระบบ (Sign In)</h4>
-                            <p class="step-desc">ล็อกอินด้วยบัญชีระบบ HRMS ของพนักงานกลุ่มบริษัท Double A เพื่อตรวจสอบตัวตนและบทบาทหน้าที่ในระบบ (เช่น User ทั่วไป หรือ Admin)</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-step">
-                        <div class="step-badge">2</div>
-                        <div class="step-content">
-                            <h4 class="step-title">เลือกประเภทและระบุรายละเอียดข้อมูลเทคนิค (Specs Input)</h4>
-                            <p class="step-desc">เลือกประเภทกลุ่มสินค้าหลัก ( Finished Goods - Roll / Finished Goods - Sheet / Finished Goods - Copy Paper) และกรอกข้อมูลคุณสมบัติทางเทคนิคเฉพาะ เช่น น้ำหนัก (Grammage), รหัสขนาด (Size Code), แบรนด์สินค้า (Brand) และ UOM เพื่อกำหนดเป็นโครงสร้างรหัสสินค้า</p>
-                        </div>
-                    </div>
+            <div class="modal-body" style="padding: 1.5rem 2rem; max-height: 70vh; overflow-y: auto;">
+                <!-- Tab Headers -->
+                <div class="support-tabs" style="display: flex; gap: 0.5rem; border-bottom: 2px solid #e2e8f0; margin-bottom: 1.5rem; padding-bottom: 0.5rem;">
+                    <button type="button" class="support-tab-btn active" data-tab="workflow">📋 ขั้นตอนการทำงาน</button>
+                    <button type="button" class="support-tab-btn" data-tab="formulas">🧮 สูตรคำนวณแต่ละช่อง</button>
+                </div>
 
-                    <div class="timeline-step">
-                        <div class="step-badge">3</div>
-                        <div class="step-content">
-                            <h4 class="step-title">ตรวจสอบการซ้ำซ้อนและบัญชีผูกแยกประเภท (Validate & GL mapping)</h4>
-                            <p class="step-desc">ระบบจะทำการแปลงรหัสสินค้าสำเร็จรูป (Item Code) และรายละเอียดอัตโนมัติ พร้อมทั้งตรวจเช็คการซ้ำซ้อนกับระบบ NetSuite ERP ทันที รวมไปถึงคำนวณและเลือกบัญชี GL (Income Account, Asset Account) ให้ตามระเบียบสหัสกรุ๊ปและ Warehouse ที่ท่านเลือก</p>
+                <!-- Tab 1: Workflow Content -->
+                <div id="supportTabWorkflow" class="support-tab-content">
+                    <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                        ขั้นตอนและกระบวนการทำงานสำหรับการขอสร้างรหัสสินค้าใหม่ (Item Code) ภายในระบบ ERP ของกลุ่มบริษัท Double A
+                    </p>
+                    <div class="timeline-container">
+                        <div class="timeline-step">
+                            <div class="step-badge">1</div>
+                            <div class="step-content">
+                                <h4 class="step-title">เข้าสู่ระบบ (Sign In)</h4>
+                                <p class="step-desc">ล็อกอินด้วยบัญชีระบบ HRMS ของพนักงานกลุ่มบริษัท Double A เพื่อตรวจสอบตัวตนและบทบาทหน้าที่ในระบบ (เช่น User ทั่วไป หรือ Admin)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-step">
+                            <div class="step-badge">2</div>
+                            <div class="step-content">
+                                <h4 class="step-title">เลือกประเภทและระบุรายละเอียดข้อมูลเทคนิค (Specs Input)</h4>
+                                <p class="step-desc">เลือกประเภทกลุ่มสินค้าหลัก ( Finished Goods - Roll / Finished Goods - Sheet / Finished Goods - Copy Paper) และกรอกข้อมูลคุณสมบัติทางเทคนิคเฉพาะ เช่น น้ำหนัก (Grammage), รหัสขนาด (Size Code), แบรนด์สินค้า (Brand) และ UOM เพื่อกำหนดเป็นโครงสร้างรหัสสินค้า</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-badge">3</div>
+                            <div class="step-content">
+                                <h4 class="step-title">ตรวจสอบการซ้ำซ้อนและบัญชีผูกแยกประเภท (Validate & GL mapping)</h4>
+                                <p class="step-desc">ระบบจะทำการแปลงรหัสสินค้าสำเร็จรูป (Item Code) และรายละเอียดอัตโนมัติ พร้อมทั้งตรวจเช็คการซ้ำซ้อนกับระบบ NetSuite ERP ทันที รวมไปถึงคำนวณและเลือกบัญชี GL (Income Account, Asset Account) ให้ตามระเบียบสหัสกรุ๊ปและ Warehouse ที่ท่านเลือก</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-badge">4</div>
+                            <div class="step-content">
+                                <h4 class="step-title">ยืนยันและส่งคำขอรหัสสินค้า (Submit Request)</h4>
+                                <p class="step-desc">กดปุ่ม “ยืนยันและส่งคำขอรหัสสินค้า” คำขอของคุณจะถูกส่งเข้าไปเก็บในตารางรอการตรวจสอบและอนุมัติ โดยคำขอจะแสดงสถานะเป็น “Pending” เพื่อรอฝ่ายคุมรหัสสินค้าคีย์เข้าระบบหลัก</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step" style="border-left: none; padding-bottom: 0;">
+                            <div class="step-badge">5</div>
+                            <div class="step-content">
+                                <h4 class="step-title">ผู้ดูแลระบบคีย์และบันทึกผลสำเร็จ (Admin Release)</h4>
+                                <p class="step-desc">ผู้ดูแลระบบ (Admin) สามารถกดแก้ไขรายละเอียดเพิ่มเติมและกรอกเลข NetSuite Internal ID ที่สมบูรณ์เพื่อเปลี่ยนสถานะเป็น “Completed” จบกระบวนการออกรหัสเสร็จสมบูรณ์</p>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="timeline-step">
-                        <div class="step-badge">4</div>
-                        <div class="step-content">
-                            <h4 class="step-title">ยืนยันและส่งคำขอรหัสสินค้า (Submit Request)</h4>
-                            <p class="step-desc">กดปุ่ม “ยืนยันและส่งคำขอรหัสสินค้า” คำขอของคุณจะถูกส่งเข้าไปเก็บในตารางรอการตรวจสอบและอนุมัติ โดยคำขอจะแสดงสถานะเป็น “Pending” เพื่อรอฝ่ายคุมรหัสสินค้าคีย์เข้าระบบหลัก</p>
+                <!-- Tab 2: Formula Content -->
+                <div id="supportTabFormulas" class="support-tab-content hidden">
+                    <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                        รายละเอียดของสูตรคำนวณ เกณฑ์ และแหล่งที่มาของข้อมูลทุกช่องในระบบคำนวณรหัสสินค้ากระดาษ (Item Master)
+                    </p>
+                    <div class="support-formulas-grid">
+                        <!-- Card 1 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>รหัสสินค้า (Item Code)</span>
+                                <span class="formula-card-badge">Formula</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                เกิดจากการผูกรหัส: <code>[Prefix]-[Brand]-[Gram]-[Size]-[Sheet]-[Layer]-[RunningNo]</code> โดย Prefix มาจาก Group + SubGroup (ถ้าเป็น Extra แปลงเป็น EX) + Dom/Exp. ส่วน Running No ค้นหาค่าสูงสุดจากฐานข้อมูลย้อนหลังที่มี Prefix เหมือนกันแล้วบวก 1
+                            </p>
                         </div>
-                    </div>
-
-                    <div class="timeline-step" style="border-left: none; padding-bottom: 0;">
-                        <div class="step-badge">5</div>
-                        <div class="step-content">
-                            <h4 class="step-title">ผู้ดูแลระบบคีย์และบันทึกผลสำเร็จ (Admin Release)</h4>
-                            <p class="step-desc">ผู้ดูแลระบบ (Admin) สามารถกดแก้ไขรายละเอียดเพิ่มเติมและกรอกเลข NetSuite Internal ID ที่สมบูรณ์เพื่อเปลี่ยนสถานะเป็น “Completed” จบกระบวนการออกรหัสเสร็จสมบูรณ์</p>
+                        <!-- Card 2 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>ชื่อสินค้า (Item Name)</span>
+                                <span class="formula-card-badge">Formula</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                รูปแบบการตั้งชื่อ: <code>[BrandText] [Gram]G [Size] ([Sheet] SH) [UOM]</code> ตัวอย่างเช่น <em>DOUBLE A 80G A4 (500 SH) Ream</em>
+                            </p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>น้ำหนักต่อหน่วยหลัก (Ream/Pack)</span>
+                                <span class="formula-card-badge">Lookup</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                ค้นหาจาก <code>Size.csv</code> ตามเงื่อนไขของขนาด แกรม และจำนวนแผ่น หากจำนวนแผ่นเป็น 500 จะดึง Weight/Ream(KG) หากไม่ใช่ 500 หรือ 2500 ดึง Weight/Pack(KG) (ทศนิยม 3 ตำแหน่ง, ยกเว้นกลุ่ม LTA ทศนิยม 2 ตำแหน่ง)
+                            </p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>หน่วยนับหลัก (UOM 1)</span>
+                                <span class="formula-card-badge">Logic</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                หากจำนวนแผ่นที่ระบุในสเปคสินค้าเท่ากับ <code>500</code> แผ่น จะกำหนดหน่วยนับเป็น <strong>Ream</strong> หากเป็นจำนวนแผ่นอื่น ๆ (แต่ไม่เท่ากับ 2500 แผ่น) จะกำหนดเป็น <strong>Pack</strong>
+                            </p>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>หน่วยบรรจุกล่อง (UOM 2)</span>
+                                <span class="formula-card-badge">Logic</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                ตรวจสอบจากช่องประเภทการค้า: หากเป็นส่งออก (Domestic/Export = <code>E</code> หรือ <code>M</code>) จะเป็น <strong>Carton</strong> แต่หากเป็นในประเทศ (Domestic/Export = <code>D</code>) จะเป็น <strong>Box</strong>
+                            </p>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>น้ำหนักต่อกล่อง (Box Weight)</span>
+                                <span class="formula-card-badge">Formula</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                หากจำนวนแผ่นเป็น <code>2500</code> ดึงตรงจาก Weight/Box(KG) ในตารางขนาดสินค้า | หากจำนวนแผ่นเป็นอย่างอื่น: <code>น้ำหนักหน่วยหลัก (reamPack) * จำนวนห่อต่อกล่อง (reamBox)</code> (ทศนิยม 3 ตำแหน่ง)
+                            </p>
+                        </div>
+                        <!-- Card 7 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>น้ำหนักต่อพาเลท (Pallet Weight)</span>
+                                <span class="formula-card-badge">Formula</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                <code>น้ำหนักกล่อง (box) * จำนวนกล่องต่อพาเลท (reamPallet)</code> (กรณี 2500 แผ่น) หรือ <code>น้ำหนักหน่วยหลัก (reamPack) * จำนวนห่อต่อพาเลท (reamPallet)</code> (กรณีทั่วไป)
+                            </p>
+                        </div>
+                        <!-- Card 8 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>หน่วยขายหลัก (Primary Sale Unit)</span>
+                                <span class="formula-card-badge">Logic</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                <strong>Parent:</strong> Carton (สำหรับกลุ่มเยอรมัน/ออสเตรเลีย) นอกนั้นเป็น KG | <strong>Child:</strong> ส่งออกที่มี Layer เป็น MT (ถ้าไม่มีเป็น Carton), ในประเทศที่มี Layer เป็น Ream (ถ้าไม่มีเป็น Box)
+                            </p>
+                        </div>
+                        <!-- Card 9 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>ประเทศ/พิกัดภาษี (Origin & HS)</span>
+                                <span class="formula-card-badge">Logic</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                หาก Item Group เป็น <code>1</code> (สินค้ากลุ่มกระดาษ) ระบบจะกำหนดค่าเริ่มต้นให้เป็นประเทศต้นทาง <strong>Thailand</strong> และรหัสศุลกากร (HS Code) เป็น <strong>48025690</strong> อัตโนมัติ
+                            </p>
+                        </div>
+                        <!-- Card 10 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>ตำแหน่งเครื่องจักร (Block PM)</span>
+                                <span class="formula-card-badge">Lookup</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                ดึงข้อมูลตามค่าเกรดสินค้าและแกรมจากแถว <code>Location Default</code> ในไฟล์ <code>List.csv</code> (กรณีสินค้าสำเร็จรูป Group 1) หรือดึงจากคลังสินค้าที่ระบุโดยตรง (กรณี Group 3)
+                            </p>
+                        </div>
+                        <!-- Card 11 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>พาเลทคละสินค้า (Mixed Pallet)</span>
+                                <span class="formula-card-badge">Logic</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                ตรวจสอบรหัสย่อสินค้า: กำหนดเป็น <strong>Yes</strong> หากรหัสเริ่มต้นด้วย <code>1CL</code> หรือ <code>2CL</code> และกำหนดเป็น <strong>No</strong> สำหรับกลุ่มรหัสหลักอื่น ๆ ทั้งหมด (เช่น 1CZ, 1CG, 1FO ฯลฯ)
+                            </p>
+                        </div>
+                        <!-- Card 12 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>น้ำหนักสุทธิ (Gross Weight)</span>
+                                <span class="formula-card-badge">Formula</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                <code>น้ำหนักสุทธิสินค้า (stdNetWeightKg) * (1 + Markup / 100)</code> โดย Markup เท่ากับ <strong>6.54%</strong> สำหรับกลุ่มย่อย <code>FO</code> และ <strong>7%</strong> สำหรับกลุ่มสินค้าอื่น ๆ ทั้งหมด
+                            </p>
+                        </div>
+                        <!-- Card 13 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>การเชื่อมโยงบัญชี (GL Mapping)</span>
+                                <span class="formula-card-badge">Lookup</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                ดึงข้อมูล Expense/COGS Account, Asset Account, Income Account และ Internal ID บัญชีจากไฟล์ <code>GL.csv</code> โดยจับคู่ตามประเภทกลุ่มย่อยสินค้าและลักษณะการขายในประเทศ/ต่างประเทศ
+                            </p>
+                        </div>
+                        <!-- Card 14 -->
+                        <div class="support-formula-card">
+                            <div class="formula-card-title">
+                                <span>สเปกความสูง (Heights)</span>
+                                <span class="formula-card-badge">Formula</span>
+                            </div>
+                            <p class="formula-card-desc">
+                                <strong>ความสูงตัวสินค้า:</strong> <code>(CMต่อชั้น / 2.54) * จำนวนชั้น (Layer)</code> แปลงเป็นนิ้ว | <strong>ความสูงพาเลทเปล่า:</strong> ดึงจากตารางแถวประเภท <code>Pallet</code> ตามรหัสขนาดที่เลือก
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="modal-body-extra-padding" style="display: none;"></div>
             <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 0.5rem; background: #f8fafc;">
-                <button type="button" class="btn btn-secondary" id="btnSupportClose" style="padding: 0.55rem 1.5rem; font-weight: 700; border-radius: 8px; cursor: pointer;">ปิดคู่มือการใช้งาน</button>
+                <button type="button" class="btn btn-secondary" id="btnSupportClose" style="padding: 0.55rem 1.5rem; font-weight: 700; border-radius: 8px; cursor: pointer;">ปิดหน้าคู่มือ</button>
             </div>
         </div>
     </div>
@@ -349,6 +508,27 @@
                     if (e.target.id === 'supportModal') {
                         closeSupportModal();
                     }
+                });
+            }
+
+            // Tab switching logic for Support Modal
+            const supportTabBtns = document.querySelectorAll('.support-tab-btn');
+            const tabWorkflow = document.getElementById('supportTabWorkflow');
+            const tabFormulas = document.getElementById('supportTabFormulas');
+            if (supportTabBtns) {
+                supportTabBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        supportTabBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const target = btn.dataset.tab;
+                        if (target === 'workflow') {
+                            if (tabWorkflow) tabWorkflow.classList.remove('hidden');
+                            if (tabFormulas) tabFormulas.classList.add('hidden');
+                        } else {
+                            if (tabWorkflow) tabWorkflow.classList.add('hidden');
+                            if (tabFormulas) tabFormulas.classList.remove('hidden');
+                        }
+                    });
                 });
             }
         });

@@ -714,7 +714,7 @@ input[name="sapCode2"] {
 
 
 /* ==========================================================================
-   PaperMaster Pro Modernized Custom Theme & Sidebar Layout System
+   DA-Item Master Modernized Custom Theme & Sidebar Layout System
    ========================================================================== */
 
 /* Layout Wrapper overrides */
@@ -1593,6 +1593,85 @@ body {
     font-size: 0.82rem;
     color: #475569;
     line-height: 1.6;
+    margin: 0;
+}
+
+/* ============================================
+   Support Modal Tabs & Formula Layouts
+   ============================================ */
+.support-tab-btn {
+    border-bottom: 3px solid transparent;
+    padding: 0.55rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: #64748b;
+    transition: all 0.2s ease;
+}
+
+.support-tab-btn:hover {
+    color: #1e3a8a;
+}
+
+.support-tab-btn.active {
+    color: #1e3a8a;
+    border-bottom-color: #1e3a8a;
+}
+
+.support-formulas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.support-formula-card {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.2rem;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.support-formula-card:hover {
+    border-color: #1e3a8a;
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.08);
+}
+
+.formula-card-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.formula-card-badge {
+    background: #eff6ff;
+    color: #1e3a8a;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: 700;
+}
+
+.formula-card-desc {
+    font-size: 0.82rem;
+    color: #475569;
+    line-height: 1.5;
     margin: 0;
 }
 
