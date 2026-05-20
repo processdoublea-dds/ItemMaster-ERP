@@ -5,12 +5,7 @@
 const SUPABASE_URL = 'https://wtianainvlmlhtmquiby.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind0aWFuYWludmxtbGh0bXF1aWJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwMzE2NjUsImV4cCI6MjA5MzYwNzY2NX0.NINMckzLG-Rsj4l26PJbrBfdFWHGU_jOzvFDIfPQl2c';
 
-// HRMS API Config
-const HRMS_AUTH_URL = 'https://mobiledev.advanceagro.net/ws/api/idms/authentication/';
-const HRMS_EMPLOYEE_URL = 'https://mobiledev.advanceagro.net/ws/api/hrms/employee/';
-const HRMS_SERVICE = '0000';
-const HRMS_AGENT_ID = 'SystemMango';
-const HRMS_AGENT_CODE = 'Np4kfRh5';
+
 
 // Initialize Supabase client safely
 let supabaseClient = null;
@@ -104,10 +99,7 @@ async function hrmsLogin(username, password) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 account: username,
-                password: hashedPassword,
-                Service: HRMS_SERVICE,
-                AgentId: HRMS_AGENT_ID,
-                AgentCode: HRMS_AGENT_CODE
+                password: hashedPassword
             }),
             signal: controller.signal
         });

@@ -1526,3 +1526,74 @@ body {
     background-color: #f8fafc !important;
 }
 
+/* ============================================
+   Step-by-Step Support Timeline Modal Styles
+   ============================================ */
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.timeline-step {
+    display: flex;
+    gap: 1.25rem;
+    position: relative;
+    padding-bottom: 1.5rem;
+    border-left: 2px dashed #cbd5e1;
+    margin-left: 0.75rem;
+    padding-left: 1.5rem;
+    transition: var(--transition);
+}
+
+.timeline-step:hover {
+    border-left-color: #1e3a8a;
+}
+
+.timeline-step:hover .step-badge {
+    background: #1e3a8a;
+    color: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.15);
+}
+
+.step-badge {
+    position: absolute;
+    left: -15px; /* Center perfectly on 2px border (15px radius) */
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.step-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.step-desc {
+    font-size: 0.82rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+}
+
+

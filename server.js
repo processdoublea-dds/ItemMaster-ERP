@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -61,11 +63,15 @@ const HRMS_EMPLOYEE_URL = 'https://api-idms.advanceagro.net/hrms/employee/';
 // POST /api/hrms/login — Proxy HRMS authentication
 app.post('/api/hrms/login', async (req, res) => {
     try {
-        const { account, password, Service, AgentId, AgentCode } = req.body;
+        const { account, password } = req.body;
         
         if (!account || !password) {
             return res.status(400).json({ error: 'Missing account or password' });
         }
+
+        const Service = process.env.HRMS_SERVICE || '0000';
+        const AgentId = process.env.HRMS_AGENT_ID || 'SystemMango';
+        const AgentCode = process.env.HRMS_AGENT_CODE || 'Np4kfRh5';
 
         const params = new URLSearchParams({ account, password, Service, AgentId, AgentCode });
         const controller = new AbortController();

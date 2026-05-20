@@ -35,5 +35,6 @@ map_cols.js
 find_cz.js
 extract_text.js
 cleanup_csv.ps1
-check_1cze.js
-analyze_prefixes.js
+
+# Environment variables
+.env

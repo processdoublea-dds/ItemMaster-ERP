@@ -145,13 +145,6 @@
                 </a>
             </nav>
             <div class="sidebar-footer">
-                <a href="#" class="nav-item" id="navSettings">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                    </svg>
-                    <span>Settings</span>
-                </a>
                 <a href="#" class="nav-item" id="navSupport">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
@@ -181,11 +174,6 @@
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/>
                         </svg>
                         <span class="notification-badge"></span>
-                    </button>
-                    <button class="header-btn" title="Help">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
-                        </svg>
                     </button>
                     <div class="user-avatar-wrap" id="profileToggle">
                         <div style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.1; margin-right: 2px;">
@@ -299,8 +287,67 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="auth.js"></script>
     <script src="admin_users.js"></script>
+    <!-- Support Guide Modal Overlay -->
+    <div class="modal-overlay hidden" id="supportModal">
+        <div class="modal-card" style="max-width: 650px;">
+            <div class="modal-header">
+                <h3>📖 คู่มือขั้นตอนการใช้งานระบบ (Item Master)</h3>
+                <button type="button" class="modal-close" id="supportModalClose">✕</button>
+            </div>
+            <div class="modal-body" style="padding: 1.75rem 2rem;">
+                <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                    ขั้นตอนและกระบวนการทำงานสำหรับการขอสร้างรหัสสินค้าใหม่ (Item Code) ภายในระบบ ERP ของกลุ่มบริษัท Double A
+                </p>
+                <div class="timeline-container">
+                    <div class="timeline-step">
+                        <div class="step-badge">1</div>
+                        <div class="step-content">
+                            <h4 class="step-title">เข้าสู่ระบบ (Sign In)</h4>
+                            <p class="step-desc">ล็อกอินด้วยบัญชีระบบ HRMS ของพนักงานกลุ่มบริษัท Double A เพื่อตรวจสอบตัวตนและบทบาทหน้าที่ในระบบ (เช่น User ทั่วไป หรือ Admin)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step">
+                        <div class="step-badge">2</div>
+                        <div class="step-content">
+                            <h4 class="step-title">เลือกประเภทและระบุรายละเอียดข้อมูลเทคนิค (Specs Input)</h4>
+                            <p class="step-desc">เลือกประเภทกลุ่มสินค้าหลัก ( Finished Goods - Roll / Finished Goods - Sheet / Finished Goods - Copy Paper) และกรอกข้อมูลคุณสมบัติทางเทคนิคเฉพาะ เช่น น้ำหนัก (Grammage), รหัสขนาด (Size Code), แบรนด์สินค้า (Brand) และ UOM เพื่อกำหนดเป็นโครงสร้างรหัสสินค้า</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="step-badge">3</div>
+                        <div class="step-content">
+                            <h4 class="step-title">ตรวจสอบการซ้ำซ้อนและบัญชีผูกแยกประเภท (Validate & GL mapping)</h4>
+                            <p class="step-desc">ระบบจะทำการแปลงรหัสสินค้าสำเร็จรูป (Item Code) และรายละเอียดอัตโนมัติ พร้อมทั้งตรวจเช็คการซ้ำซ้อนกับระบบ NetSuite ERP ทันที รวมไปถึงคำนวณและเลือกบัญชี GL (Income Account, Asset Account) ให้ตามระเบียบสหัสกรุ๊ปและ Warehouse ที่ท่านเลือก</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="step-badge">4</div>
+                        <div class="step-content">
+                            <h4 class="step-title">ยืนยันและส่งคำขอรหัสสินค้า (Submit Request)</h4>
+                            <p class="step-desc">กดปุ่ม “ยืนยันและส่งคำขอรหัสสินค้า” คำขอของคุณจะถูกส่งเข้าไปเก็บในตารางรอการตรวจสอบและอนุมัติ โดยคำขอจะแสดงสถานะเป็น “Pending” เพื่อรอฝ่ายคุมรหัสสินค้าคีย์เข้าระบบหลัก</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step" style="border-left: none; padding-bottom: 0;">
+                        <div class="step-badge">5</div>
+                        <div class="step-content">
+                            <h4 class="step-title">ผู้ดูแลระบบคีย์และบันทึกผลสำเร็จ (Admin Release)</h4>
+                            <p class="step-desc">ผู้ดูแลระบบ (Admin) สามารถกดแก้ไขรายละเอียดเพิ่มเติมและกรอกเลข NetSuite Internal ID ที่สมบูรณ์เพื่อเปลี่ยนสถานะเป็น “Completed” จบกระบวนการออกรหัสเสร็จสมบูรณ์</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 0.5rem; background: #f8fafc;">
+                <button type="button" class="btn btn-secondary" id="btnSupportClose" style="padding: 0.55rem 1.5rem; font-weight: 700; border-radius: 8px; cursor: pointer;">ปิดคู่มือการใช้งาน</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Set User Initials avatar & Live Search
+        // Update User Initials on load
         document.addEventListener('DOMContentLoaded', () => {
             const user = getUser();
             if (user) {
@@ -329,6 +376,37 @@
                             row.style.display = 'none';
                         }
                     });
+                });
+            }
+
+            // Support modal logic
+            const supportModal = document.getElementById('supportModal');
+            const navSupport = document.getElementById('navSupport');
+            const supportModalClose = document.getElementById('supportModalClose');
+            const btnSupportClose = document.getElementById('btnSupportClose');
+
+            if (navSupport && supportModal) {
+                navSupport.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    supportModal.classList.remove('hidden');
+                });
+            }
+
+            const closeSupportModal = () => {
+                if (supportModal) supportModal.classList.add('hidden');
+            };
+
+            if (supportModalClose) {
+                supportModalClose.addEventListener('click', closeSupportModal);
+            }
+            if (btnSupportClose) {
+                btnSupportClose.addEventListener('click', closeSupportModal);
+            }
+            if (supportModal) {
+                supportModal.addEventListener('click', (e) => {
+                    if (e.target.id === 'supportModal') {
+                        closeSupportModal();
+                    }
                 });
             }
         });
