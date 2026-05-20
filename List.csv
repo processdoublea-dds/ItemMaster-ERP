@@ -1,0 +1,175 @@
+Group Running,Brand,Grade_,Gram_,Location Default,Digit (Update),Brand Name (Production),Country,Country Prefix NS
+1Premium,Double A,aA-COPY (CIE150),70,PM2_Production,DA,Double A,Afghanistan,AF
+1Premium,Double A (1759),aA-COPY (CIE150),75,PM2_Production,AL,Alpine,Albania,AL
+1Premium,Double A (Promotion),aA-COPY (CIE150),80,PM3_Production,AP,aA-PRINT,Algeria,DZ
+1Premium,Double A APC,aA-COPY 150 (FSC MIX70%),70,PM1_Production,BP,Big Paper,American Samoa,AS
+1Premium,Double A China,aA-COPY 150 (FSC MIX70%),75,PM1_Production,BU,Big Paper APC,Andorra,AD
+1Premium,Double A FSC,aA-COPY 150 (FSC MIX70%),80,PM1_Production,CA,Calipage,Angola,AO
+1Premium,Double A FSC Australia,aA-COPY 150 (PEFC),70,PM1_Production,T2,Top Print 92,Armenia,AM
+1Premium,Double A FSC France,aA-COPY 150 (PEFC),75,PM1_Production,T7,Top Print 97,Australia,AU
+1Premium,Double A Green,aA-COPY 150 (PEFC),80,PM1_Production,DY,Double A (Promotion),Austria,AT
+1Premium,Double A Korea,B-aA-COPY (CIE150),70,"PM1,2 (Roll)_Production",D1,Double A FSC,Azerbaijan,AZ
+2Strategic,Hi-Plus,B-aA-COPY (CIE150),75,"PM1,2 (Roll)_Production",D3,Double A FSC Australia,Bahrain,BH
+2Strategic,Hi-Plus APC,B-aA-COPY (CIE150),80,"PM1,2 (Roll)_Production",DG,Double A Green,Bangladesh,BD
+2Strategic,Hi-Plus China,C-aA-COPY (CIE150),70,"PM1,2 (Roll)_Production",DK,Double A Korea,Belarus,BY
+2Strategic,Hi-Plus Eng,C-aA-COPY (CIE150),75,"PM1,2 (Roll)_Production",DU,Double A APC,Belgium,BE
+2Strategic,Hi-Plus Korea,C-aA-COPY (CIE150),80,"PM1,2 (Roll)_Production",HP,Hi-Plus,Benin,BJ
+2Strategic,Reflex,A-COPY,70,PM1_Production,EG,Eagle Green,Bhutan,BT
+2Strategic,Reflex Colour,A-COPY,80,PM1_Production,ER,Eagle Red,Bosnia and Herzegovina,BA
+2Strategic,Reflex FSC,A-COPY HIGH SHADE,75,PM1_Production,GK,Giant King Kong,Botswana,BW
+3Quality,Quality Blue,B-A-COPY,70,"PM1,2 (Roll)_Production",GP,GreenImpact,Brazil,BR
+3Quality,Quality Green,B-A-COPY,80,"PM1,2 (Roll)_Production",HN,Hi-Plus China,Brunei Darussalam,BN
+3Quality,Quality Orange,B-A-COPY HIGH SHADE,75,,HE,Hi-Plus Eng,Bulgaria,BG
+3Quality,Quality Orange FSC,C-A-COPY,70,"PM1,2 (Roll)_Production",HK,Hi-Plus Korea,Burkina Faso,BF
+3Quality,Quality Purple,C-A-COPY,80,"PM1,2 (Roll)_Production",HU,Hi-Plus APC,Burundi,BI
+3Quality,Quality Purple FSC,aA-Copy Green,80,PM2_Production,HB,Hyper Buro,Cambodia,KH
+3Quality,Quality Red,C-aA-COPY GREEN,80,"PM1,2 (Roll)_Production",LY,Lyreco,Cameroon,CM
+3Quality,Quality Yellow,aA-PRINT,60,PM1_Production,OK,OK,Canada,CA
+4Value,EZ Copy Blue,aA-PRINT,70,PM1_Production,OG,One Green,Cape Verde,CV
+4Value,Smart Copy,aA-PRINT,80,PM1_Production,1K,One K,Cayman Islands,KY
+4Value,SMART COPY APC,aA-PRINT,90,PM1_Production,PG,Pergamy,Central African Republic,CF
+4Value,Smart Copy ECO,aA-PRINT,100,PM1_Production,PM,Premier,Chad,TD
+4Value,Smartist,aA-PRINT,120,PM1_Production,BR,Q-Biz Red,Chile,CL
+4Value,Smartist FSC France,B-aA-PRINT,70,"PM1,2 (Roll)_Production",QB,Quality Blue,China,CN
+4Value,Smartist Korea,B-aA-PRINT,80,"PM1,2 (Roll)_Production",QG,Quality Green,Comoros,KM
+4Value,Smartist China,B-aA-PRINT,90,"PM1,2 (Roll)_Production",QO,Quality Orange,Congo,CG
+5Other,Alpine,B-aA-PRINT,100,"PM1,2 (Roll)_Production",FO,Quality Orange FSC,Croatia,HR
+5Other,Big Paper,B-aA-PRINT,120,"PM1,2 (Roll)_Production",QP,Quality Purple,Cyprus,CY
+5Other,Big Paper APC,C-aA-PRINT,60,"PM1,2 (Roll)_Production",FP,Quality Purple FSC,Czech Republic,CZ
+5Other,Calipage,C-aA-PRINT,70,"PM1,2 (Roll)_Production",QR,Quality Red,Ivory Coast,CI
+5Other,Eagle Green,C-aA-PRINT,80,"PM1,2 (Roll)_Production",QY,Quality Yellow,Denmark,DK
+5Other,Eagle Red,CM,90,HTP_Production,ZG,Shih-Tzu Green,Djibouti,DJ
+5Other,Global,CM,100,HTP_Production,AC,Double A Care,Dominican Republic,DO
+5Other,GreenImpact,CM,115,,QL,Quality,Dr.Congo,CD
+5Other,Hyper Buro,CM,125,HTP_Production,SC,Smart Copy,Egypt,EG
+5Other,Link Max,DA COLOUR PRINT 150,90,PM1_Production,SU,SMART COPY APC,Equatorial Guinea,GQ
+5Other,Lyreco,DA COLOUR PRINT 150,100,PM1_Production,R1,Reflex FSC,Eritrea,ER
+5Other,No Brand,DA COLOUR PRINT 150,120,PM1_Production,D2,Double A FSC France,Estonia,EE
+5Other,OFM,DA COLOUR PRINT 150 (FSC MIX70%),90,PM1_Production,WT,Winter,Ethiopia,ET
+5Other,OK,DA COLOUR PRINT 150 (FSC MIX70%),100,PM1_Production,WU,Winter APC,Fiji,FJ
+5Other,One,DA COLOUR PRINT 150 (FSC MIX70%),120,PM1_Production,QA,Quality - AA,Finland,FI
+5Other,One Green,DA COLOUR PRINT 150 (PEFC),90,PM1_Production,QH,Quality - HTP,France,FR
+5Other,One K,DA COLOUR PRINT 150 (PEFC),100,PM1_Production,ON,One,French Guiana,GF
+5Other,OnPoint,DA COLOUR PRINT 150 (PEFC),120,PM1_Production,DC,Double A Colour,French Polynesia,PF
+5Other,Pergamy,HI COPY,70,HTP_Production,OF,OFM,Gabon,GA
+5Other,Premier,HI COPY,80,HTP_Production,OM,OfficeMate,Gambia,GM
+5Other,Q-Biz Blue,HI COPY+,70,HTP_Production,WB,White Box,Georgia,GE
+5Other,Q-Biz Red,HI COPY+,80,HTP_Production,DI,Double A India,Germany,DE
+5Other,Shih-Tzu Green,B-Hi Copy,70,"PM1,2 (Roll)_Production",OP,OnPoint,Ghana,GH
+5Other,Shih-Tzu Pink,B-Hi Copy,80,"PM1,2 (Roll)_Production",GB,Global,Greece,GR
+5Other,Siberian,B-Hi Copy+,70,"PM1,2 (Roll)_Production",LM,Link Max,Guadeloupe,GP
+5Other,Simon,B-Hi Copy+,80,"PM1,2 (Roll)_Production",SM,Simon,Guam,GU
+5Other,So Good,HONEY COMB,80,,NB,No Brand,Guinea,GN
+5Other,Speed Red,HI-WC,150,HTP_Production,DZ,Double A (1759),Guinea-Bissau,GW
+5Other,Speed Yellow,HI-WC,180,HTP_Production,DN,Double A China,Hong Kong,HK
+5Other,Top Print 92,HI-WC,210,PM HTP_Production,EZ,EZ Copy Blue,Hungary,HU
+5Other,Top Print 97,JING JAI,70,HTP_Production,BB,Q-Biz Blue,India,IN
+5Other,Turbo,JING JAI,75,HTP_Production,ZP,Shih-Tzu Pink,Indonesia,ID
+5Other,W.B. Mason,KT,125,,SE,Smart Copy ECO,Iran,IR
+5Other,White Box,NEW Q COPY (CIE145),70,PM1_Production,ST,Smartist,Iraq,IQ
+5Other,Winter,NEW Q COPY (CIE145),80,PM1_Production,SG,So Good,Ireland,IE
+5Other,Winter APC,NEW Q COPY (FSC MIX70%),70,,SR,Speed Red,Israel,IL
+5Other,Copy Me 92,NEW Q COPY (FSC MIX70%),80,,TB,Turbo,Italy,IT
+5Other,Varoe,NEW Q COPY (PEFC),70,PM1_Production,WM,W.B. Mason,Jamaica,JM
+,,NEW Q COPY (PEFC),80,PM1_Production,SY,Speed Yellow,Japan,JP
+,,B-NEW Q COPY (CIE145),70,"PM1,2 (Roll)_Production",RF,Reflex,Jordan,JO
+,,B-NEW Q COPY (CIE145),80,"PM1,2 (Roll)_Production",SB,Siberian,Kazakhstan,KZ
+,,REFLEX (FSC MIX70%),80,PM1_Production,C1,DA Colour Print,Kenya,KE
+,,REFLEX (PEFC),80,PM1_Production,SK,Smartist Korea,Kosovo,XK
+,,SMART COPY (CIE145),70,PM1_Production,FS,FlagShip,Kuwait,KW
+,,SMART COPY (CIE145),75,PM1_Production,RC,Reflex Colour,Kyrgyzstan,KG
+,,SMART COPY (CIE145),80,PM1_Production,AR,Aro,Laos,LA
+,,B-SMART COPY (CIE145),70,"PM1,2 (Roll)_Production",XX,Shih-Tzu,Latvia,LV
+,,B-SMART COPY (CIE145),80,"PM1,2 (Roll)_Production",SF,Smartist FSC France,Lebanon,LB
+,,SMART PRINT,70,PM1_Production,XX,aA Shade Sheet,Liberia,LR
+,,SMART PRINT,80,PM1_Production,XX,Double A Copy,Libya,LY
+,,SMART PRINT,100,PM1_Production,DL,Double A Philippines,Lithuania,LT
+,,C-SMART PRINT,70,"PM1,2 (Roll)_Production",SN,Smartist China,Luxembourg,LU
+,,C-SMART PRINT,80,"PM1,2 (Roll)_Production",KE,One K APC,Macau,MO
+,,WOL,180,HTP_Production,DL,Double A Iraq,Macedonia,MK
+,,,,,DL,Double A Cambodia,Madagascar,MG
+,,,,,SL,Smartist Cambodia,Malawi,MW
+,,,,,QL,Quality Orange Cambodia,Malaysia,MY
+,,,,,SN,Smartist China,Maldives,MV
+,,,,,C3,DA COLOUR PRINT (Promotion),Mali,ML
+,,,,,SA,Smartist Alizay,Malta,MT
+,,,,,HF,Hi-Plus Alizay,Martinique,MQ
+,,,,,,,Mauritania,MR
+,,,,,,,Mauritius,MU
+,,,,,,,Mayotte,YT
+,,,,,,,Moldova,MD
+,,,,,,,Monaco,MC
+,,,,,,,Mongolia,MN
+,,,,,,,Montenegro,ME
+,,,,,,,Morocco,MA
+,,,,,,,Mozambique,MZ
+,,,,,,,Myanmar,MM
+,,,,,,,Namibia,NA
+,,,,,,,Nepal,NP
+,,,,,,,Netherlands,NL
+,,,,,,,New Caledonia,NC
+,,,,,,,New Zealand,NZ
+,,,,,,,Niger,NE
+,,,,,,,Nigeria,NG
+,,,,,,,Northern Mariana Islands,MP
+,,,,,,,Norway,NO
+,,,,,,,Oman,OM
+,,,,,,,Pakistan,PK
+,,,,,,,Palestine,PS
+,,,,,,,Papua New Guinea,PG
+,,,,,,,Paraguay,PY
+,,,,,,,Peru,PE
+,,,,,,,Philippines,PH
+,,,,,,,Poland,PL
+,,,,,,,Portugal,PT
+,,,,,,,Puerto Rico,PR
+,,,,,,,Qatar,QA
+,,,,,,,Romania,RO
+,,,,,,,Russia,RU
+,,,,,,,Rwanda,RW
+,,,,,,,Reunion,RE
+,,,,,,,San Marino,SM
+,,,,,,,Saudi Arabia,SA
+,,,,,,,Senegal,SN
+,,,,,,,Serbia,RS
+,,,,,,,Seychelles,SC
+,,,,,,,Sierra Leone,SL
+,,,,,,,Singapore,SG
+,,,,,,,Slovakia,SK
+,,,,,,,Slovenia,SI
+,,,,,,,Solomon Islands,SB
+,,,,,,,Somalia,SO
+,,,,,,,South Africa,ZA
+,,,,,,,South Korea,KR
+,,,,,,,South Sudan,SS
+,,,,,,,Spain,ES
+,,,,,,,Sri Lanka,LK
+,,,,,,,Sudan,SD
+,,,,,,,Suriname,SR
+,,,,,,,Swaziland,SZ
+,,,,,,,Sweden,SE
+,,,,,,,Switzerland,CH
+,,,,,,,Syria,SY
+,,,,,,,Taiwan,TW
+,,,,,,,Tajikistan,TJ
+,,,,,,,Tanzania,TZ
+,,,,,,,Thailand,TH
+,,,,,,,Togo,TG
+,,,,,,,Tunisia,TN
+,,,,,,,Turkmenistan,TM
+,,,,,,,Tuvalu,TV
+,,,,,,,Turkey,TR
+,,,,,,,United Arab Emirates,AE
+,,,,,,,Uganda,UG
+,,,,,,,Ukraine,UA
+,,,,,,,United Kingdom,GB
+,,,,,,,Uruguay,UY
+,,,,,,,United States of America,US
+,,,,,,,Uzbekistan,UZ
+,,,,,,,Vanuatu,VU
+,,,,,,,Vietnam,VN
+,,,,,,,British Virgin Islands,VG
+,,,,,,,Yemen,YE
+,,,,,,,Zambia,ZM
+,,,,,,,Zimbabwe,ZW
+,,,,,,,Direct Shipment,DS

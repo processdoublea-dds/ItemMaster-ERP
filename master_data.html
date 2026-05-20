@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaperMaster Pro | Bulk Master Data Updates</title>
+    <meta name="description" content="Manage master data files (CSV) for the Item Code Generator">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script>
+        // Inline Auth Guard
+        if (!sessionStorage.getItem('itemgen_session')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- LEFT SIDEBAR -->
+        <aside class="app-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h3>Item Master</h3>
+                    <span>Technical Portal</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item" id="navDashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="9" rx="1"/>
+                        <rect x="14" y="3" width="7" height="5" rx="1"/>
+                        <rect x="14" y="12" width="7" height="9" rx="1"/>
+                        <rect x="3" y="16" width="7" height="5" rx="1"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="index.html?tab=create" class="nav-item" id="navItemRequests">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+                    </svg>
+                    <span>Item Requests</span>
+                </a>
+                <a href="master_data.html" class="nav-item active" id="navBulkUpdates">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                    </svg>
+                    <span>Bulk Updates</span>
+                </a>
+                <a href="admin_users.html" class="nav-item" id="navPermissions">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span>Permissions</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" id="navSettings">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+                <a href="#" class="nav-item" id="navSupport">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
+                    </svg>
+                    <span>Support</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT PANEL -->
+        <main class="app-main">
+            <!-- TOP BAR -->
+            <header class="app-top-header">
+                <div class="header-app-name">PaperMaster Pro</div>
+                <div class="header-search">
+                    <div class="search-input-wrap">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/>
+                        </svg>
+                        <input type="text" id="globalSearchInput" placeholder="ค้นหาไฟล์หรือเมนู...">
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" title="Notifications">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                        <span class="notification-badge"></span>
+                    </button>
+                    <button class="header-btn" title="Help">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
+                        </svg>
+                    </button>
+                    <div class="user-avatar-wrap" id="profileToggle">
+                        <div style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.1; margin-right: 2px;">
+                            <span id="headerUserName" style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">-</span>
+                            <span id="headerUserRole" style="font-size: 0.65rem; font-weight: 700; color: #1e3a8a; background: #dbeafe; padding: 2px 6px; border-radius: 4px; margin-top: 2px;">-</span>
+                        </div>
+                        <div class="user-avatar-initials" id="userInitials">--</div>
+                        <!-- Profile Dropdown Menu -->
+                        <div class="profile-dropdown hidden" id="profileDropdown">
+                            <div class="profile-dropdown-header">
+                                <div class="profile-dropdown-avatar" id="dropdownAvatar">--</div>
+                                <div class="profile-dropdown-info">
+                                    <span class="profile-dropdown-name" id="dropdownName">User</span>
+                                    <span class="profile-dropdown-role" id="dropdownRole">user</span>
+                                </div>
+                            </div>
+                            <div class="profile-dropdown-meta" id="dropdownMeta"></div>
+                            <div class="profile-dropdown-divider"></div>
+                            <button type="button" class="profile-dropdown-logout" onclick="logout()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                    <polyline points="16 17 21 12 16 7"/>
+                                    <line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                                ออกจากระบบ
+                            </button>
+                        </div>
+                        <div id="userBar" style="display:none;"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- APP CONTENT WRAPPER -->
+            <div class="app-content">
+                <div class="main-content">
+
+                    <!-- INSTRUCTION HEADER -->
+                    <div style="margin-bottom: 2rem;">
+                        <h1 style="font-size: 1.75rem; font-weight: 800; color: #0f172a; margin: 0;">อัปโหลดและจัดการข้อมูลหลัก (Master Data)</h1>
+                        <p style="color: #64748b; font-size: 0.9rem; margin: 0;">นำเข้าข้อมูลการประมวลผลสำหรับ Item Code Generator ผ่านไฟล์ CSV</p>
+                    </div>
+
+                    <!-- Instruction Card -->
+                    <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; padding: 1.25rem; border-radius: 12px; margin-bottom: 2rem; color: #166534;">
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <span style="font-size: 1.35rem;">💡</span>
+                            <div>
+                                <strong style="display: block; margin-bottom: 4px; font-weight: 700;">คำแนะนำการอัปเดตระบบ</strong>
+                                <p style="font-size: 0.88rem; line-height: 1.6; opacity: 0.95; margin: 0;">
+                                    เพื่อความเสถียรของระบบและผลการคำนวณที่ถูกต้อง กรุณาดาวน์โหลดไฟล์เทมเพลต (Template) ของเดิมเพื่อเปรียบเทียบหัวข้อตาราง (Header Columns) ให้ถูกต้องก่อนทำการอัปโหลดทับทุกครั้ง
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GRID SECTIONS -->
+                    <div class="upload-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <!-- Update General Config -->
+                        <section class="card upload-card" style="padding: 1.5rem;">
+                            <div class="queue-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem;">
+                                <h3 style="margin: 0; font-weight: 800; font-size: 1.1rem; color: #0f172a;">📁 General Configurations (List.csv)</h3>
+                                <a href="List.csv" download class="template-link" style="color: #1e3a8a; font-weight: 700; text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
+                                    📥 Template
+                                </a>
+                            </div>
+                            <div class="upload-card-content">
+                                <p class="upload-desc" style="color: #64748b; font-size: 0.85rem; margin-bottom: 1.25rem; line-height: 1.5;">
+                                    ข้อมูลสิทธิ์การเข้าถึง, บัญชี GL ประจำกลุ่มสับกรุ๊ปสินค้า, บล็อกควบคุม PM, และ Logic จับคู่รหัสประเทศ
+                                </p>
+                                <form id="uploadListForm" class="upload-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                                    <input type="file" id="listFileInput" class="upload-input" accept=".csv" required style="padding: 0.5rem; border: 1.5px dashed #cbd5e1; border-radius: 8px; font-size: 0.85rem; cursor: pointer;">
+                                    <button type="submit" id="btnUploadList" class="btn btn-primary" style="background: #1e3a8a !important; color: white; padding: 0.6rem; border-radius: 8px; font-weight: 700;">
+                                        📤 Upload List.csv
+                                    </button>
+                                    <span id="listUploadStatus" class="upload-status" style="font-size: 0.85rem; font-weight: 600; text-align: center;"></span>
+                                </form>
+                            </div>
+                        </section>
+
+                        <!-- Update Item Master -->
+                        <section class="card upload-card" style="padding: 1.5rem;">
+                            <div class="queue-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem;">
+                                <h3 style="margin: 0; font-weight: 800; font-size: 1.1rem; color: #0f172a;">📦 ERP Item Master (ItemMaster.csv)</h3>
+                                <a href="ItemMaster.csv" download class="template-link" style="color: #1e3a8a; font-weight: 700; text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
+                                    📥 Template
+                                </a>
+                            </div>
+                            <div class="upload-card-content">
+                                <p class="upload-desc" style="color: #64748b; font-size: 0.85rem; margin-bottom: 1.25rem; line-height: 1.5;">
+                                    ฐานข้อมูลรหัสสินค้าเดิมจากระบบ NetSuite สำหรับตรวจสอบประวัติการออกรหัสและคำนวณหมายเลขรหัสลำดับถัดไป (Running Number)
+                                </p>
+                                <form id="uploadItemMasterForm" class="upload-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                                    <input type="file" id="itemMasterFileInput" class="upload-input" accept=".csv" required style="padding: 0.5rem; border: 1.5px dashed #cbd5e1; border-radius: 8px; font-size: 0.85rem; cursor: pointer;">
+                                    <button type="submit" id="btnUploadItemMaster" class="btn btn-primary" style="background: #10b981 !important; color: white; padding: 0.6rem; border-radius: 8px; font-weight: 700;">
+                                        📤 Upload ItemMaster.csv
+                                    </button>
+                                    <span id="itemMasterUploadStatus" class="upload-status" style="font-size: 0.85rem; font-weight: 600; text-align: center;"></span>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="upload-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem;">
+                        <!-- Update GL Account Mapping -->
+                        <section class="card upload-card" style="padding: 1.5rem;">
+                            <div class="queue-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem;">
+                                <h3 style="margin: 0; font-weight: 800; font-size: 1.1rem; color: #0f172a;">📚 Account & GL Codes (GL.csv)</h3>
+                                <a href="GL.csv" download class="template-link" style="color: #1e3a8a; font-weight: 700; text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
+                                    📥 Template
+                                </a>
+                            </div>
+                            <div class="upload-card-content">
+                                <p class="upload-desc" style="color: #64748b; font-size: 0.85rem; margin-bottom: 1.25rem; line-height: 1.5;">
+                                    ผังบัญชีแยกประเภทรายได้ (Income Account), บัญชีเจ้าหนี้ (Expense/COGS), บัญชีสินทรัพย์และวัตถุดิบแยกรายคลังสินค้า
+                                </p>
+                                <form id="uploadGLForm" class="upload-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                                    <input type="file" id="glFileInput" class="upload-input" accept=".csv" required style="padding: 0.5rem; border: 1.5px dashed #cbd5e1; border-radius: 8px; font-size: 0.85rem; cursor: pointer;">
+                                    <button type="submit" id="btnUploadGL" class="btn btn-primary" style="background: #f59e0b !important; color: white; padding: 0.6rem; border-radius: 8px; font-weight: 700;">
+                                        📤 Upload GL.csv
+                                    </button>
+                                    <span id="glUploadStatus" class="upload-status" style="font-size: 0.85rem; font-weight: 600; text-align: center;"></span>
+                                </form>
+                            </div>
+                        </section>
+
+                        <!-- Update Size/Gram/Sheet -->
+                        <section class="card upload-card" style="padding: 1.5rem;">
+                            <div class="queue-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem;">
+                                <h3 style="margin: 0; font-weight: 800; font-size: 1.1rem; color: #0f172a;">📐 Specs & Unit Dimensions (Size.csv)</h3>
+                                <a href="Size.csv" download class="template-link" style="color: #1e3a8a; font-weight: 700; text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
+                                    📥 Template
+                                </a>
+                            </div>
+                            <div class="upload-card-content">
+                                <p class="upload-desc" style="color: #64748b; font-size: 0.85rem; margin-bottom: 1.25rem; line-height: 1.5;">
+                                    ตัวเลขจับคู่การแปลงหน่วยแกรม (Gram/GSM), รหัสขนาดกระดาษ (Size Code), ขนาดความสูงพาเลท และสูตรสแตนดาร์ดเวท (Weight Units)
+                                </p>
+                                <form id="uploadSizeForm" class="upload-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                                    <input type="file" id="sizeFileInput" class="upload-input" accept=".csv" required style="padding: 0.5rem; border: 1.5px dashed #cbd5e1; border-radius: 8px; font-size: 0.85rem; cursor: pointer;">
+                                    <button type="submit" id="btnUploadSize" class="btn btn-primary" style="background: #ec4899 !important; color: white; padding: 0.6rem; border-radius: 8px; font-weight: 700;">
+                                        📤 Upload Size.csv
+                                    </button>
+                                    <span id="sizeUploadStatus" class="upload-status" style="font-size: 0.85rem; font-weight: 600; text-align: center;"></span>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="auth.js"></script>
+    <script src="master_data.js"></script>
+    <script>
+        // Update User Initials on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getUser();
+            if (user) {
+                const userInitials = document.getElementById('userInitials');
+                if (userInitials) {
+                    const nameParts = (user.full_name || '').split(' ');
+                    let initials = '';
+                    if (nameParts.length > 0 && nameParts[0]) initials += nameParts[0][0];
+                    if (nameParts.length > 1 && nameParts[1]) initials += nameParts[1][0];
+                    userInitials.textContent = (initials || user.email || 'US').substring(0, 2).toUpperCase();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

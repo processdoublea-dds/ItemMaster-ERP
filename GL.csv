@@ -1,0 +1,1591 @@
+Item Sub-Group,Domestic / Export,Expense/COGS Account,Asset Account,Income Account,Internal ID (Account),Account
+AA Core (WIP),,Cost of Goods Sold - Core,Semi Product - Core,Domestic Sales - Core,114,Estimates
+Colour Paper (Semi),,Cost of Goods Sold - Other Goods,Semi Product - Roll for Paper Color,Domestic Sales - Other Goods,268,External Inventory In Transit
+Cutsize (Guillotine) (Semi),,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,384,IC Netting Clearing Account
+DASP (Back Card),,Cost of Goods Sold - Other Goods,Semi Product - Book plant,Domestic Sales - Other Goods,595,Intercompany Clearing Account
+DASP (Cover),,Cost of Goods Sold - Other Goods,Semi Product - Book plant,Domestic Sales - Other Goods,124,Opportunities
+DASP (Inner Sheet),,Cost of Goods Sold - Other Goods,Semi Product - Book plant,Domestic Sales - Other Goods,115,Purchase Orders
+DASP (Line Printed),,Cost of Goods Sold - Other Goods,Semi Product - Book plant,Domestic Sales - Other Goods,123,Refunds Payable
+DASP (Semi Book),,Cost of Goods Sold - Other Goods,Semi Product - Book plant,Domestic Sales - Other Goods,266,Requisitions
+DASP (Semi-Colour),,Cost of Goods Sold - Other Goods,Semi Product - Book plant,Domestic Sales - Other Goods,113,Return Authorizations
+DASP (WIP),,Cost of Goods Sold - Other Goods,Semi Product - Book plant,Domestic Sales - Other Goods,116,Sales Orders
+Folio (Semi),,Cost of Goods Sold - Other Goods,Semi Product - Roll for Folio (Ream),Domestic Sales - Other Goods,215,Transfer Orders
+Jumbo Reel,,Cost of Goods Sold - Other Goods,Semi Product - Jumbo Reel,Domestic Sales - Other Goods,110,Unapproved Customer Payments
+PrintSheet,,Cost of Goods Sold - Packaging Box&Cover,Semi Product - Box,Domestic Sales - Packaging Box&Cover,117,Unapproved Expense Reports
+Process Chemical,,Cost of Goods Sold - Other Goods,Semi Product - Process Chemical,Domestic Sales - Other Goods,291,Unrealized Matching Gain/Loss
+RCP Slurry (เยื่อน้ำรีไซเคิ้ล),,Cost of Goods Sold - Other Goods,Semi Product - Slurry RCP,Domestic Sales - Other Goods,217,Work Orders
+Roll CM (WIP),,Cost of Goods Sold - Other Goods,Semi Product - Roll CM,Domestic Sales - Other Goods,3388,Petty Cash
+Roll Finishing,,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,3389,Cash on Hand - Local Currency
+Roll WIP,,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,3390,Cash on Hand - Foreign Currency
+Dummy,,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,3395,CA Bank Balance - BBL - DDS (Welgrow)
+Roll WIP (EX),Domestic/Export,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Export Sales - Folio Roll,1925,CA Bank Balance - KBANK - DA1991 (Silom)
+Roll WIP (EX) - (Parent),Export,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Export Sales - Folio Roll,3393,CA Bank Balance - KBANK - DDS (Bangpakong)
+Roll WIP (EX) (WIP),,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,5709,CA Bank Balance - KBANK - DA1991 (Phaholyothin)
+Roll WIP (REWN),,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,1421,CA Bank Balance - KTB - DA1991 (N.Nana)
+Roll FG (WIP),,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,1404,CA Bank Balance - KTB - DA1991 (Victory Monument)
+Roll FG (Pack คู่) (WIP),,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,3391,CA Bank Balance - KTB - DAPK (Klong Rung)
+Roll WIP (to REWN),,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,3392,CA Bank Balance - KTB - DDS (N.Nana)
+Roll WIP,Roll WIP (Folio),Cost of Goods Sold - Other Goods,Semi Product - Roll for Folio (Ream),Domestic Sales - Other Goods,256,CA Bank Balance - TTB - DA1991 (Sathorn City)
+Slurry (เยื่อน้ำ),,Cost of Goods Sold - Other Goods,Semi Product - Slurry Pulp,Domestic Sales - Other Goods,3588,CA Bank Balance - TTB - DA1991 (Chidlom)
+WIP Corrugate,,Cost of Goods Sold - Packaging Box&Cover,Semi Product - Box,Domestic Sales - Packaging Box&Cover,5459,CA Bank Balance - SCB - DA1991 (Klong Rung)
+WIP Corrugate,,Cost of Goods Sold - Packaging Box&Cover,Semi Product - Cover,Domestic Sales - Packaging Box&Cover,265,CA Bank Balance - SCB - DA1991 (Ratchayothin)
+WIP Laminate,,Cost of Goods Sold - Packaging Box&Cover,Semi Product - Box,Domestic Sales - Packaging Box&Cover,1419,CA Bank Balance - SCB - DAPK (Klong Rung)
+WIP Laminate,,Cost of Goods Sold - Packaging Box&Cover,Semi Product - Cover,Domestic Sales - Packaging Box&Cover,3394,CA Bank Balance - SCB - DDS (Welgrow)
+WIP Laminate,,Cost of Goods Sold - Packaging Wrapper,Semi Product - Wrapper,Domestic Sales - Packaging Wrapper,548,CA Bank Balance - CITI - DA1991 (HO)
+WIP Printing,,Cost of Goods Sold - Packaging Wrapper,Semi Product - Wrapper,Domestic Sales - Packaging Wrapper,3402,CA Bank Balance - CIMB - DA1991 (HO)
+WIP Slit,,Cost of Goods Sold - Packaging Honeycomb,Finished Goods - Honeycomb Box,Domestic Sales - Packaging Honeycomb,3593,CA Bank Balance - RHB - DA1991 (HO)
+Wood Chip,,Cost of Goods Sold - Wood Chip,Semi Product - Wood chip,Export Sales - Wood Chip,3397,CA Bank Balance - UOB - DA1991 (HO)
+Wrapper Sheet,,Cost of Goods Sold - Other Goods,Semi Product - Roll for Cutsize,Domestic Sales - Other Goods,3396,CA Bank Balance - BAY - DA1991 (Rama3)
+Colour Paper,Domestic,Cost of Goods Sold - Cutsize Colour Paper,Finished Goods - Paper Color (Ream),Domestic Sales - Cutsize Colour Paper,3401,CA Bank Balance - GSB - DA1991 (Phaholyothin)
+Colour Paper,Export,Cost of Goods Sold - Cutsize Colour Paper,Finished Goods - Paper Color (Ream),Export Sales - Cutsize Colour Paper,3399,CA Bank Balance - BAAC - DA1991 (Srimahaphot)
+Colour Paper - (Parent),Domestic,Cost of Goods Sold - Cutsize Colour Paper,Finished Goods - Paper Color (Ream),Domestic Sales - Cutsize Colour Paper,3400,CA Bank Balance - BAAC - DDS (Bang Bo)
+Colour Paper - (Parent),Export,Cost of Goods Sold - Cutsize Colour Paper,Finished Goods - Paper Color (Ream),Export Sales - Cutsize Colour Paper,3592,CA Bank Balance - EXIM - DA1991 (HO)
+Cutsize,Domestic,Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Domestic Sales - Cutsize,3398,CA Bank Balance - LH - DDS (QH Sathron)
+Cutsize,Export,Cost of Goods Sold - Cutsize (Oversea Converting),Finished Goods - Paper Cutsize,Export Sales - Cutsize,3413,CA Bank Outgoing - BBL - DDS (Welgrow)
+Cutsize,,Cost of Goods Sold - Cutsize (Oversea Converting),Finished Goods - Paper Cutsize,Export Sales - Cutsize (UAE Warehouse),3407,CA Bank Outgoing - KBANK - DA1991 (Silom)
+Cutsize - (Parent),Domestic,Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Domestic Sales - Cutsize,3408,CA Bank Outgoing - KBANK - DDS (Bangpakong)
+Cutsize - (Parent),Export,Cost of Goods Sold - Cutsize (Oversea Converting),Finished Goods - Paper Cutsize,Export Sales - Cutsize,5714,CA Bank Outgoing - KBANK - DA1991 (Phaholyothin)
+Cutsize (Guillotine),Domestic,Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Domestic Sales - Cutsize,3403,CA Bank Outgoing - KTB - DA1991 (N.Nana)
+Cutsize (Guillotine),Export,Cost of Goods Sold - Cutsize (Oversea Converting),Finished Goods - Paper Cutsize,Export Sales - Cutsize,3404,CA Bank Outgoing - KTB - DA1991 (Victory Monument)
+Cutsize (Guillotine) - (Parent),Domestic,Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Domestic Sales - Cutsize,3405,CA Bank Outgoing - KTB - DAPK (Klong Rung)
+Cutsize (Guillotine) - (Parent),Export,Cost of Goods Sold - Cutsize (Oversea Converting),Finished Goods - Paper Cutsize,Export Sales - Cutsize,3406,CA Bank Outgoing - KTB - DDS (N.Nana)
+Cutsize (Small Pack),Domestic,Cost of Goods Sold - Small Pack,Finished Goods - Paper Cutsize,Domestic Sales - Small Pack,3415,CA Bank Outgoing - TTB - DA1991 (Sathorn City)
+Cutsize (Small Pack),Export,Cost of Goods Sold - Small Pack,Finished Goods - Paper Cutsize,Export Sales - Small Pack,3416,CA Bank Outgoing - TTB - DA1991 (Chidlom)
+Cutsize (Guillotine) (Small Pack),Domestic,Cost of Goods Sold - Small Pack,Finished Goods - Paper Cutsize,Domestic Sales - Small Pack,3409,CA Bank Outgoing - SCB - DA1991 (Klong Rung)
+Cutsize (Guillotine) (Small Pack),Export,Cost of Goods Sold - Small Pack,Finished Goods - Paper Cutsize,Export Sales - Small Pack,3410,CA Bank Outgoing - SCB - DA1991 (Ratchayothin)
+Cutsize (Small Pack) - (Parent),Domestic,Cost of Goods Sold - Small Pack,Finished Goods - Paper Cutsize,Domestic Sales - Small Pack,3411,CA Bank Outgoing - SCB - DAPK (Klong Rung)
+Cutsize (Small Pack) - (Parent),Export,Cost of Goods Sold - Cutsize (Oversea Converting),Finished Goods - Paper Cutsize,Export Sales - Small Pack,3412,CA Bank Outgoing - SCB - DDS (Welgrow)
+Cutsize (LTA),Export (Mat Change),Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Export Sales - Cutsize (EU Warehouse),3423,CA Bank Outgoing - CITI - DA1991 (HO)
+Cutsize (Small Pack) (LTA),Export (Mat Change),Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Export Sales - Cutsize (EU Warehouse),3424,CA Bank Outgoing - CIMB - DA1991 (HO)
+Cutsize (Guillotine) (LTA),Export (Mat Change),Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Export Sales - Cutsize (EU Warehouse),3425,CA Bank Outgoing - RHB - DA1991 (HO)
+Cutsize (DE),Export (Mat Change),Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Export Sales - Cutsize (EU Warehouse),3417,CA Bank Outgoing - UOB - DA1991 (HO)
+Cutsize (Small Pack) (DE),Export (Mat Change),Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Export Sales - Cutsize (EU Warehouse),3414,CA Bank Outgoing - BAY - DA1991 (Rama3)
+Cutsize (AUS),Export (Mat Change),Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Export Sales - Cutsize (AUS Warehouse),3422,CA Bank Outgoing - GSB - DA1991 (Phaholyothin)
+Cutsize (Small Pack) (AUS),Export (Mat Change),Cost of Goods Sold - Cutsize,Finished Goods - Paper Cutsize,Export Sales - Cutsize (AUS Warehouse),3419,CA Bank Outgoing - BAAC - DA1991 (Srimahaphot)
+Folio,Domestic,Cost of Goods Sold - Ream,Finished Goods - Paper Folio (Ream),Domestic Sales - Folio Ream,3420,CA Bank Outgoing - BAAC - DDS (Bang Bo)
+Folio - (Parent),Domestic,Cost of Goods Sold - Ream,Finished Goods - Paper Folio (Ream),Domestic Sales - Folio Ream,3421,CA Bank Outgoing - EXIM - DA1991 (HO)
+Folio,Export,Cost of Goods Sold - Ream,Finished Goods - Paper Folio (Ream),Export Sales - Folio Ream,3418,CA Bank Outgoing - LH - DDS (QH Sathorn)
+Folio - (Parent),Export,Cost of Goods Sold - Ream,Finished Goods - Paper Cutsize,Export Sales - Folio Ream,3349,Multiple Payment Suspense - DA1991
+Folio (Guillotine),Export,Cost of Goods Sold - Ream,Finished Goods - Paper Folio (Ream),Export Sales - Folio Ream,3426,Multiple Payment Suspense - DDS
+Ream CM,Domestic,Cost of Goods Sold - CM Ream,Finished Goods - Paper CM (Ream),Domestic Sales - CM,3427,Multiple Payment Suspense - DAPK
+Ream CM,Export,Cost of Goods Sold - CM Ream,Finished Goods - Paper CM (Ream),Export Sales - CM,122,Undeposited Funds
+Roll CM,Domestic/Export,Cost of Goods Sold - CM Roll,Finished Goods - Paper CM (Roll),Domestic Sales - CM,3428,CA Bank Balance - CITI - DA1991 (Malaysia) MYR
+Roll CM - (Parent),Domestic/Export,Cost of Goods Sold - CM Roll,Finished Goods - Paper CM (Roll),Export Sales - CM,3429,CA Bank Balance - CITI - DA1991 (France) USD
+Roll FG,Domestic/Export,Cost of Goods Sold - Roll,Finished Goods - Paper Folio (Roll),Domestic Sales - Folio Roll,3430,CA Bank Balance - CITI - DA1991 (France) GBP
+Roll FG - (Parent),Domestic/Export,Cost of Goods Sold - Roll,Finished Goods - Paper Folio (Roll),Domestic Sales - Folio Roll,3431,CA Bank Balance - CITI - DA1991 (France) EUR
+AA Core (FG),Domestic/Export,Cost of Goods Sold - Core,Finished Goods - Core,Domestic Sales - Core,3432,CA Bank Balance - UBSAG - DA1991 (Singapore) USD
+Box Auto,Domestic,Cost of Goods Sold - Packaging Box&Cover,Finished Goods - Box,Domestic Sales - Packaging Box&Cover,5712,CA Bank Balance - UBSAG - DA1991 (Singapore) AUD
+Box Auto,Export,Cost of Goods Sold - Packaging Box&Cover,Finished Goods - Box,Export Sales - Packaging Box&Cover,3433,CA Bank Outgoing - CITI - DA1991 (Malaysia) MYR
+Box MN,Domestic,Cost of Goods Sold - Packaging Box&Cover,Finished Goods - Box,Domestic Sales - Packaging Box&Cover,3434,CA Bank Outgoing - CITI - DA1991 (France) USD
+Box Other,Domestic,Cost of Goods Sold - Packaging Box&Cover,Finished Goods - Box,Domestic Sales - Packaging Box&Cover,3435,CA Bank Outgoing - CITI - DA1991 (France) GBP
+By Product,,Cost of Goods Sold - Bark,Finished Goods - By Product Bark,Sales - Bark,3436,CA Bank Outgoing - CITI - DA1991 (France) EUR
+By Product,,Cost of Goods Sold - Under Size,Finished Goods - By Product Under Size,Sales - Under Size,3437,CA Bank Outgoing - UBSAG - DA1991 (Singapore) USD
+Cover,Domestic,Cost of Goods Sold - Packaging Box&Cover,Finished Goods - Cover,Domestic Sales - Packaging Box&Cover,5715,CA Bank Outgoing - UBSAG - DA1991 (Singapore) AUD
+Cover,Export,Cost of Goods Sold - Packaging Box&Cover,Finished Goods - Cover,Export Sales - Packaging Box&Cover,3443,SA Bank Balance - BBL - DDS (Welgrow)
+Cover Auto,Domestic,Cost of Goods Sold - Packaging Box&Cover,Finished Goods - Cover,Domestic Sales - Packaging Box&Cover,1420,SA Bank Balance - KBANK - DA1991 (Silom)
+Cover MN,Domestic,Cost of Goods Sold - Packaging Box&Cover,Finished Goods - Cover,Domestic Sales - Packaging Box&Cover,3440,SA Bank Balance - KBANK - DDS (Bangpakong)
+DAOS,Domestic,Cost of Goods Sold - DAOS,Finished Goods - DAOS,Domestic Sales - DAOS,1970,SA Bank Balance - KTB - DA1991 (N.Nana)
+DAOS,Export,Cost of Goods Sold - DAOS,Finished Goods - DAOS,Domestic Sales - DAOS,3438,SA Bank Balance - KTB - DAPK (Klong Rung)
+DASP,Domestic/Export,Cost of Goods Sold - DASP,Finished Goods - DASP,Domestic Sales - DASP,3439,SA Bank Balance - KTB - DDS (N.Nana)
+DASP (Creative),Domestic/Export,Cost of Goods Sold - DASP,Finished Goods - DASP,Domestic Sales - DASP,3589,SA Bank Balance - TTB - DA1991 (Petchburi)
+DASP (Card&Colour Paper),,Cost of Goods Sold - DASP,Finished Goods - DASP,Domestic Sales - DASP,3590,SA Bank Balance - TTB - DA1991 (Sathorn City)
+Dry Pulp (เยื่อแห้ง),Domestic/Export,Cost of Goods Sold - Dry Pulp,Finished Goods - Pulp Dry,Domestic Sales - Dry Pulp,3591,SA Bank Balance - TTB - DA1991 (Chidlom)
+Honey Comb (Roll),Domestic,Cost of Goods Sold - Packaging Honeycomb,Finished Goods - Honeycomb Box,Domestic Sales - Packaging Honeycomb,1973,SA Bank Balance - SCB - DA1991 (Klong Rung)
+Honey Comb (Roll),Export,Cost of Goods Sold - Packaging Honeycomb,Finished Goods - Honeycomb Box,Domestic Sales - Packaging Honeycomb,497,SA Bank Balance - SCB - DA1991 (Ratchayothin)
+Mask,Domestic,Cost of Goods Sold - Hygienic Face Mask,Finished Goods - DA Care,Domestic Sales - DA Care,3441,SA Bank Balance - SCB - DAPK (Klong Rung)
+Mask,Export,Cost of Goods Sold - Hygienic Face Mask,Finished Goods - DA Care,Export Sales - DA Care,3442,SA Bank Balance - SCB - DDS (Welgrow)
+Pallet DIY,,COGS - Other,Pallet DIY,Sales - Other,3454,SA Bank Balance - CITI - DA1991 (HO)
+Process Chemical,Domestic,Cost of Goods Sold - Quick Lime,Finished Goods - Quick Lime,Domestic Sales - Quick Lime,3455,SA Bank Balance - SMBC - DA1991 (HO)
+RCP Dry (เยื่อแห้งรีไซเคิ้ล),Export,Cost of Goods Sold - Dry RCP,Finished Goods - RCP Dry,Domestic Sales - Dry RCP,3594,SA Bank Balance - RHB - DA1991 (HO)
+RCP Wet Bale (เยื่อเปียกรีไซเคิ้ล),Domestic,Cost of Goods Sold - Wet RCP,Finished Goods - RCP Wet Bale,Domestic Sales - Wet RCP,3446,SA Bank Balance - UOB - DA1991 (HO)
+Sheet Board,Domestic,Cost of Goods Sold - Packaging Sheet Board,Finished Goods - Sheet Board,Domestic Sales - Packaging Sheet Board,3444,SA Bank Balance - BAY - DA1991 (Rama3)
+Wet Pulp (เยื่อเปียก),Domestic,Cost of Goods Sold - Wet Pulp,Finished Goods - Pulp Wet Bale,Domestic Sales - Wet Pulp,3451,SA Bank Balance - GSB - DA1991 (Phaholyothin)
+Wrapper,Domestic,Cost of Goods Sold - Packaging Wrapper,Finished Goods - Wrapper,Domestic Sales - Packaging Wrapper,3452,SA Bank Balance - GSB - DDS (Central Bangna)
+Wrapper,Export,Cost of Goods Sold - Packaging Wrapper,Finished Goods - Wrapper,Export Sales - Packaging Wrapper,3449,SA Bank Balance - BAAC - DA1991 (Srimahaphot)
+Book Plant (Package-SF),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3450,SA Bank Balance - BAAC - DDS (Bang Bo)
+Box and Cover (RM-DU),,Cost of Goods Sold - Other Goods,Raw Materials - Art Card/Duplex,Domestic Sales - Other Goods,3453,SA Bank Balance - BOC - DA1991 (HO)
+Book Plant (Package-IR),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3445,SA Bank Balance - KK - DA1991 (Nakhon Ratchasima)
+Book Plant (Package-BG),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3448,SA Bank Balance - ICBC - DA1991 (HO)
+Book Plant (Package-TAG),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3447,SA Bank Balance - LH - DDS (QH Sathron)
+Book Plant (Consume-MO),,Cost of Goods Sold - Other Goods,Consumable Material,Domestic Sales - Other Goods,3465,SA Bank Incoming - BBL - DDS (Welgrow)
+Book Plant (Package-BN),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3459,SA Bank Incoming - KBANK - DA1991 (Silom)
+Book Plant (Package-S4),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3460,SA Bank Incoming - KBANK - DDS (Bangpakong)
+Book Plant (Package-S2),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3456,SA Bank Incoming - KTB - DA1991 (N.Nana)
+Cutsize (Package-Wrapper),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3457,SA Bank Incoming - KTB - DAPK (Klong Rung)
+Cutsize (Package-S2),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3458,SA Bank Incoming - KTB - DDS (N.Nana)
+Converting (Package-S3),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3468,SA Bank Incoming - TTB - DA1991 (Petchburi)
+Converting (Package-TB),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3469,SA Bank Incoming - TTB - DA1991 (Sathorn City)
+Roll Finishing (Pakage-RW),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3470,SA Bank Incoming - TTB - DA1991 (Chidlom)
+Cutsize (Package-CA),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3461,SA Bank Incoming - SCB - DA1991 (Klong Rung)
+Cutsize (Package-CO),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3462,SA Bank Incoming - SCB - DA1991 (Ratchayothin)
+Cutsize (Package-BC),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3463,SA Bank Incoming - SCB - DAPK (Klong Rung)
+Cutsize (Package-BA),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3464,SA Bank Incoming - SCB - DDS (Welgrow)
+Cutsize (Package-BN),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3479,SA Bank Incoming - CITI - DA1991 (HO)
+Book Plant (Package-BG),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3480,SA Bank Incoming - SMBC - DA1991 (HO)
+Book Plant (Pakage-HB),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3481,SA Bank Incoming - RHB - DA1991 (HO)
+Converting (Package-SD),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3471,SA Bank Incoming - UOB - DA1991 (HO)
+Cutsize (Package-S3),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3466,SA Bank Incoming - BAY - DA1991 (Rama3)
+Pallet DIY,,COGS - Other,Pallet DIY,Sales - Other,3476,SA Bank Incoming - GSB - DA1991 (Phaholyothin)
+Cutsize (Package-QR),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3477,SA Bank Incoming - GSB - DDS (Central Bangna)
+Pallet DIY (Package-WD),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3474,SA Bank Incoming - BAAC - DA1991 (Srimahaphot)
+Pallet DIY (Package-UW),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3475,SA Bank Incoming - BAAC - DDS (Bang Bo)
+Pallet DIY (Package-TO),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3478,SA Bank Incoming - BOC - DA1991 (HO)
+Roll Finishing (Pakage-IH),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3467,SA Bank Incoming - KK - DA1991 (Nakhon Ratchasima)
+Pallet DIY (Package-WN),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3473,SA Bank Incoming - ICBC - DA1991 (HO)
+Roll Finishing (Package-TG),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3472,SA Bank Incoming - LH - DDS (QH Sathron)
+Book Plant (Package-TL),,Cost of Goods Sold - Other Goods,Packaging,Domestic Sales - Other Goods,3482,SA Bank Balance - KTB - DA1991 (N.Nana) EUR
+Roll Finishing (Consume-NZ),,Cost of Goods Sold - Other Goods,Consumable Material,Domestic Sales - Other Goods,3483,SA Bank Balance - KTB - DA1991 (N.Nana) CNY
+Jumbo Reel (Consume-NZ),,Cost of Goods Sold - Other Goods,Consumable Material,Domestic Sales - Other Goods,3484,SA Bank Balance - KTB - DA1991 (HO) USD
+Cutsize (Consume-NZ),,Cost of Goods Sold - Other Goods,Consumable Material,Domestic Sales - Other Goods,5460,SA Bank Balance - KTB - DA1991 (N.Nana) AUD
+Jumbo Reel (Consume-OT),,Cost of Goods Sold - Other Goods,Consumable Material,Domestic Sales - Other Goods,3486,SA Bank Balance - SCB - DA1991 (Ratchayothin) USD
+Book Plant (Consume-OT),,Cost of Goods Sold - Other Goods,Consumable Material,Domestic Sales - Other Goods,3485,SA Bank Balance - SMBC - DA1991 (HO) USD
+,,,,,3487,SA Bank Incoming - KTB - DA1991 (N.Nana) EUR
+,,,,,3488,SA Bank Incoming - KTB - DA1991 (N.Nana) CNY
+,,,,,3489,SA Bank Incoming - KTB - DA1991 (HO) USD
+,,,,,3491,SA Bank Incoming - SCB - DA1991 (Ratchayothin) USD
+,,,,,3490,SA Bank Incoming - SMBC - DA1991 (HO) USD
+,,,,,3492,SA Bank Balance - CITI - DA1991 (KOREA) KRW
+,,,,,3493,SA Bank Incoming - CITI - DA1991 (KOREA) KRW
+,,,,,3494,FA Bank Balance - SCB - DDS (Welgrow)
+,,,,,3495,FA Bank Balance - ICBC - DA1991 (HO)
+,,,,,3496,FA Bank Balance - KTB - DA1991 (N.Nana) USD
+,,,,,3497,FA Bank Balance - KTB - DA1991 (N.Nana) USD - DCI
+,,,,,3498,FA Bank Balance - SMBC - DA1991 (HO) USD
+,,,,,3499,FA Bank Balance - UBSAG - DA1991 (Singapore) USD
+,,,,,3595,ST Investment in Promissory Notes
+,,,,,3596,ST Investment in Debt Securitie
+,,,,,3597,ST Investment in Marketable Securities
+,,,,,4096,Trade Receivables Affiliated - Domestic
+,,,,,3599,Trade Receivables Affiliated - Foreign
+,,,,,3600,Provision Trade Receivables Affiliated
+,,,,,3601,Trade Receivables Affiliated - Foreign DDU/DDP
+,,,,,3602,Non Trade Receivables Affiliated - Domestic
+,,,,,3603,Non Trade Receivables Affiliated - Foreign
+,,,,,3604,Provision Non Trade Receivables Affiliated
+,,,,,3605,Accrued Income - Affiliated
+,,,,,3606,Accrued Dividend Income - Affiliated
+,,,,,3607,Accrued Interest Receivable - Affiliated
+,,,,,119,Trade Receivables Related - Domestic
+,,,,,3608,Trade Receivables Related - Foreign
+,,,,,3609,Provision Trade Receivables Related
+,,,,,3610,Non Trade Receivables Related - Domestic
+,,,,,3611,Non Trade Receivables Related - Foreign
+,,,,,3612,Provision Non Trade Receivables Related
+,,,,,3613,Accrued Income - Related
+,,,,,3614,Accrued Interest Receivable - Related
+,,,,,3615,Trade Receivables Outside - Domestic
+,,,,,3616,Trade Receivables Outside - Foreign
+,,,,,3617,Provision Trade Receivables Outside
+,,,,,3618,Trade Receivables Outside - Foreign DDU/DDP
+,,,,,3619,Non Trade Receivables - Outside - Domestic
+,,,,,360,Non Trade Receivables - Outside - Foreign
+,,,,,3620,Provision Non Trade Receivables - Outside
+,,,,,3621,Accrued Income - Outside
+,,,,,3622,Accrued Dividend Income
+,,,,,3623,Accrued Interest Receivable - Outside
+,,,,,3624,Accrued Interest from Investment in Debt Securities
+,,,,,5569,Suspense Transfer
+,,,,,3625,Suspense Cross Currency - Receipt
+,,,,,3626,Employee Advances
+,,,,,3627,Promissory Notes - Other
+,,,,,474,Finished Goods - Paper Cutsize
+,,,,,3634,Provision FG - Paper Cutsize
+,,,,,213,Finished Goods - Paper Folio (Roll)
+,,,,,3628,Finished Goods - Paper Folio (Ream)
+,,,,,3635,Provision FG - Paper Folio
+,,,,,3629,Finished Goods - Paper CM (Roll)
+,,,,,3630,Finished Goods - Paper CM (Ream)
+,,,,,3631,Finished Goods - Paper CM (for Honeycomb)
+,,,,,3636,Provision FG - Paper CM
+,,,,,3632,Finished Goods - Paper Color (Ream)
+,,,,,3633,Consignment Inventory
+,,,,,3662,Finished Goods - DDU/DDP
+,,,,,3637,Finished Goods - Pulp Wet Bale
+,,,,,3638,Finished Goods - Pulp Dry
+,,,,,3641,Provision FG - Pulp
+,,,,,3639,Finished Goods - RCP Wet Bale
+,,,,,3640,Finished Goods - RCP Dry
+,,,,,3642,Provision FG - RCP
+,,,,,3643,Semi Product - Wood chip
+,,,,,3644,Finished Goods - DASP
+,,,,,3649,Provision FG - Stationery
+,,,,,3645,Finished Goods - DAOS
+,,,,,3646,Finished Goods - DA Premium
+,,,,,3647,Finished Goods - DACT
+,,,,,3648,Finished Goods - DA Care
+,,,,,3650,Provision FG - DA Care
+,,,,,3651,Finished Goods - Box
+,,,,,3652,Finished Goods - Cover
+,,,,,3653,Finished Goods - Wrapper
+,,,,,3654,Finished Goods - Honeycomb Box
+,,,,,3655,Finished Goods - Sheet Board
+,,,,,3656,Finished Goods - Edge Protector
+,,,,,3657,Finished Goods - By Product Bark
+,,,,,3658,Finished Goods - By Product Under Size
+,,,,,3659,Finished Goods - By Product Black Liquor
+,,,,,3660,Finished Goods - Core
+,,,,,3661,Finished Goods - Quick Lime
+,,,,,3663,Semi Product - Jumbo Reel
+,,,,,3664,Semi Product - Roll for Cutsize
+,,,,,3665,Semi Product - Roll for Folio (Ream)
+,,,,,3666,Semi Product - Roll CM
+,,,,,3667,Semi Product - Roll for Paper Color
+,,,,,3668,Waste Broke
+,,,,,3669,Semi Product - Slurry Pulp
+,,,,,3670,Semi Product - Slurry RCP
+,,,,,3671,Semi Product - Book plant
+,,,,,3672,Semi Product - Box
+,,,,,3673,Semi Product - Cover
+,,,,,3674,Semi Product - Wrapper
+,,,,,1368,Work in process
+,,,,,3675,Semi Product - Core
+,,,,,3676,Semi Product - Process Chemical
+,,,,,386,Summary Cost Dummy Account
+,,,,,5463,Raw Materials - Paper Folio (Roll)
+,,,,,3677,Raw Materials - Paper CM (Roll)
+,,,,,3678,Raw Materials - Kraft Paper
+,,,,,3680,Provision RM - Paper CM
+,,,,,3679,Raw Materials - Color Paper (Folio Sheet)
+,,,,,3681,Raw Materials - NBKP
+,,,,,3682,Raw Materials - LBKP
+,,,,,3683,Raw Materials - Wood Chip
+,,,,,3685,Provision RM - Log & Chip
+,,,,,3684,Raw Materials - Wood log
+,,,,,3686,Raw Materials - Art Card/Duplex
+,,,,,3687,Raw Materials - Mask RM
+,,,,,3688,Raw Materials - PET Film
+,,,,,3689,Raw Materials - Core Board
+,,,,,3690,Raw Materials - Chemical
+,,,,,3691,Raw Materials - Ink
+,,,,,3694,Provision RM - Chemical
+,,,,,3692,Raw Materials - Fuel
+,,,,,3693,Raw Materials - Waste Paper
+,,,,,3695,Packaging
+,,,,,3696,Pallet DIY
+,,,,,3697,Provision Packaging
+,,,,,3699,Consumable Material
+,,,,,3698,Consumable Material - Pulp&Paper
+,,,,,3701,Provision Consume
+,,,,,3700,Consumable Material - Transportation
+,,,,,3702,Provision Consume - Transportation
+,,,,,3703,Spare Parts Inventory
+,,,,,3705,Provision Spare Part
+,,,,,3704,Spare Parts Inventory - Transportation
+,,,,,3706,Provision Spare Part - Transportation
+,,,,,3707,Copy Machine
+,,,,,3708,Toner&Sparepart
+,,,,,3709,Goods in transit - Paper
+,,,,,5707,Goods In transit - Roll Landed Cost
+,,,,,3710,Goods in transit - Pulp
+,,,,,3711,Goods in transit - DAOS
+,,,,,3712,Goods in transit - Packaging
+,,,,,3714,Goods in transit - Consume
+,,,,,3715,Goods in transit - Spare part
+,,,,,3713,Goods in transit - Chemical
+,,,,,216,Goods in transit - Transfer
+,,,,,3795,Derivative Asset - Forward Contract
+,,,,,3796,Derivative Asset - Option Premium
+,,,,,3797,Advances Outside Vendor - Domestic
+,,,,,3798,Advances Outside Vendor - Foreign
+,,,,,3804,Provision Advances Outside Vendor
+,,,,,118,Advances Outside Vendor - Domestic (Log)
+,,,,,3799,Advances Affiliated Vendor - Domestic
+,,,,,3800,Advances Affiliated Vendor - Foreign
+,,,,,3801,Advances Related Vendor - Domestic
+,,,,,3803,Advances Related Vendor - Foreign
+,,,,,3805,Provision Advances Related Vendor
+,,,,,3802,Advances Related Vendor - Domestic (Log)
+,,,,,3995,Prepaid Expenses - Recurring
+,,,,,3996,Prepaid Insurance - Recurring
+,,,,,3997,Prepaid Rental - Recurring
+,,,,,273,Other Prepaid Expenses
+,,,,,3998,Prepaid CME&BME
+,,,,,3999,Prepaid MKT Support - Deducted by Customer
+,,,,,3811,Tax Refund Coupon
+,,,,,3812,Accrued Income Tax Coupon
+,,,,,5409,Tax Receivable
+,,,,,3814,Tax Receivable - VAT Foreign
+,,,,,5408,Input VAT to be claimed
+,,,,,211,Input VAT
+,,,,,375,Input VAT (France)
+,,,,,377,Input VAT (Germany)
+,,,,,376,Input VAT (Belgium)
+,,,,,378,GST Paid
+,,,,,607,Deferred Input Vat
+,,,,,5450,Current Deferred Input Vat - Lease Liabilities
+,,,,,5448,Current Deferred Input Vat - Leasing
+,,,,,225,Withholding Tax Receivable
+,,,,,3815,Bond Issued Expenses
+,,,,,5451,Current Deferred Interest - Lease Liabilities
+,,,,,5449,Current Deferred Interest - Leasing
+,,,,,3816,Restricted FA Bank Balance - SCB - DDS (Welgrow)
+,,,,,3817,Restricted FA Bank Balance - ICBC - DA1991 (HO)
+,,,,,3818,Investment in Debt Securities
+,,,,,3819,Provision on Debt Securities Investment
+,,,,,3820,Investment for Other
+,,,,,3821,Provision on Other Investment
+,,,,,3822,Investments in Subsidiaries
+,,,,,3823,Provision on Investment in Susidiaries
+,,,,,3824,Investments in Associate
+,,,,,3825,Provision on Investment in Associate
+,,,,,3826,Investment in Joint Venture
+,,,,,3827,Provision on Investment in Joint Venture
+,,,,,3828,Land
+,,,,,3829,Land Appraisal
+,,,,,3830,Land Improvement
+,,,,,3831,Buildings and Structures
+,,,,,3832,Buildings Improvement
+,,,,,3833,Buildings and Structures - Adjust Impair (EBT)
+,,,,,521,Machinery
+,,,,,3834,Machinery - Specific Sparepart
+,,,,,3835,Machinery - Adjust Impair (EBT)
+,,,,,3836,Machinery and Equipment - Combline Business
+,,,,,3837,Tools and Equipment
+,,,,,3838,Photocopy Machine
+,,,,,3839,Furniture and Fixtures
+,,,,,3840,Office Equipment
+,,,,,3841,Computer Acessary
+,,,,,3842,Vehicles
+,,,,,3843,Truck
+,,,,,3844,Assets Under Construction
+,,,,,3845,AUC - Machinery
+,,,,,3846,AUC - Installation
+,,,,,3847,AUC - Labours and Wages
+,,,,,3848,AUC - Materials
+,,,,,3849,AUC - Sparepart
+,,,,,3850,AUC - Freight
+,,,,,3851,AUC - Others
+,,,,,3852,Assets Under Construction - Truck
+,,,,,3853,AUC Truck - Machinery
+,,,,,3854,AUC Truck - Installation
+,,,,,3855,AUC Truck - Labours and Wages
+,,,,,3856,AUC Truck - Materials
+,,,,,3857,AUC Truck - Sparepart
+,,,,,3858,AUC Truck - Freight
+,,,,,3859,AUC Truck - Others
+,,,,,3860,Contra - PPE
+,,,,,3861,Accum Depre - Land Improvement
+,,,,,3862,Accum Depre - Land Improvement Impairment
+,,,,,3863,Accum Depre - Buildings and Structures
+,,,,,3864,Accum Depre - Buildings and Structures Impairment
+,,,,,3865,Accum Depre - Buildings Improvement
+,,,,,3866,Accum Depre - Buildings and Structures - Adjust Impair(EBT)
+,,,,,3867,Accum Depre - Machinery
+,,,,,3868,Accum Depre - Machinery Impairment
+,,,,,3869,Accum Depre - Machinery - Specific Sparepart
+,,,,,3870,Accum Depre - Machinery - Adjust Impair (EBT)
+,,,,,3871,Accum Depre - Machinery and Equipment - Combline Business
+,,,,,3872,Accum Depre - Tools and Equipment
+,,,,,3873,Accum Depre - Photocopy Machine
+,,,,,3874,Accum Depre - Furniture and Fixtures
+,,,,,3875,Accum Depre - Office Equipment
+,,,,,3876,Accum Depre - Computer Acessary
+,,,,,3877,Accum Depre - Vehicles
+,,,,,3878,Accum Depre - Truck
+,,,,,3879,Accum Depre - Truck Impairment
+,,,,,3880,Impairment - Land Improvement
+,,,,,3881,Impairment - Buildings and Structures
+,,,,,3882,Impairment - Machinery
+,,,,,3883,Impairment - Tools and Equipment
+,,,,,3884,Impairment - Furniture and Office Equipment
+,,,,,3885,Impairment - Vessels and Trucks
+,,,,,5566,Impairment - AUC Building
+,,,,,5567,Impairment - AUC Machinery
+,,,,,3886,ROU - Land under Operating Lease
+,,,,,3887,ROU - Buildings under Operating Lease
+,,,,,3888,ROU - Machinery under Finance Lease
+,,,,,3889,ROU - Photocopy Machine under Finance Lease
+,,,,,3890,ROU - Furniture and Fixtures under Finance Lease
+,,,,,3891,ROU - Vehicles under Finance Lease
+,,,,,3892,ROU - Truck under Finance Lease
+,,,,,3893,Contra - ROU
+,,,,,3894,Accum Depre ROU - Land under Operating Lease
+,,,,,3895,Accum Depre ROU - Buildings under Operating Lease
+,,,,,3896,Accum Depre ROU - Machinery under Finance Lease
+,,,,,3897,Accum Depre ROU - Photocopy Machine under Finance Lease
+,,,,,3898,Accum Depre ROU - Furniture and Fixtures under Finance Lease
+,,,,,3899,Accum Depre ROU - Vehicles under Finance Lease
+,,,,,3900,Accum Depre ROU - Truck under Finance Lease
+,,,,,3901,Software
+,,,,,3902,Trademark
+,,,,,3903,Intangible Assets Under Development
+,,,,,3904,Accum Depre - Software
+,,,,,3905,Accum Depre - Trademark
+,,,,,3906,Deferred Tax Assets
+,,,,,3907,Withholding Tax Receivable - CIT
+,,,,,5444,Deferred Input Vat - Lease Liabilities
+,,,,,5443,Deferred Input Vat - Leasing
+,,,,,274,Prepaid - Sprouts OOP
+,,,,,5455,Prepaid - Software Implementation
+,,,,,4181,Deferred Interest - Lease Liabilities
+,,,,,4183,Deferred Interest - Leasing
+,,,,,3908,Advances for Purchase of Logs - Outside
+,,,,,3909,Advances for Purchase of Logs - Related
+,,,,,227,Advances for Purchases Other
+,,,,,3910,Deposit for Purchase of Logs - Outside
+,,,,,3911,Deposit for Purchase of Logs - Related
+,,,,,3912,Deposit
+,,,,,4098,Short Term Loan from Bank - OD
+,,,,,4099,Short Term Loan from Bank - PN
+,,,,,4100,Short Term Loan from Bank - TR
+,,,,,4101,Short Term Loan from Bank - PC
+,,,,,4102,Trade Payables Affiliated - Domestic
+,,,,,4103,Trade Payables Affiliated - Foreign
+,,,,,4104,Non Trade Payables Affiliated - Domestic
+,,,,,4105,Non Trade Payables Affiliated - Foreign
+,,,,,4106,Accrued Sundry Expenses - Affiliated
+,,,,,4107,Accrued Dividends - Affiliated
+,,,,,4108,Accrued Interest Payables - Affiliated
+,,,,,443,Trade Payables Related - Domestic
+,,,,,4109,Trade Payables Related - Foreign
+,,,,,4110,Non Trade Payables Related - Domestic
+,,,,,482,Non Trade Payables Related - Foreign
+,,,,,4111,Accrued Sundry Expenses - Related
+,,,,,4112,Accrued Dividends - Related
+,,,,,4113,Trade Payables Outside - Domestic
+,,,,,111,Trade Payables Outside - Foreign
+,,,,,4114,Trade Payables Outside - Domestic Log&Chip
+,,,,,4115,Non Trade Payables Outside - Domestic
+,,,,,4121,Non Trade Payables Outside - Foreign
+,,,,,4116,Non Trade Payables Outside - Domestic (Export Expenses)
+,,,,,5453,Non Trade Payables Outside - Foreign (Export Expenses)
+,,,,,4117,Non Trade Payables Outside - Domestic (BME&CME)
+,,,,,4122,Non Trade Payables Outside - Foreign (BME&CME)
+,,,,,4118,Non Trade Payables Outside - Domestic (Cash Coupon)
+,,,,,4119,Non Trade Payables Outside - Domestic (DAFP)
+,,,,,4120,Non Trade Payables Outside - Employee
+,,,,,5423,Non Trade Payables Outside - Offset Letter
+,,,,,5701,Suspense refund
+,,,,,5598,Suspense Offset Letter - THB
+,,,,,5454,Suspense Offset Letter - CCY
+,,,,,4124,Accrued Sundry Expenses - Outside
+,,,,,4125,Accrued Factory Overhead Expense
+,,,,,4126,Accrued Wages & Salary
+,,,,,4127,Accrued Commision
+,,,,,4128,Accrued CME
+,,,,,4129,Accrued BME
+,,,,,4130,Accrued Insurance Expense
+,,,,,4131,Accrued Marine&Transportation Insurance
+,,,,,4132,Accrued Freight and Logistic Expenses
+,,,,,5452,Accrued Truck - EU
+,,,,,4133,Accrued Dividends
+,,,,,4136,Accrued Expense - DDU/DDP
+,,,,,4134,Accrued Interest Payables - Outside
+,,,,,4135,Cash Coupon
+,,,,,4138,Suspense Cross Currency - Payment
+,,,,,4139,Retention Payables
+,,,,,112,GR/IR
+,,,,,121,GR/IR - Returned
+,,,,,4141,GR/IR Paper
+,,,,,3261,GR/IR Pulp
+,,,,,4142,GR/IR Chip
+,,,,,4143,GR/IR Log
+,,,,,4144,GR/IR DASP
+,,,,,4145,GR/IR DAOS
+,,,,,4146,GR/IR Hygienic Face Mask
+,,,,,4147,GR/IR packaging and pallet
+,,,,,4148,GR/IR packaging Honeycomb
+,,,,,4149,GR/IR consumable
+,,,,,4150,GR/IR Spare part
+,,,,,4151,GR/IR Coreboard
+,,,,,4152,GR/IR Chemicals
+,,,,,4153,GR/IR Fuel
+,,,,,4154,GR/IR Waste Paper
+,,,,,1332,GR/IR Freight
+,,,,,1333,GR/IR Insurance
+,,,,,1392,GR/IR Inbound Local Charge
+,,,,,1393,GR/IR Transportation (Port to Mill)
+,,,,,4155,GR/IR Customs Duty
+,,,,,1401,GR/IR Transport Log
+,,,,,343,GR/IR Log Lift on-off
+,,,,,4156,GR/IR Harvest Log
+,,,,,4157,GR/IR Transport Chip
+,,,,,4158,GR/IR Bonus Chip
+,,,,,4159,Short Term Loan from Affiliated
+,,,,,4160,Current Portion - Loan from Financial Institutions
+,,,,,4161,Current Portion - Baht Debentures
+,,,,,4162,Current Portion - Lease Liabilities
+,,,,,4163,Current Portion - Leasing
+,,,,,4164,Derivative Liability - Forward Contract
+,,,,,4165,Derivative Liability - Option Obligation
+,,,,,4166,Advances from Outside Customer - Domestic
+,,,,,5465,Advances from Outside Customer - Foreign
+,,,,,4171,Advances from Outside Customer - Foreign DDU/DDP
+,,,,,1380,Advances from Affiliated Customer - Domestic
+,,,,,4168,Advances from Affiliated Customer - Foreign
+,,,,,226,Advances from Related Customer - Domestic
+,,,,,4169,Advances from Related Customer - Foreign
+,,,,,4170,Other Advances from Outside
+,,,,,4172,Unearned Income
+,,,,,4173,Tax Payable - CIT
+,,,,,5407,Tax Payable
+,,,,,212,Tax Payable - VAT Submission offsetting
+,,,,,210,Output VAT
+,,,,,379,Output Vat (France)
+,,,,,381,Output Vat (Germany)
+,,,,,380,Output Vat (Belgium)
+,,,,,382,GST Collected
+,,,,,4175,Output VAT - DDU/DDP
+,,,,,608,Output VAT Defered
+,,,,,220,Withholding Tax Payable - PND.1
+,,,,,5445,Withholding Tax Payable - PND.2
+,,,,,5446,Withholding Tax Payable - PND.3
+,,,,,223,Withholding Tax Payable - PND.53
+,,,,,5447,Withholding Tax Payable - PND.54
+,,,,,4176,Accrued Social Insurance
+,,,,,224,Accrued Provident Fund
+,,,,,4177,Customer's Deposits
+,,,,,4178,Long Term - Loan from Financial Institutions
+,,,,,4179,Long Term - Baht Debentures
+,,,,,4180,Long Term - Lease Liabilities
+,,,,,4182,Long Term - Leasing
+,,,,,4184,Employee Benefit Obligations
+,,,,,4185,Employee Benefit Obligations - Transferred In
+,,,,,4186,Deferred Tax Liabilities
+,,,,,5456,Unearned Income - Long Term
+,,,,,4187,Shares - Issued and Paid Up
+,,,,,4188,Share Premium
+,,,,,4189,Differences on Reorganisation of Business of Group Companies
+,,,,,4190,Difference on Purchase of Investment in Associated
+,,,,,4191,Revaluation Surplus from Company Transfer
+,,,,,4192,Legal Reserve
+,,,,,53,Retained Earning Brough Forward
+,,,,,52,Retained Earning Current Year
+,,,,,4193,Dividend
+,,,,,4194,Actuarial Gain/Loss - OCI
+,,,,,286,Commulative Translation Adjustment
+,,,,,109,Gain(Loss) from Fair Value of Other Investment
+,,,,,4195,Revaluation Surplus on Property of the Company
+,,,,,4196,Defer Tax on Revaluation Surplus on Property of the Company
+,,,,,4197,Revaluation Surplus on Property of Subsidiaries
+,,,,,4198,Defer Tax on Revaluation Surplus on Property of Subsidiaries
+,,,,,4199,Revaluation Surplus on Property of Associates
+,,,,,4200,Defer Tax on Revaluation Surplus on Property of Associates
+,,,,,4201,Non - Controlling Interests of the Subsidiaries
+,,,,,4298,Domestic Sales - Cutsize
+,,,,,4299,Domestic Return - Cutsize
+,,,,,4300,Domestic Claim - Cutsize
+,,,,,4358,Domestic Sales - Cutsize Colour Paper
+,,,,,4359,Domestic Return - Cutsize Colour Paper
+,,,,,4360,Domestic Claim - Cutsize Colour Paper
+,,,,,4304,DO Discount - Special Price
+,,,,,4305,DO Discount - Transportation
+,,,,,4306,"DO Discount - Cash, Interest Subsidy"
+,,,,,4307,DO Discount - Agent
+,,,,,4308,DO Discount - Franchise DACC
+,,,,,4309,DO Discount - Franchise DASS
+,,,,,4310,DO Discount - Modern Trade
+,,,,,4311,DO Discount - Bundle Program
+,,,,,4312,DO Discount - Switching (Double A)
+,,,,,4313,DO Discount - Switching (Non Double A)
+,,,,,4314,DO Discount - Tender
+,,,,,4315,DO Discount - Print Service
+,,,,,4316,DO Discount - Fast Print
+,,,,,4317,DO Discount- Double A Colour
+,,,,,4318,DO Discount - E-Commerce
+,,,,,4319,Domestic Sales - Folio Roll
+,,,,,4320,Domestic Return - Folio Roll
+,,,,,4321,Domestic Claim - Folio Roll
+,,,,,591,Domestic Sales - Folio Ream
+,,,,,2223,Domestic Return - Folio Ream
+,,,,,2224,Domestic Claim - Folio Ream
+,,,,,4322,Domestic Sales - CM
+,,,,,4323,Domestic Return - CM
+,,,,,4324,Domestic Claim - CM
+,,,,,4353,Export Sales - Cutsize
+,,,,,4354,Export Sales - Cutsize (EU Warehouse)
+,,,,,454,Export Sales - Cutsize (UAE Warehouse)
+,,,,,4355,Export Sales - Cutsize (AUS Warehouse)
+,,,,,4356,Export Return - Cutsize
+,,,,,5442,Export Return - Cutsize (EU Warehouse)
+,,,,,5441,Export Return - Cutsize (UAE Warehouse)
+,,,,,5440,Export Return - Cutsize (AUS Warehouse)
+,,,,,4357,Export Claim - Cutsize
+,,,,,5439,Export Claim - Cutsize (EU Warehouse)
+,,,,,5438,Export Claim - Cutsize (UAE Warehouse)
+,,,,,5437,Export Claim - Cutsize (AUS Warehouse)
+,,,,,4361,Export Sales - Cutsize DDU/DDP
+,,,,,4437,Export Sales - Cutsize Colour Paper
+,,,,,4438,Export Return - Cutsize Colour Paper
+,,,,,4439,Export Claim - Cutsize Colour Paper
+,,,,,4362,Ex Vission Rebate Percentage
+,,,,,4363,Ex Invoicing Percentage
+,,,,,4364,Ex Discount - Local
+,,,,,4365,Ex Discount - Cash advance
+,,,,,4366,Ex Special Rebate
+,,,,,4367,Ex Discount - Advance Payment Cash Discount
+,,,,,4368,Export Sales - Folio Roll
+,,,,,4369,Export Return - Folio Roll
+,,,,,4370,Export Claim - Folio Roll
+,,,,,4374,Export Sales - Folio DDU/DDP
+,,,,,4371,Export Sales - Folio Ream
+,,,,,4372,Export Return - Folio Ream
+,,,,,4373,Export Claim - Folio Ream
+,,,,,4375,Export Sales - CM
+,,,,,4376,Export Return - CM
+,,,,,4377,Export Claim - CM
+,,,,,4402,Domestic Sales - Wet Pulp
+,,,,,4403,Domestic Return - Wet Pulp
+,,,,,4404,Domestic Claim - Wet Pulp
+,,,,,4405,Domestic Sales - Dry Pulp
+,,,,,4406,Domestic Return - Dry Pulp
+,,,,,4407,Domestic Claim - Dry Pulp
+,,,,,4408,Domestic Sales - Wet RCP
+,,,,,4409,Domestic Return - Wet RCP
+,,,,,4410,Domestic Claim - Wet RCP
+,,,,,4411,Domestic Sales - Dry RCP
+,,,,,4412,Domestic Return - Dry RCP
+,,,,,4413,Domestic Claim - Dry RCP
+,,,,,4415,Export Sales - Wet Pulp
+,,,,,4416,Export Return - Wet Pulp
+,,,,,4417,Export Claim - Wet Pulp
+,,,,,4418,Export Sales - Dry Pulp
+,,,,,4419,Export Return - Dry Pulp
+,,,,,4420,Export Claim - Dry Pulp
+,,,,,4421,Export Sales - Wet RCP
+,,,,,4422,Export Return - Wet RCP
+,,,,,4423,Export Claim - Wet RCP
+,,,,,4424,Export Sales - Dry RCP
+,,,,,4425,Export Return - Dry RCP
+,,,,,4426,Export Claim - Dry RCP
+,,,,,4428,Domestic Sales - Wood Chip
+,,,,,4429,Domestic Return - Wood Chip
+,,,,,4430,Domestic Claim - Wood Chip
+,,,,,4431,Export Sales - Wood Chip
+,,,,,4432,Export Return - Wood Chip
+,,,,,4433,Export Claim - Wood Chip
+,,,,,4434,Domestic Sales - DASP
+,,,,,4435,Domestic Return - DASP
+,,,,,4436,Domestic Claim - DASP
+,,,,,4698,Domestic Sales - Small Pack
+,,,,,4440,Domestic Return - Small Pack
+,,,,,4441,Domestic Claim - Small Pack
+,,,,,4511,Domestic Sales - Colour Paper
+,,,,,4512,Domestic Return - Colour Paper
+,,,,,4513,Domestic Claim - Colour Paper
+,,,,,4442,DO Discount - Non Paper
+,,,,,4443,Domestic Sales - DAOS
+,,,,,4444,Domestic Return - DAOS
+,,,,,4445,Domestic Claim - DAOS
+,,,,,4447,Domestic Sales - Catalogue
+,,,,,4448,Domestic Return - Catalogue
+,,,,,4449,Domestic Claim - Catalogue
+,,,,,4450,Domestic Sales - DA Care
+,,,,,4451,Domestic Return - DA Care
+,,,,,4452,Domestic Claim - DA Care
+,,,,,4454,Domestic Sales - Packaging Box&Cover
+,,,,,4455,Domestic Return - Packaging Box&Cover
+,,,,,4456,Domestic Claim - Packaging Box&Cover
+,,,,,4457,Domestic Sales - Packaging Wrapper
+,,,,,4458,Domestic Return - Packaging Wrapper
+,,,,,4459,Domestic Claim - Packaging Wrapper
+,,,,,54,Domestic Sales - Packaging Honeycomb
+,,,,,4461,Domestic Return - Packaging Honeycomb
+,,,,,4462,Domestic Claim - Packaging Honeycomb
+,,,,,4463,Domestic Sales - Packaging Sheet Board
+,,,,,4464,Domestic Return - Packaging Sheet Board
+,,,,,4465,Domestic Claim - Packaging Sheet Board
+,,,,,4466,Domestic Sales - Packaging Edge Protector
+,,,,,4467,Domestic Return - Packaging Edge Protector
+,,,,,4468,Domestic Claim - Packaging Edge Protector
+,,,,,4469,Domestic Sales - Copy Machine
+,,,,,5436,Domestic Return - Copy Machine
+,,,,,5435,Domestic Claim - Copy Machine
+,,,,,4470,Domestic Sales - Toner&Sparepart
+,,,,,5434,Domestic Return - Toner&Sparepart
+,,,,,5433,Domestic Claim - Toner&Sparepart
+,,,,,4754,Sales - Log
+,,,,,4755,Sales - Lumber
+,,,,,4756,Sales - Bark
+,,,,,4818,Sales - Under Size
+,,,,,4821,Sales - Black Liquor
+,,,,,4822,Sales - Waste Broke
+,,,,,4471,Domestic Sales - Quick Lime
+,,,,,4472,Domestic Return - Quick Lime
+,,,,,4473,Domestic Claim - Quick Lime
+,,,,,4474,Domestic Sales - Demin Water
+,,,,,4475,Domestic Sales - Core
+,,,,,4476,Domestic Sales - Other Goods
+,,,,,4504,Export Sales - DASP
+,,,,,4505,Export Sales - DASP (EU Warehouse)
+,,,,,4506,Export Sales - DASP (UAE Warehouse)
+,,,,,4507,Export Sales - DASP (AUS Warehouse)
+,,,,,4508,Export Sales - DASP (Direct shipment)
+,,,,,4509,Export Return - DASP
+,,,,,4510,Export Claim - DASP
+,,,,,4517,Export Sales - DASP DDU/DDP
+,,,,,4514,Export Sales - Small Pack
+,,,,,4515,Export Return - Small Pack
+,,,,,4516,Export Claim - Small Pack
+,,,,,4740,Export Sales - Colour Paper
+,,,,,4751,Export Return - Colour Paper
+,,,,,4752,Export Claim - Colour Paper
+,,,,,4518,EX Discount DASP
+,,,,,4519,Export Sales - DAOS
+,,,,,4520,Export Sales - DAOS (EU Warehouse)
+,,,,,4521,Export Sales - DAOS (UAE Warehouse)
+,,,,,4522,Export Sales - DAOS (AUS Warehouse)
+,,,,,4523,Export Sales - DAOS (Direct shipment)
+,,,,,4525,Export Return - DAOS
+,,,,,4526,Export Claim - DAOS
+,,,,,4524,Export Sales - DAOS DDU/DDP
+,,,,,4527,EX Discount DAOS
+,,,,,4528,Export Sales - DA Care
+,,,,,4529,Export Return - DA Care
+,,,,,4530,Export Claim - DA Care
+,,,,,4531,EX Discount DA Care
+,,,,,4532,Export Sales - Packaging Box&Cover
+,,,,,4533,Export Return - Packaging Box&Cover
+,,,,,4534,Export Claim - Packaging Box&Cover
+,,,,,4535,Export Sales - Packaging Wrapper
+,,,,,4536,Export Return - Packaging Wrapper
+,,,,,4537,Export Claim - Packaging Wrapper
+,,,,,4538,Export Sales - Packaging Honeycomb
+,,,,,4539,Export Return - Packaging Honeycomb
+,,,,,4540,Export Claim - Packaging Honeycomb
+,,,,,4541,Export Sales - Packaging Sheet Board
+,,,,,4542,Export Return - Packaging Sheet Board
+,,,,,4543,Export Claim - Packaging Sheet Board
+,,,,,4544,Export Sales - Packaging Edge Protector
+,,,,,4545,Export Return - Packaging Edge Protector
+,,,,,4546,Export Claim - Packaging Edge Protector
+,,,,,4562,Photocopy Service Income
+,,,,,4563,Photocopy Rental Income
+,,,,,4564,Printing Service Income
+,,,,,4565,Display Advertising Service Income
+,,,,,4566,Land Rental Income
+,,,,,4567,Building Rental Income
+,,,,,4568,Treatment Water Service Income
+,,,,,4569,Commission Income
+,,,,,4570,Franchise Income
+,,,,,4571,Management Income
+,,,,,4572,Transportation Surcharge Income
+,,,,,4573,Other Service Income
+,,,,,4574,Dividend Income from Other Invesment
+,,,,,4575,Dividend Income from Subsidiaries
+,,,,,4576,Dividend Income from Associates
+,,,,,4577,Dividend Income from Joint Venture
+,,,,,5329,Interest Income - financial institution
+,,,,,5330,Interest Income - Promissory Notes
+,,,,,4578,Export Tax Subsidy
+,,,,,290,Gain/Loss on Ex.rate differences - Realized
+,,,,,4579,Gain/Loss on Ex.rate differences - Realized (Asset)
+,,,,,5432,Gain/Loss on Ex.rate differences - Realized (Bank)
+,,,,,5404,Gain/Loss on Ex.rate differences - Realized (Liabilities)
+,,,,,4580,Gain/Loss on Ex.rate differences - Realized (FW)
+,,,,,4581,Gain/Loss on Ex.rate differences - Realized (Put Option)
+,,,,,4582,Gain/Loss on Ex.rate differences - Realized (Call Option)
+,,,,,293,Gain/Loss on Ex.rate differences - Unrealized
+,,,,,5405,Gain/Loss on Ex.rate differences - Unrealized (Asset)
+,,,,,5431,Gain/Loss on Ex.rate differences - Unrealized (Bank)
+,,,,,5406,Gain/Loss on Ex.rate differences - Unrealized (Liabilities)
+,,,,,4583,Gain/Loss on Ex.rate differences - Unrealized (FW)
+,,,,,4584,Gain/Loss on Ex.rate differences - Unrealized (Put Option)
+,,,,,4585,Gain/Loss on Ex.rate differences - Unrealized (Call Option)
+,,,,,4586,Gain/Loss on Sale of Fixed Assets
+,,,,,4587,Impairment Losses - Selling Assets
+,,,,,4588,Revenue of Fixed Assets Sold
+,,,,,4589,Gain/Loss on Sales of Investments
+,,,,,4590,Gain/Loss on fair value of Investment - Trading Securities
+,,,,,4591,Sales - Rawmat RCP
+,,,,,4592,Sales - Consumable
+,,,,,4593,Sales - Spare Parts (Store)
+,,,,,4594,Sales - Other
+,,,,,4599,Discount Received
+,,,,,4600,Other Income
+,,,,,4699,Cost of Goods Sold - Cutsize
+,,,,,4708,Cost of Goods Sold - Paper DDU/DDP
+,,,,,4700,Cost of Goods Sold - Cutsize Colour Paper
+,,,,,4701,Promotion of Paper Product
+,,,,,4702,Promotion of Colour Paper product
+,,,,,4703,Promotion of premium product
+,,,,,461,Extra Free of Charge
+,,,,,4704,Provision for Paper
+,,,,,4705,Provision for RM
+,,,,,4706,Provision for Spare Part
+,,,,,4707,Value Adjustment - Cutsize
+,,,,,4709,Cost of Goods Sold - Roll
+,,,,,4710,Cost of Goods Sold - Ream
+,,,,,4711,Provision for Folio
+,,,,,4712,Value Adjustment - Folio
+,,,,,214,Cost of Goods Sold - CM Roll
+,,,,,4713,Cost of Goods Sold - CM Ream
+,,,,,4714,Provision for CM
+,,,,,4715,Value Adjustment - CM
+,,,,,4716,Cost of Goods Sold - Cutsize (Oversea Converting)
+,,,,,4717,Value Adjustment - Cutsize Oversea
+,,,,,4718,Cost of Goods Sold - Wet Pulp
+,,,,,4719,Cost of Goods Sold - Dry Pulp
+,,,,,4720,Provision for Pulp
+,,,,,4721,Value Adjustment - Pulp
+,,,,,4722,Cost of Goods Sold - Wet RCP
+,,,,,4723,Cost of Goods Sold - Dry RCP
+,,,,,4724,Provision for RCP
+,,,,,4725,Value Adjustment - RCP
+,,,,,477,Cost of Goods Sold - Wood Chip
+,,,,,4726,Value Adjustment - woodchips
+,,,,,4727,Cost of Goods Sold - DASP
+,,,,,5462,Cost of Goods Sold - DASP DDU/DDP
+,,,,,4728,Cost of Goods Sold - Small Pack
+,,,,,4729,Cost of Goods Sold - Colour Paper Small Pack
+,,,,,4730,Promotion of DASP Product
+,,,,,4731,Provision for DASP
+,,,,,4732,Value Adjustment - DASP
+,,,,,4733,Cost of Goods Sold - DAOS
+,,,,,4734,Promotion of DAOS Product
+,,,,,4735,Provision for DAOS
+,,,,,4736,Value Adjustment - DAOS
+,,,,,4737,Cost of Goods Sold - Catalogue
+,,,,,5430,Value Adjustment - Catalogue
+,,,,,4738,Cost of Goods Sold - DA Care
+,,,,,4739,Cost of Goods Sold - Hygienic Face Mask
+,,,,,4753,Promotion of DA Care Product
+,,,,,4741,Provision for DA Care
+,,,,,4742,Value Adjustment - DA Care
+,,,,,4743,Cost of Goods Sold - Packaging Box&Cover
+,,,,,4744,Cost of Goods Sold - Packaging Wrapper
+,,,,,4745,Cost of Goods Sold - Packaging Honeycomb
+,,,,,271,Cost of Goods Sold - Packaging Sheet Board
+,,,,,4746,Cost of Goods Sold - Packaging Edge Protector
+,,,,,4747,Provision for Spare Part - Packaging
+,,,,,4748,Value Adjustment - Packaging Box&Cover
+,,,,,5429,Value Adjustment - Packaging Wrapper
+,,,,,5428,Value Adjustment - Packaging Honeycomb
+,,,,,5427,Value Adjustment - Packaging Sheet Board
+,,,,,5426,Value Adjustment - Packaging Edge Protector
+,,,,,4749,Cost of Goods Sold - Copy Machine
+,,,,,4750,Cost of Goods Sold - Toner&Sparepart
+,,,,,4757,Cost of Goods Sold - Log
+,,,,,4758,Cost of Goods Sold - Lumber
+,,,,,4759,Cost of Goods Sold - Bark
+,,,,,4760,Cost of Goods Sold - Under Size
+,,,,,4761,Cost of Goods Sold - Black Liquor
+,,,,,4762,Cost of Goods Sold - Waste Broke
+,,,,,4763,Cost of Goods Sold - Quick Lime
+,,,,,4764,Cost of Goods Sold - Demin Water
+,,,,,4765,Cost of Goods Sold - Core
+,,,,,4766,Cost of Goods Sold - Other Goods
+,,,,,4767,Value Adjustment - Core
+,,,,,4799,Labour - Production
+,,,,,4800,Overtime - Production
+,,,,,4801,Work on weekly holidays - Production
+,,,,,4802,Shift Premium - Production
+,,,,,4803,Incentive Bonus - Production
+,,,,,4804,Unit Rate - Production
+,,,,,4805,Grab Concept - Production
+,,,,,4806,Others Labour - Production
+,,,,,4807,Upcountry allowance - Production
+,,,,,4808,Home Rental Expense - Production
+,,,,,4809,Social security fund - Production
+,,,,,4810,Provident Fund - Production
+,,,,,4811,Employee benefit - Production
+,,,,,4812,Contractor - Production
+,,,,,4813,Contractor - General Paper Work
+,,,,,4814,Contractor - Manual Packing
+,,,,,4815,Contractor - Sorting
+,,,,,5099,Direct Labor - Contra
+,,,,,5008,Direct Labor - Variance
+,,,,,4816,Direct Labor - Allocated
+,,,,,4817,Direct Labor - Expenses Allocation to Other Dept
+,,,,,4301,Contractor - NIS
+,,,,,4819,Contractor - Others
+,,,,,4820,Consultants Fees - FOH
+,,,,,4823,Plant Rent
+,,,,,4824,Factory Building and Structures Rent
+,,,,,4828,Factory Common Area Management Fees
+,,,,,4842,Depot Rent
+,,,,,4826,GPS Rental
+,,,,,4827,Battery Rental
+,,,,,4825,Heavy Equipment Rental
+,,,,,4843,Other Rent - FOH
+,,,,,4829,Property Insurance Premium - FOH
+,,,,,4830,Vehicle Insurance Premium - FOH
+,,,,,4831,Unclaimable Insurance - FOH
+,,,,,4832,Other Insurance Premium - FOH
+,,,,,4833,transportation Management Fee
+,,,,,4834,R&D 200%
+,,,,,4835,Carbon Credit
+,,,,,4836,Revenue Stamp - FOH
+,,,,,4837,Premises Tax - Factory
+,,,,,4838,Licenses Fees - FOH
+,,,,,4839,Digital Platform - FOH
+,,,,,4840,Other Tax and License Fees - FOH
+,,,,,5009,Dept OH Fixed - Contra
+,,,,,5010,Dept OH Fixed - Variance
+,,,,,4841,Dept OH Fixed - Allocated
+,,,,,1341,Dept OH Fixed - Expenses Allocation to Other Dept
+,,,,,4844,NGV Gas
+,,,,,4845,Diesel Oil
+,,,,,4846,Loader for Waste
+,,,,,4847,Truck for Waste
+,,,,,4848,Waste and Garbage Disposal
+,,,,,4849,Scrap
+,,,,,4850,Raw Materials Relocation Expense Mix
+,,,,,4302,Transportation - Truck
+,,,,,4851,Others Transportation
+,,,,,4867,Oth Freight&Handling
+,,,,,4852,Gain/Loss Transportations
+,,,,,4853,Suspense Landed Cost Variance
+,,,,,4854,Issue Inventories - Paper
+,,,,,4855,Issue Inventories - Waste Broke
+,,,,,4856,Issue Inventories - Pulp
+,,,,,4857,Issue Inventories - Pulp NBKP
+,,,,,4858,Issue Inventories - Wood Log
+,,,,,4859,Issue Inventories - Wood Chip
+,,,,,4860,Issue Inventories - Package
+,,,,,4861,Issue Inventories - Consume
+,,,,,4862,Issue Inventories - Chemical
+,,,,,4863,Issue Inventories - Rawmat
+,,,,,5011,Dept OH Variable - Contra
+,,,,,5012,Dept OH Variable - Variance
+,,,,,4864,Dept OH Variable - Allocated
+,,,,,4865,Dept OH Variable - Expenses Allocation to Other Dept
+,,,,,4866,Uniform Expenses
+,,,,,4871,Doctor and Nurse Expense
+,,,,,4868,Employee Award
+,,,,,4869,Other Employee Welfar
+,,,,,4870,Mobile Phone Expenses
+,,,,,4872,Trevelling - Local
+,,,,,4873,Per Diem and Local Lodging - FOH
+,,,,,4874,Per Diem and Abroad Lodging - FOH
+,,,,,4875,Gasoline - FOH
+,,,,,4876,Milage Allowance for Employees Vehicle
+,,,,,4887,Express / Toll Way Coupon Expenses
+,,,,,4877,Postage and Mail
+,,,,,4878,Training and Instruction Fee - Inhouse (FOH)
+,,,,,4879,Training and Instruction Fee - Outside (FOH)
+,,,,,4880,Food and Beverage For Training
+,,,,,4881,Drinking Water - FOH
+,,,,,4882,Marketing Expense - Procurement
+,,,,,4883,Renovate Building and Infrastructure
+,,,,,4884,Maintenance Tools and Equipment
+,,,,,4885,Gardener Expense
+,,,,,4886,Cleaning Expense
+,,,,,4888,Testing and Analysis Expense
+,,,,,4889,Laboratory Tools and Equipment
+,,,,,4890,Calibration Charge
+,,,,,4891,Factory Tools and Equipment
+,,,,,4303,Truck Tools and Equipment
+,,,,,4893,Heavy Equipment Tools and Equipment
+,,,,,4894,Safety Tools and Equipment
+,,,,,4895,CCTV System Supplies
+,,,,,4896,Stationeries and Factory Supplies
+,,,,,4897,Factory Photocopy and Printing Expenses
+,,,,,4898,Other Service Fees - FOH
+,,,,,4899,Representation and Entertainment - FOH
+,,,,,4900,Other Miscellaneous Expenses - FOH
+,,,,,5013,Dept OH Facility - Contra
+,,,,,5014,Dept OH Facility - Variance
+,,,,,4901,Dept OH Facility - Allocated
+,,,,,4902,Dept OH Facility - Expenses Allocation to Other Dept
+,,,,,4903,Depreciation ROU - Land under Operating Lease (FOH)
+,,,,,4904,Depreciation - Intangible Assets (FOH)
+,,,,,4905,Depreciation - Land Improvement (FOH)
+,,,,,4906,Depreciation - Land Improvement Impairment (FOH)
+,,,,,4907,Depreciation - Buildings and Structures (FOH)
+,,,,,4908,Depreciation - Buildings and Structures Impairment (FOH)
+,,,,,4909,Depreciation - Buildings Improvement (FOH)
+,,,,,4910,Depreciation - Trademark (FOH)
+,,,,,4911,Depreciation - Machinery (FOH)
+,,,,,4912,Depreciation - Machinery Impairment (FOH)
+,,,,,4913,Depreciation - Machinery - Specific sparepart (FOH)
+,,,,,4914,Depreciation - M&E - Combline business (FOH)
+,,,,,4915,Depreciation - Tools & Equipment (FOH)
+,,,,,4916,Depreciation - Furniture & Fixtures (FOH)
+,,,,,4917,Depreciation - Office Equipment (FOH)
+,,,,,4918,Depreciation - Computer Acessary (FOH)
+,,,,,4919,Depreciation - Vehicles (FOH)
+,,,,,4920,Depreciation - Truck (FOH)
+,,,,,4921,Depreciation - Truck Impairment (FOH)
+,,,,,4922,Depreciation ROU - Vehicles under Finance Lease (FOH)
+,,,,,4923,Depreciation ROU - Truck under Finance Lease (FOH)
+,,,,,5015,Depreciation - Contra
+,,,,,5016,Depreciation - Variance
+,,,,,4924,Depreciation - Allocated
+,,,,,4925,Depreciation - Expenses Allocation to Other Dept
+,,,,,4926,Electricity - EGAT
+,,,,,4927,Electricity - NPS
+,,,,,4928,Industrial Water
+,,,,,4929,Steam - LP
+,,,,,4930,Steam - MP
+,,,,,4931,Effluent Treatment
+,,,,,4932,Effluent Treatment - Electricity
+,,,,,4933,Mill Air
+,,,,,4934,Chiller Water
+,,,,,4935,Routine Job PM - PMC Service
+,,,,,4936,Routine Job PM - Outside Service
+,,,,,4937,Routine Job PM - Spare part
+,,,,,4938,Routine Job CM - PMC Service
+,,,,,4939,Routine Job CM - Outside Service
+,,,,,4940,Routine Job CM - Spare part
+,,,,,4941,Routine Job PdM - PMC Service
+,,,,,4942,Routine Job PdM - Outside Service
+,,,,,4943,Routine Job PdM - Spare part
+,,,,,4944,Shut Down - PMC Service
+,,,,,4945,Shut Down - Outside Service
+,,,,,4946,Shut Down - Spare part
+,,,,,4947,Break Down - PMC Service
+,,,,,4948,Break Down - Outside Service
+,,,,,4949,Break Down - Spare part
+,,,,,4950,Repairs - Engine
+,,,,,4951,Repairs - Transmision & Suspension
+,,,,,4952,Spare Tire Expense
+,,,,,4953,Repairs - Accident
+,,,,,4954,Lubicant Oil
+,,,,,4955,Repair HEQ PM - Spare part
+,,,,,4956,Repair HEQ PM - Outsource
+,,,,,4957,Repair HEQ CM-GENERAL - Spare part
+,,,,,4958,Repair HEQ CM-GENERAL - Outsource
+,,,,,4959,Repair HEQ CM-Refurbish - Sparepart
+,,,,,4960,Repair HEQ CM-Refurbish - Outsource
+,,,,,4961,Repair HEQ CM-Major - Spare part
+,,,,,4962,Repair HEQ CM-Major - Outsource
+,,,,,4963,Repair HEQ CM-Accident - Spare part
+,,,,,4964,Repair HEQ CM-Accident - Outsource
+,,,,,4965,Repair HEQ CM-BD by Operation - Spare part
+,,,,,4966,Repair HEQ CM-BD by Operation - Outsource
+,,,,,4967,Repair HEQ CM-Tire - Spare part
+,,,,,4968,Repair HEQ CM-Tire - Outsource
+,,,,,4969,HEQ ADM - Inspection
+,,,,,4970,HEQ ADM - Accident by Operation
+,,,,,4971,Repair & Maintenance Mechinery Equipment
+,,,,,4972,Felt & Wire
+,,,,,4973,Production Supplies non - stock
+,,,,,4974,Other Supplies
+,,,,,5017,Machine OH Variable - Contra
+,,,,,5018,Machine OH Variable - Variance
+,,,,,4975,Machine OH Variable - Allocated
+,,,,,4976,Machine OH Variable - Expenses Allocation to Other Dept
+,,,,,5410,Sub-Contract
+,,,,,5458,Sub-Contract - Contra
+,,,,,4977,Labour - Service Cost
+,,,,,4978,Upcountry Allowance - Service Cost
+,,,,,4979,Others Labour - Service Cost
+,,,,,4980,Provident Fund - Service Cost
+,,,,,4981,Grab Concept - Service Cost
+,,,,,4982,Home Rental Expense - Service Cost
+,,,,,4983,Overtime - Service Cost
+,,,,,4984,Bonus - Service Cost
+,,,,,4985,Employee benefit - Service Cost
+,,,,,4986,Labor Service - Contra Service
+,,,,,4987,Depreciation - Photocopy Machine
+,,,,,4988,Depreciation ROU - Photocopy Machine under Finance Lease
+,,,,,4989,Depreciation - Computer Acessary (Service Cost)
+,,,,,4990,Depreciation - Contra Service
+,,,,,4991,Service Supplies - Ink
+,,,,,4992,Service Supplies - Sparepart
+,,,,,4993,Repair & Maintenance Photocopy Mechinery
+,,,,,4994,Internet and Network Expense (Service Cost)
+,,,,,4995,Machine OH Variable - Contra Service
+,,,,,4996,MFG Charge Item
+,,,,,4997,Cost of Photocopy
+,,,,,5003,Cost of Service Printing
+,,,,,4998,DAFP Profit sharing and rental
+,,,,,4999,DAFP Electricity
+,,,,,5000,IT expense
+,,,,,5001,MSD management fee
+,,,,,5002,DAFP Outsource wages
+,,,,,5004,Cost of Land Rental
+,,,,,5005,Cost of Building Rental
+,,,,,5006,Cost of Treated Water Service
+,,,,,5007,Cost of Other Service
+,,,,,4595,COGS - Rawmat RCP
+,,,,,4596,COGS - Consumable
+,,,,,4597,COGS - Spare parts (Store)
+,,,,,4598,COGS - Other
+,,,,,5019,Commission Expenses - Paper
+,,,,,5020,Commission Expenses - Pulp
+,,,,,5021,Commission Expenses - Other Goods
+,,,,,5022,Marketing and service fee
+,,,,,5023,Warehouse Rent - Thailand
+,,,,,5024,Warehouse Rent - Oversea
+,,,,,5025,Warehouse Management Fees - Thailand
+,,,,,5026,Warehouse Management Fees - Oversea
+,,,,,5027,Warehouse & Destination Charges - EU
+,,,,,5028,Forklift Rent - Selling
+,,,,,5029,Sea Freight - Cutsize
+,,,,,5030,Sea Freight - Folio
+,,,,,5031,Sea Freight - EU WH
+,,,,,5032,Sea Freight - Pulp
+,,,,,5033,Sea Freight - Woodchip
+,,,,,5034,Sea Freight - Other
+,,,,,5035,Port Authority Charges
+,,,,,5036,Logistics Inland Expense
+,,,,,5037,Outbound Trucking Expense
+,,,,,5038,Outbound Trucking Expense - EU
+,,,,,5040,Transportation Surcharge Expenses
+,,,,,5041,Terminal Handing Charge - THC
+,,,,,5042,Destination Terminal Handing Charge - DTHC
+,,,,,5043,Bill Of Loading - B/L Fee
+,,,,,5045,Lift Off - Truck To Port
+,,,,,5046,Plant To Port Transport - Cutsize
+,,,,,5047,Plant To Port Transport - Folio
+,,,,,5048,Plant To Port Transport - Pulp
+,,,,,5049,Plant To Port Transport - Woodchip
+,,,,,5050,Port To Plant Transport - Empty Container
+,,,,,5051,Domestic Land Transport - Cutsize
+,,,,,5052,Domestic Land Transport - Folio
+,,,,,5053,Domestic Land Transport - Pulp
+,,,,,5054,Domestic Land Transport - Woodchip
+,,,,,5055,Domestic Land Transport (Truck) - DASP
+,,,,,5056,Domestic Land Transport (Pick-Up) - DASP
+,,,,,5057,Domestic Land Transport - Other
+,,,,,5058,Domestic Land Transport - Transfer Cutsize
+,,,,,5059,Domestic Land Transport - Transfer Folio
+,,,,,5060,Gasoline/Lpg For Forklift
+,,,,,5061,Insurance - Selling Expense
+,,,,,5062,Insurance - Warehouse EU
+,,,,,5425,Public & Product Liability Insurance
+,,,,,5063,Customs duty
+,,,,,5064,Penalty Charges
+,,,,,5065,Damage Charges
+,,,,,5066,Packaging Ordinance Claim
+,,,,,5067,Royalty - Certificate Fee
+,,,,,5068,Logistics Inland Expense - Non Fixed China
+,,,,,5069,Pallets
+,,,,,5070,Others Transportation Expenses
+,,,,,5071,Others Transportation Expenses - Woodchip
+,,,,,5072,DO Ch.CME CZ - TT-Distributor
+,,,,,5073,DO Ch.CME CZ - TT-Master Dealer
+,,,,,5074,DO Ch.CME CZ - TT-Stationery Shop
+,,,,,5075,DO Ch.CME CZ - TT-OAIT (Office and Appliances)
+,,,,,5076,DO Ch.CME CZ - TT-DACM (Double A Copy Member)
+,,,,,5077,DO Ch.CME CZ - TT-DACC (Double A Copy Center)
+,,,,,5078,DO Ch.CME CZ - TT-DASM (Double A Stationery Member)
+,,,,,5079,DO Ch.CME CZ - TT-CCRP (Catalogue&Corp. Reseller Partner)
+,,,,,5080,DO Ch.CME CZ - TT-DASS (Double A Stationery Shop)
+,,,,,5081,DO Ch.CME CZ - TT-Copy Center Shop
+,,,,,5082,DO Ch.CME CZ - TT-Local Department Store
+,,,,,5083,DO Ch.CME CZ - TT-End User
+,,,,,5084,DO Ch.CME CZ - TT-Corporate User
+,,,,,5085,DO Ch.CME CZ - MT-Hypermarket
+,,,,,5086,DO Ch.CME CZ - MT-Catalogue
+,,,,,5087,DO Ch.CME CZ - MT-Convenience Store
+,,,,,5088,DO Ch.CME CZ - MT-Others
+,,,,,5089,DO Ch.CME FO - Folio - Distributor Exclusive
+,,,,,5090,DO Ch.CME FO - Folio - Sub Agent
+,,,,,5091,DO Ch.CME FO - Folio - Life time
+,,,,,5092,DO Ch.CME FO - Folio - Golden
+,,,,,5093,DO Ch.CME CM - Distributor
+,,,,,5094,DO Ch.CME CM - Corporate Reseller
+,,,,,5095,DO Ch.CME DASP - Distributor
+,,,,,5096,DO Ch.CME DASP - Corporate Reseller
+,,,,,5097,DO Ch.CME DASP - Stationery Shop
+,,,,,5098,DO Ch.CME DASP - Traditional Trade
+,,,,,5100,DO Ch.CME DASP - Modern Trade
+,,,,,5101,DO Ch.CME DASP - Office Building
+,,,,,5102,DO Ch.CME DASP - E-Commerce
+,,,,,5103,DO Ch.CME DASP - Product Management
+,,,,,5104,DO Ch.CME DASP - Product Development
+,,,,,5105,DO Ch.CME DAOS - Distributor
+,,,,,5106,DO Ch.CME DAOS - Corporate Reseller
+,,,,,5107,DO Ch.CME DAOS - Stationery Shop
+,,,,,5108,DO Ch.CME DAOS - Traditional Trade
+,,,,,5109,DO Ch.CME DAOS - Modern Trade
+,,,,,5110,DO Ch.CME DAOS - Office Building
+,,,,,5111,DO Ch.CME DAOS - E-Commerce
+,,,,,5112,DO Ch.CME DAOS - Product Management
+,,,,,5113,DO Ch.CME DAOS - Product Development
+,,,,,5114,DO Ch.CME DACare - Distributor
+,,,,,5115,DO Ch.CME DACare - Corporate Reseller
+,,,,,5116,DO Ch.CME DACare - Stationery Shop
+,,,,,5117,DO Ch.CME DACare - Traditional Trade
+,,,,,5118,DO Ch.CME DACare - Modern Trade
+,,,,,5119,DO Ch.CME DACare - Office Building
+,,,,,5120,DO Ch.CME DACare - E-Commerce
+,,,,,5121,DO Ch.CME DACare - Product Management
+,,,,,5122,DO Ch.CME DACare - Product Development
+,,,,,4325,DO CME CZ - TT-Distributor
+,,,,,4326,DO CME CZ - TT-Master Dealer
+,,,,,4327,DO CME CZ - TT-Stationery Shop
+,,,,,4328,DO CME CZ - TT-OAIT (Office and Appliances)
+,,,,,4329,DO CME CZ - TT-DACM (Double A Copy Member)
+,,,,,4330,DO CME CZ - TT-DACC (Double A Copy Center)
+,,,,,4331,DO CME CZ - TT-DASM (Double A Stationery Member)
+,,,,,4332,DO CME CZ - TT-CCRP (Catalogue & Corporate Reseller Partner)
+,,,,,4333,DO CME CZ - TT-DASS (Double A Stationery Shop)
+,,,,,4334,DO CME CZ - TT-Copy Center Shop
+,,,,,4335,DO CME CZ - TT-Local Department Store
+,,,,,4336,DO CME CZ - TT-End User
+,,,,,4337,DO CME CZ - TT-Corporate User
+,,,,,4338,DO CME CZ - Modern Trade
+,,,,,4339,DO CME CZ - E-Commerce
+,,,,,4340,DO CME CZ - MT-Hypermarket
+,,,,,4341,DO CME CZ - MT-Catalogue
+,,,,,4342,DO CME CZ - MT-Convenience Store
+,,,,,4343,DO CME CZ - MT-Others
+,,,,,4344,DO CME CZ - OB-Corporate Reseller Partner
+,,,,,4345,DO CME FO - Distributor Exclusive
+,,,,,4346,DO CME FO - Sub Agent
+,,,,,4347,DO CME FO - Life Time
+,,,,,4348,DO CME FO - Golden
+,,,,,4349,DO CME CM - Distributor
+,,,,,4350,DO CME CM - Corporate Reseller
+,,,,,4351,DO - Cash Discount
+,,,,,4352,DO - AR Credit insurance
+,,,,,4414,DO CME Pulp - Distributor
+,,,,,4477,DO CME DASP - Distributor
+,,,,,4478,DO CME DASP - Corporate Reseller
+,,,,,4479,DO CME DASP - Stationery Shop
+,,,,,4480,DO CME DASP - Traditional Trade
+,,,,,4481,DO CME DASP - Modern Trade
+,,,,,4482,DO CME DASP - Office Building
+,,,,,4483,DO CME DASP - E-Commerce
+,,,,,4484,DO CME DASP - Product Management
+,,,,,4485,DO CME DASP - Product Development
+,,,,,4486,DO CME DAOS - Distributor
+,,,,,4487,DO CME DAOS - Corporate Reseller
+,,,,,4488,DO CME DAOS - Stationery Shop
+,,,,,4489,DO CME DAOS - Traditional Trade
+,,,,,4490,DO CME DAOS - Modern Trade
+,,,,,4491,DO CME DAOS - Office Building
+,,,,,4492,DO CME DAOS - E-Commerce
+,,,,,4493,DO CME DAOS - Product Management
+,,,,,4494,DO CME DAOS - Product Development
+,,,,,4495,DO CME DA Care - Distributor
+,,,,,4496,DO CME DA Care - Corporate Reseller
+,,,,,4497,DO CME DA Care - Stationery Shop
+,,,,,4498,DO CME DA Care - Traditional Trade
+,,,,,4499,DO CME DA Care - Modern Trade
+,,,,,4500,DO CME DA Care - Office Building
+,,,,,4501,DO CME DA Care - E-Commerce
+,,,,,4502,DO CME DA Care - Product Management
+,,,,,4503,DO CME DA Care - Product Development
+,,,,,5123,Ex Ch.CME CZ - Distributor
+,,,,,5124,Ex Ch.CME CZ - Master Dealer
+,,,,,5125,Ex Ch.CME CZ - Dealer
+,,,,,5126,Ex Ch.CME CZ - Corporate Reseller
+,,,,,5127,Ex Ch.CME CZ - Copy Machine Dealer
+,,,,,5128,Ex Ch.CME CZ - Copy Machine Manufacturer
+,,,,,5129,Ex Ch.CME CZ - Stationery Shop
+,,,,,5130,Ex Ch.CME CZ - OAIT (Office and Appliances)
+,,,,,5131,Ex Ch.CME CZ - DACM (Double A Copy Member)
+,,,,,5132,Ex Ch.CME CZ - DACC (Double A Copy Center)
+,,,,,5133,Ex Ch.CME CZ - Copy Center
+,,,,,5134,Ex Ch.CME CZ - Modern Trade
+,,,,,5135,Ex Ch.CME CZ - Catalogue
+,,,,,5136,Ex Ch.CME CZ - Web Shop
+,,,,,5137,Ex Ch.CME CZ - E-Commerce
+,,,,,5138,Ex Ch.CME CZ - Brand / Flagship Stores (E-Commerce)
+,,,,,5139,Ex Ch.CME FO - Distributor
+,,,,,5140,Ex Ch.CME NP - Distributor
+,,,,,5141,Ex Ch.CME NP - Master Dealer
+,,,,,5142,Ex Ch.CME NP - Dealer
+,,,,,5143,Ex Ch.CME NP - Corporate Reseller
+,,,,,5144,Ex Ch.CME NP - Stationery Shop
+,,,,,5145,Ex Ch.CME NP - OAIT (Office and Appliances)
+,,,,,5146,Ex Ch.CME NP - Modern Trade
+,,,,,5147,Ex Ch.CME NP - Catalogue
+,,,,,5148,Ex Ch.CME NP - E-Commerce
+,,,,,4378,EX CME CZ - Distributor
+,,,,,4379,EX CME CZ - Master Dealer
+,,,,,4380,EX CME CZ - Dealer
+,,,,,4381,EX CME CZ - Corporate Reseller
+,,,,,4382,EX CME CZ - Copy Machine Dealer
+,,,,,4383,EX CME CZ - Copy Machine Manufacturer
+,,,,,4384,EX CME CZ - Stationery Shop
+,,,,,4385,EX CME CZ - OAIT
+,,,,,4386,EX CME CZ - DACM
+,,,,,4387,EX CME CZ - DACC
+,,,,,4388,EX CME CZ - Copy Center
+,,,,,4389,EX CME CZ - Corporate Contract
+,,,,,4390,EX CME CZ - Modern Trade
+,,,,,4391,EX CME CZ - Catalogue
+,,,,,4392,EX CME CZ - Web Shop
+,,,,,4393,EX CME CZ - E-Commerce
+,,,,,4394,EX CME CZ - Brand / Flagship Stores (E-Commerce)
+,,,,,4395,EX CME CZ - Tender
+,,,,,4396,EX CME CZ - Unconditional rebates
+,,,,,4397,EX CME FO - Distributor
+,,,,,4398,EX CME FO - Tender
+,,,,,4399,EX CME FO - Unconditional rebates
+,,,,,4400,EX - Cash Discount
+,,,,,4401,EX - AR Credit insurance
+,,,,,4427,EX CME Pulp - Distributor
+,,,,,4547,EX CME DASP - Distributor
+,,,,,4548,EX CME DASP - Unconditional rebates
+,,,,,4549,EX CME DAOS - Distributor
+,,,,,4550,EX CME DAOS - Master Dealer
+,,,,,4551,EX CME DAOS - Dealer
+,,,,,4552,EX CME DAOS - Corporate Reseller
+,,,,,4553,EX CME DAOS - Stationery Shop
+,,,,,4554,EX CME DAOS - OAIT (Office and Appliances)
+,,,,,4555,EX CME DAOS - Modern Trade
+,,,,,4556,EX CME DAOS - Catalogue
+,,,,,4557,EX CME DAOS - Web Shop
+,,,,,4558,EX CME DAOS - E-Commerce
+,,,,,4559,EX CME DAOS - Brand / Flagship Stores (E-Commerce)
+,,,,,4560,EX CME DA Care - Distributor
+,,,,,4561,EX CME DA Care - Unconditional rebates
+,,,,,5149,DO Ch.BME - Distributor
+,,,,,5150,DO Ch.BME - Master Dealer
+,,,,,5151,DO Ch.BME - Stationery Shop
+,,,,,5152,DO Ch.BME - OAIT (Office and Appliances)
+,,,,,5153,DO Ch.BME - DACM (Double A Copy Member)
+,,,,,5154,DO Ch.BME - DACC (Double A Copy Center)
+,,,,,5155,DO Ch.BME - DASM (Double A Stationery Member)
+,,,,,5156,DO Ch.BME - CCRP (Catalogue&Corp. Reseller Partner)
+,,,,,5157,DO Ch.BME - DASS (Double A Stationery Shop)
+,,,,,5158,DO Ch.BME - Copy Center
+,,,,,5159,DO Ch.BME - Local Department Store
+,,,,,5160,DO Ch.BME - End user
+,,,,,5161,DO Ch.BME - Corporate Contract
+,,,,,5162,DO Ch.BME - Modern Trade
+,,,,,5163,DO Ch.BME - LSM Event marketing
+,,,,,5164,DO Mass BME - Mass Media
+,,,,,5165,DO Mass BME - National Campaign (QR)
+,,,,,5166,DO Mass BME - Production
+,,,,,5167,DO Mass BME - Research
+,,,,,5168,DO Mass BME - PR (event)
+,,,,,5169,DO Mass BME - Brand visibilty
+,,,,,5170,Ex Ch.BME Paper - Distributor
+,,,,,5171,Ex Ch.BME Paper - Master Dealer
+,,,,,5172,Ex Ch.BME Paper - Dealer
+,,,,,5173,Ex Ch.BME Paper - Corporate Reseller
+,,,,,5174,Ex Ch.BME Paper - Copy Machine Dealer
+,,,,,5175,Ex Ch.BME Paper - Copy Machine Manufacturer
+,,,,,5176,Ex Ch.BME Paper - Stationery Shop
+,,,,,5177,Ex Ch.BME Paper - OAIT (Office and Appliances)
+,,,,,5178,Ex Ch.BME Paper - DACM (Double A Copy Member)
+,,,,,5179,Ex Ch.BME Paper - DACC (Double A Copy Center)
+,,,,,5180,Ex Ch.BME Paper - Copy Center
+,,,,,5181,Ex Ch.BME Paper - Modern Trade
+,,,,,5182,Ex Ch.BME Paper - Catalogue
+,,,,,5183,Ex Ch.BME Paper - Web Shop
+,,,,,5184,Ex Ch.BME Paper - E-Commerce
+,,,,,5185,Ex Ch.BME Paper - Brand / Flagship Stores (E-Commerce)
+,,,,,5186,Ex Ch.BME NP - Distributor
+,,,,,5187,Ex Ch.BME NP - Master Dealer
+,,,,,5188,Ex Ch.BME NP - Dealer
+,,,,,5189,Ex Ch.BME NP - Corporate Reseller
+,,,,,5190,Ex Ch.BME NP - Copy Machine Dealer
+,,,,,5191,Ex Ch.BME NP - Copy Machine Manufacturer
+,,,,,5192,Ex Ch.BME NP - Stationery Shop
+,,,,,5193,Ex Ch.BME NP - OAIT (Office and Appliances)
+,,,,,5194,Ex Ch.BME NP - DACM (Double A Copy Member)
+,,,,,5195,Ex Ch.BME NP - DACC (Double A Copy Center)
+,,,,,5196,Ex Ch.BME NP - Copy Center
+,,,,,5197,Ex Ch.BME NP - Modern Trade
+,,,,,5198,Ex Ch.BME NP - Catalogue
+,,,,,5199,Ex Ch.BME NP - Web Shop
+,,,,,5200,Ex Ch.BME NP - E-Commerce
+,,,,,5201,Ex Ch.BME NP - Brand / Flagship Stores (E-Commerce)
+,,,,,5202,Ex Mass BME Paper - Mass Media
+,,,,,5203,Ex Mass BME Paper - National Campaign (QR)
+,,,,,5204,Ex Mass BME Paper - Production
+,,,,,5205,Ex Mass BME Paper - Research
+,,,,,5206,Ex Mass BME Paper - PR (event)
+,,,,,5207,Ex Mass BME Paper - Brand visibilty
+,,,,,5208,Ex Mass BME NP - Mass Media
+,,,,,5209,Ex Mass BME NP - National Campaign (QR)
+,,,,,5210,Ex Mass BME NP - Production
+,,,,,5211,Ex Mass BME NP - Research
+,,,,,5212,Ex Mass BME NP - PR (event)
+,,,,,5213,Ex Mass BME NP - Brand visibilty
+,,,,,5214,Packaging online sale
+,,,,,5215,Others Selling Expenses
+,,,,,5216,Salaries and Wages
+,,,,,5217,Contractor Wages
+,,,,,5218,Overtime
+,,,,,5219,Work on Weekly Holidays
+,,,,,5220,Shift Premium
+,,,,,5221,Bonus
+,,,,,5222,Commission
+,,,,,5223,Incentives
+,,,,,5224,Other Salaries and Wages
+,,,,,5225,Work Permit Expense
+,,,,,5226,Upcountry Allowance
+,,,,,5227,Home Rental Expense
+,,,,,5228,Uniform Expense
+,,,,,5229,Workmen's Compensation Fund
+,,,,,5230,Social Security Fund
+,,,,,5231,Provident Fund
+,,,,,5232,Other Welfare
+,,,,,5233,Employee Benefit - Administrative Expense
+,,,,,5234,Training and Instruction Fee - Inhouse
+,,,,,5235,Training and Instruction Fee - Outside
+,,,,,5236,Training and Instruction Fee - Abroad
+,,,,,5237,Medicine and medical supplies
+,,,,,5238,Fringe Benefit Provided to Employee
+,,,,,5239,Food and Other Expense
+,,,,,5240,Drinking water
+,,,,,5241,Recruitement Expense
+,,,,,5242,Directors Fees
+,,,,,5243,Outsource labor and Service Fees
+,,,,,5244,Accounting Fees
+,,,,,5245,Other Service Fees
+,,,,,5246,Consultants Fees
+,,,,,5247,Audit Fees
+,,,,,5248,Lawyers Fees
+,,,,,5249,Other Professional Fees
+,,,,,5250,Land Rent
+,,,,,5251,Building and Structures Rent
+,,,,,5252,Common Area Management Fees
+,,,,,5253,Tools & Equipment Rent
+,,,,,5254,Photocopy Machine Rent
+,,,,,5255,Computer Acessary Rent
+,,,,,5256,Vehicles Rent
+,,,,,5257,Other Rent
+,,,,,5258,Office Furniture and Equipment
+,,,,,5259,Computer Software
+,,,,,5260,Office Supplies
+,,,,,5261,Stationeries
+,,,,,5262,Photocopy and Printing Expenses
+,,,,,5263,Repairs Building and Construction
+,,,,,5264,Repairs Vehicle
+,,,,,5265,Other Repairs and Maintenance
+,,,,,5266,Electricity
+,,,,,5267,Tap water
+,,,,,5268,Postage
+,,,,,5269,Telephone Expense
+,,,,,5270,Smartphone Expense
+,,,,,5271,Internet and Network Expense
+,,,,,5272,Call Center & E-Fax Expenses
+,,,,,5273,Web Service & Other Communication Expenses
+,,,,,5274,Travelling Expense - Local
+,,,,,5275,Travelling Expense - Aboard
+,,,,,5276,Per diem and Lodging - Local
+,,,,,5277,Per diem and Lodging - Aboard
+,,,,,5278,Gasoline
+,,,,,5279,Express and Tollway Coupon Expenses
+,,,,,5280,Other travelling expenses
+,,,,,5281,Representation and Entertainment
+,,,,,5282,Public Relations - CSR
+,,,,,5283,Public Donations
+,,,,,5284,Donation For Education Purpose
+,,,,,5285,Donation For Sport Purpose
+,,,,,5286,Revenue Stamp
+,,,,,5287,Premises and Signboard Tax
+,,,,,5288,Specific Business Tax
+,,,,,5289,Property Insurance Premium
+,,,,,5290,Vehicle Insurance Premium
+,,,,,5291,Other Insurance Premium
+,,,,,5292,Application Fees
+,,,,,5293,Membership Fees
+,,,,,5294,Magazine&Subcriptions
+,,,,,5295,Other Tax and License Fees
+,,,,,5296,Domestic Bank Charges
+,,,,,5297,Foreign Bank Charges
+,,,,,5298,Depreciation - Land Improvement
+,,,,,5299,Depreciation - Buildings and Structures
+,,,,,5300,Depreciation - Buildings Improvement
+,,,,,5301,Depreciation - Machinery
+,,,,,5302,Depreciation - Tools & Equipment
+,,,,,5303,Depreciation - Furniture & Fixtures
+,,,,,5304,Depreciation - Office Equipment
+,,,,,5305,Depreciation - Computer Acessary
+,,,,,5306,Depreciation - Vehicles
+,,,,,5308,Depreciation ROU - Land under Operating Lease
+,,,,,5309,Depreciation ROU - Buildings under Operating Lease
+,,,,,5457,Depreciation ROU - Vehicles under Finance Lease
+,,,,,5310,Depreciation - Intangible Assets
+,,,,,5311,Depreciation - Trademark
+,,,,,5312,Doubtful debt
+,,,,,5313,Impairement Losses - Investment
+,,,,,5314,Share of (Gain)loss from investment in joint venture
+,,,,,5315,Impairement Losses - PPE
+,,,,,5316,Bad Debts
+,,,,,267,Write off Expired and Damage Inventory
+,,,,,5317,Loss on Investment
+,,,,,5318,Write Off Fixed Assets
+,,,,,5319,Impairement Losses - Write Off Fixed Assets
+,,,,,58,Other Miscellaneous Expenses
+,,,,,5320,Absorb WHT
+,,,,,5321,Uncollected Output VAT from Customer
+,,,,,5322,Unclaimable Input VAT
+,,,,,5323,Non Deductable Penalties and Surcharges Expenses
+,,,,,374,Non Deductable Expenses
+,,,,,255,Gain/Loss from allowed different clearing
+,,,,,5324,Gain inventory differences
+,,,,,5325,Suspense Bank Combination
+,,,,,5326,Extraordinary Expenses - Fix Cost
+,,,,,5327,Abnormal Paper Capacities
+,,,,,5328,Extraordinary Expenses - Depre
+,,,,,5331,Interest Expense - Short Term loan from Affiliate
+,,,,,5332,Interest Expense - OD
+,,,,,5333,Interest Expense - PN
+,,,,,5334,Interest Expense - TR
+,,,,,5335,Interest Expense - PC
+,,,,,5336,Interest Expense-Long term loan from finance institutions
+,,,,,5337,Interest Expense - Debenture
+,,,,,5338,Interest Expense - Lease Liabilities
+,,,,,5339,Interest Expense - Leasing
+,,,,,5424,Gain (Loss) Lease Modification
+,,,,,5340,Corporate Income Tax
+,,,,,5341,Expense(Income) Defered tax
+,,,,,120,{#Vendor Return Authorizations#}
+,,,,,5702,BGC_FOH01
+,,,,,5703,BGC_FOH02
+,,,,,5704,BGC_Admin01
+,,,,,5705,BGC_Admin02
+,,,,,5402,1oi999_ori
+,,,,,5403,zzz
+,,,,,5467,Sus.Line item
+,,,,,5466,Sus.Line item CCY
+,,,,,5570,Sus.Revalue Asset - Bank
+,,,,,5571,Sus.Revalue Asset - ST Investment
+,,,,,5469,Sus.AR Affilate
+,,,,,5572,Sus.Revalue Asset - AR Trade Affiliated
+,,,,,5573,Sus.Revalue Asset - AR non Trade Affiliated
+,,,,,5470,Sus.AR Related
+,,,,,5574,Sus.Revalue Asset - AR Trade Related
+,,,,,5575,Sus.Revalue Asset - AR non Trade Related
+,,,,,5471,Sus.AR Outside
+,,,,,5576,Sus.Revalue Asset - AR Trade Outside
+,,,,,5577,Sus.Revalue Asset - AR non Trade Outside
+,,,,,5578,Sus.Revalue Asset - Accrued Income
+,,,,,5472,Sus.FG Paper
+,,,,,5473,Sus.FG Pulp
+,,,,,5474,Sus.FG Non paper
+,,,,,5475,Sus.FG Packaging
+,,,,,5476,Sus.FG Other
+,,,,,5477,Sus.Semi paper
+,,,,,5478,Sus.Semi non paper
+,,,,,5479,Sus.Semi packaging
+,,,,,5480,Sus.Semi Other
+,,,,,5481,Sus.RM Paper
+,,,,,5482,Sus.RM Pulp
+,,,,,5483,Sus.RM wood
+,,,,,5484,Sus.RM non paper
+,,,,,5485,Sus.RM other
+,,,,,5486,Sus.Packaging
+,,,,,5487,Sus.Consume
+,,,,,5488,Sus.Copy machine
+,,,,,5489,Sus.GIT
+,,,,,5490,Sus.Advance Vendor outside
+,,,,,5493,Sus.Advance Vendor Related
+,,,,,5579,Sus.Revalue Asset - Advance vendor
+,,,,,5494,Sus.Prepaid Expense recurring
+,,,,,5580,Sus.Revalue Asset - Prepaid Expense
+,,,,,5496,Sus.AR tax
+,,,,,5581,Sus.Revalue Asset - AR Tax
+,,,,,5497,Sus.Vat input
+,,,,,5498,Sus.Vat input defer
+,,,,,5582,Sus.Revalue Asset - Vat
+,,,,,5499,Sus.WHT
+,,,,,5583,Sus.Revalue Asset - Investment
+,,,,,5596,AUC
+,,,,,5492,Sus.Advance Log
+,,,,,5584,Sus.Revalue Asset - Deposit
+,,,,,5502,Sus.AP Affiliated
+,,,,,5585,Sus.Revalue Liabilities - AP Trade Affiliated
+,,,,,5586,Sus.Revalue Liabilities - AP non Trade Affiliated
+,,,,,5504,Sus.AP Related
+,,,,,5587,Sus.Revalue Liabilities - AP Trade Related
+,,,,,5588,Sus.Revalue Liabilities - AP non Trade Related
+,,,,,5505,Sus.AP Outsite
+,,,,,5589,Sus.Revalue Liabilities - AP Trade Outside
+,,,,,5595,Sus.AP Outsite Offset Letter
+,,,,,5590,Sus.Revalue Liabilities - AP non Trade Outside
+,,,,,5591,Sus.Revalue Liabilities - Accrued Expense
+,,,,,5508,Sus.Advance customer outside
+,,,,,5509,Sus.Advance customer Related
+,,,,,5592,Sus.Revalue Liabilities - Advance Cust.
+,,,,,5510,Sus.AP Tax
+,,,,,5511,Sus.Vat Output Tax
+,,,,,5512,Sus.Vat Output Defer
+,,,,,5593,Sus.Revalue Liabilities - VAT
+,,,,,5700,Sus.Revalue Liabilities - OCL
+,,,,,5597,MFG - Indirect
+,,,,,230,Suspense PP36 Submission Offsetting
+,,,,,5413,VAT PP 36

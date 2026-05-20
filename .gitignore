@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+
+# Local/ephemeral configuration uploads
+List_orig.csv
+
+# Developer tools, logs & temporary scripts
+scratch/
+*.pdf
+pdf_data.json
+pdf_output.txt
+pdf_text.txt
+mapped_columns.txt
+analyze_prefixes.js
+check_1cze.js
+extract_text.js
+find_cz.js
+map_cols.js
+map_logic.js
+read_pdf.js
+read_pdf2json.js
+test_csv_pattern.js
+test_full_logic.js
+test_running.js
+test_running_logic.js
+cleanup_csv.ps1
+test_running_logic.js
+test_running.js
+test_full_logic.js
+test_csv_pattern.js
+read_pdf2json.js
+read_pdf.js
+map_logic.js
+map_cols.js
+find_cz.js
+extract_text.js
+cleanup_csv.ps1
+check_1cze.js
+analyze_prefixes.js

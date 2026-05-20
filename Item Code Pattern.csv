@@ -1,0 +1,349 @@
+Inactive,Internal ID,Item Sub-Group,Item Group,Digit,Domistic&Export,Item Category,Item Sub-Category,Brand,Grade,Gram,Paper Size,Sheet,Layer,Wrap,Pallet,Width,Diameter,Core,Thinkness,Long,Color,Series,Source
+No,681,Folio (Packaging),Semi Product,FO,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,680,Book Plant (Package-S2),Packaging,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,679,Cutsize (Packaging),Semi Product,GC,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,678,INK,"Consume,Raw Material",NK,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,677,Converting (Package-S2),Packaging,CV,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,676,WIP Corrugate (RM-KA),Raw Material,BC,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No
+No,675,Cutsize (Package-EP),Packaging,CZ,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,674,Cutsize Guillotine (Package-Wrapper),Packaging,GC,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,673,DASP (WIP),Semi Product,AS,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,672,"WIP Corrugate (RM-KT,KK)",Raw Material,BC,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No
+No,671,WIP Corrugate (RM-CA),Raw Material,BC,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,670,Roll WIP (to REWN),Semi Product,RW,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,669,Roll WIP (EX) (WIP),Semi Product,WX,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,668,Roll FG (Pack คู่) (WIP),Semi Product,R2,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,667,Roll FG (WIP),Semi Product,RG,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,666,Cutsize (Small Pack) (DE),Finished Goods - Paper,CK,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,665,Colour Paper - (Parent),Finished Goods - Paper,CL,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,Yes,No,No
+No,664,Inbound-Landed Cost,Service,IL,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,663,Cutsize (DE),Finished Goods - Paper,CZ,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,662,Roll FG (Pack คู่),Finished Goods - Paper,R2,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,661,Cutsize (Consume-NZ),Consume,CZ,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,660,Roll Finishing (Consume-NZ),Consume,RF,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,659,Book Plant (Consume-OT),Consume,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,658,Cutsize (Package-BC),Packaging,BC,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,657,Book Plant (Package-TAG),Packaging,TG,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,655,Cutsize (Small Pack) (LTA),Finished Goods - Paper,CK,Yes,No,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+No,654,Cutsize (Guillotine) (Small Pack),Finished Goods - Paper,GK,Yes,No,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+No,653,DASP (Insertion),Semi Product,AS,No,Yes,No,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,652,Wrapper CZ9,Finished Goods - Non Paper,W9,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,651,Roll WIP (EX) - (Parent),"Finished Goods - Paper,Semi Product",WE,No,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,650,Mill to port,Service,MP,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,649,OH Dept Variable - Transportation,Service,V4,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,648,Export Collection Expenses,Service,EC,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,647,Tap water,Service,TW,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,646,Electricity,Service,EL,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,645,Welfare,Service,WF,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,644,Other Transportation,Service,OT,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,643,Domestic Land Transport,Service,DL,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,642,Local charge,Service,LO,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,641,Inland,Service,IN,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,640,Sea Freight,Service,SF,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,639,Warehouse Rental - Selling,Service,WH,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,638,Direct OH Machine Variable - Utility,Service,MV,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,637,Goods in transit,Service,GT,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,636,Contra PPE,Fixed Asset,PE,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+Yes,635,Cutsize (Small Pack) (AUS),Finished Goods - Paper,CK,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+Yes,634,Cutsize (Small Pack) (Guillotine) (LTA),Finished Goods - Paper,GK,Yes,No,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+Yes,633,Cutsize (Small Pack) (Guillotine) - (Parent),Finished Goods - Paper,GK,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+Yes,632,Cutsize (Small Pack) (Guillotine),Finished Goods - Paper,GK,Yes,No,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+No,631,Roll CM - (Parent),Finished Goods - Paper,RG,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,630,Wrapper Sheet,Semi Product,WT,No,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,629,Box MN,Finished Goods - Non Paper,BN,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,628,Intangible Assets Cost,Fixed Asset,IA,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,627,"Vessels, Trucks and Other Vehicles",Fixed Asset,VH,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,626,Tools,Fixed Asset,TL,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,625,Machinery and Equipment,Fixed Asset,ME,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,624,Buildings and Improve of Land and Buildings,Fixed Asset,BL,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,621,Land,Fixed Asset,LD,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,620,Furniture Fixtures and Office Equipment,Fixed Asset,FF,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,616,GR/IR Product,Service,GP,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,615,GR/IR Landed Cost,Service,GL,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,614,Cost of Service - Maintenance,Service,MT,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,613,Office Repairs,Service,E2,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,612,Rental Expenses,Service,E1,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,611,Sub-Contract,Service,SC,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,610,Labor - Contractor,Service,LC,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,609,Direct OH Machine Variable - Maintenance,Service,M1,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,608,OH Dept Variable - Heavy Equipment,Service,V3,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,607,OH Dept Variable - Issue Inventories,Service,V2,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,606,OH Dept Variable - Waste Management,Service,V1,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,605,OH Dept Facility - Tools&Equipment,Service,F4,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,604,OH Dept Facility - Testing&Analysis,Service,F3,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,603,OH Dept Facility - Welfare and Others,Service,F2,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,602,OH Dept Facility - Renovate,Service,F1,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,601,OH Dept Fixed - Rental,Service,OR,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,600,Cutsize (Guillotine) (LTA),Finished Goods - Paper,GC,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,599,Cutsize (Guillotine) (AUS),Finished Goods - Paper,GC,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,598,Cutsize (AUS),Finished Goods - Paper,CZ,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,597,Cutsize (HMP),Finished Goods - Paper,CZ,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,596,Cutsize (LTA),Finished Goods - Paper,CZ,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,595,Dummy,Semi Product,XX,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,594,Sheet Board (RM-KT),"Finished Goods - Non Paper,Raw Material",BC,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No
+No,593,Cutsize (Small Pack) - (Parent),Finished Goods - Paper,CK,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,592,Roll FG - (Parent),Finished Goods - Paper,RG,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,591,Folio - (Parent),Finished Goods - Paper,FO,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,590,Cutsize (Guillotine) - (Parent),Finished Goods - Paper,GC,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,589,Cutsize - (Parent),Finished Goods - Paper,CZ,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,588,Rewards,Marketing,RE,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,587,Ch.BME (E),"Marketing,Service",B1,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,585,Mass BME (E),"Marketing,Service",BM,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,584,Admin & Expense,"Marketing,Service",AD,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,583,Mass BME (D),"Marketing,Service",BM,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,582,Ch.BME (D),"Marketing,Service",B1,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,581,CME,"Marketing,Service",C0,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,580,Ch.CME,"Marketing,Service",C1,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,579,Surcharge,Service,SC,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,578,Credit Note,"Sales - Discounts, DN, CN",CN,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,577,Debit Note,"Sales - Discounts, DN, CN",DN,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,576,Discount,"Sales - Discounts, DN, CN",DC,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,575,Print Service (Toner&Sparepart),Finished Goods - Non Paper,PV,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,574,Print Service (Copy Machine),Finished Goods - Non Paper,PV,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,573,Revenue,Service,RV,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,572,Sheet Board,Finished Goods - Non Paper,SB,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,571,Box and Cover (RM-KW),Raw Material,BC,No,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,570,Cover MN,Finished Goods - Non Paper,CN,Yes,No,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,569,Cover Auto,Finished Goods - Non Paper,CT,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,568,Cover,Finished Goods - Non Paper,CO,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,567,Box Other,Finished Goods - Non Paper,BO,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,566,Box Auto,Finished Goods - Non Paper,BT,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,565,Roll Finishing (Package-Pallet),Packaging,RF,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+Yes,564,Raw Material (Service),Service,RM,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,563,Outsource,Service,OS,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+Yes,562,EP,Service,EP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,561,Roll WIP (EX),Semi Product,WE,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,560,Pallet DIY (Package-FB),Packaging,PY,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,494,Wood Chip,Semi Product,WC,No,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,481,DASP (Semi Book),Semi Product,AS,No,Yes,No,Yes,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,475,By Product_,Raw Material,BY,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,332,DASP (Semi-Colour),Semi Product,CL,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,Yes,No,No
+No,331,DASP (Line Printed),Semi Product,AS,No,Yes,No,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,330,DASP (Inner Sheet),Semi Product,AS,No,Yes,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,329,DASP (Cover),Semi Product,AS,No,Yes,No,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,328,DASP (Back Card),Semi Product,AS,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,327,Roll Finishing,Semi Product,RF,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,326,Roll CM (WIP),Semi Product,WI,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,325,WIP Slit,Semi Product,WS,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,324,Slurry (เยื่อน้ำ),Semi Product,SP,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,323,WIP Corrugate,Semi Product,WG,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,322,WIP Printing,Semi Product,PP,No,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+Yes,320,Card Paper (Semi),Semi Product,CR,No,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,319,AA Core (WIP),Semi Product,CW,No,Yes,No,No,No,No,No,No,No,No,No,No,Yes,No,Yes,Yes,No,No,No
+No,318,Jumbo Reel,Semi Product,JR,No,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,317,PrintSheet,Semi Product,PT,No,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+Yes,316,Colour Card (Semi),Semi Product,CC,No,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,315,Folio (Semi),Semi Product,FO,No,No,No,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,314,Cutsize (Guillotine) (Semi),Semi Product,GC,No,Yes,No,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,313,WIP Laminate,Semi Product,LW,No,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,312,Process Chemical,"Finished Goods - Non Paper,Semi Product",PC,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,311,Roll WIP,Semi Product,WI,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,310,RCP Slurry (เยื่อน้ำรีไซเคิ้ล),Semi Product,SR,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,309,Roll WIP (REWN),Semi Product,RW,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,307,Colour Paper (Semi),Semi Product,CL,No,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,Yes,No,No
+No,306,เชื้อเพลิง (RM),Raw Material,FU,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,305,Wrapper (RM-Flim),Raw Material,WW,No,Yes,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,304,Wood Log,Raw Material,WL,No,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,303,Book Plant (RM-AC),Raw Material,BP,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,301,Book Plant (RM-AG),Raw Material,BP,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,300,Waste (RM),Raw Material,WA,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,299,Box and Cover (RM-WS),Raw Material,BC,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,298,Book Plant (RM-DU),Raw Material,BP,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,297,Book Plant (RM-AM),Raw Material,BP,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,296,Box and Cover (RM-DU),Raw Material,BC,No,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,295,Jumbo Reel (RM),Raw Material,JR,No,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+Yes,294,Colour Paper - Pastel (RM),Raw Material,CP,No,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,293,Mask (RM-Filter),Raw Material,MS,No,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,292,Mask (RM-Inner),Raw Material,MS,No,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,291,Mask (RM-Outer),Raw Material,MS,No,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,290,Mask (RM-SS),Raw Material,MS,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,289,RCP Slurry (เยื่อน้ำรีไซเคิล) (RM),Raw Material,SR,No,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,288,Wood Chip (RM),"Consume,Raw Material",WC,No,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,287,Colour Paper (Import),Raw Material,CD,No,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,Yes
+Yes,286,Colour Paper - Neon (RM),Raw Material,CN,No,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,285,Chemical (RM),Raw Material,CH,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,284,Wrapper (Packaging-TG),Packaging,WW,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,283,Wrapper (Package-Pallet),Packaging,WW,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,282,Roll WIP (Package-SC),Packaging,RF,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,281,Roll Finishing (Pakage-SJ),Packaging,RF,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,280,Roll Finishing (Pakage-RW),Packaging,RF,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,279,Roll Finishing (Pakage-OH),Packaging,RF,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,278,Roll Finishing (Pakage-IH),Packaging,RF,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,277,Roll Finishing (Package-WK),Packaging,RF,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,276,Roll Finishing (Package-TG),Packaging,RF,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,275,Pulp (Package-SJ),Packaging,PU,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,274,Pulp (Package-OT),Packaging,PU,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,273,Pallet DIY (Package-WN),Packaging,PY,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,272,Pallet DIY (Package-WD),Packaging,PY,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,271,Pallet DIY (Package-UW),Packaging,PY,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,270,Pallet DIY (Package-TO),Packaging,PY,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,269,Pallet DIY (Package-TB),Packaging,PY,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,268,Mask (Package-TG),Packaging,MS,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,267,Mask (Package-S4),Packaging,MS,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,266,Mask (Package-Film),Packaging,MS,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,265,Mask (Package-EM),Packaging,MS,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,264,Mask (Package-BS),Packaging,MS,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,263,Mask (Package-BM),Packaging,MS,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,262,Mask (Package-BL),Packaging,MS,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,261,Jumbo Reel (Package-TG),Packaging,JR,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,260,Jumbo Reel (Package-Pallet),Packaging,JR,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,259,Honey Comb (Roll) (PK),Packaging,HC,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,258,Folio (Pakage-WK),Packaging,FO,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,257,Folio (Package-TS),Packaging,FO,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,256,Folio (Package-TG),Packaging,CV,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,255,Folio (Package-TB),Packaging,FO,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,254,Folio (Package-S7),Packaging,FO,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,253,Folio (Package-S3),Packaging,FO,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,252,Folio (Package-S2),Packaging,FO,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,251,Folio (Package-RC),Packaging,FO,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,250,Folio (Package-Pallet),Packaging,FO,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,249,Folio (Package-IR),Packaging,FO,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,248,Folio (Package-HB),Packaging,FO,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,247,Folio (Package-EP),Packaging,FO,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,246,Cutsize (Small Pack) (Package-S4),Packaging,CK,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,245,Cutsize (Small Pack) (Package-EP),Packaging,CK,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,244,Cutsize (Small Pack) (Package-BN),Packaging,CK,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,243,Cutsize (Package-Wrapper),Packaging,CZ,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,242,Cutsize (Package-TG),Packaging,CZ,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,241,Cutsize (Package-TF),Packaging,CZ,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,240,Cutsize (Package-TB),Packaging,CZ,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,239,Cutsize (Package-SI),Packaging,CZ,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,238,Cutsize (Package-SF),Packaging,CZ,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,237,Cutsize (Package-SC),Packaging,CZ,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,236,Cutsize (Package-S3),Packaging,CZ,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,235,Cutsize (Package-S2),Packaging,CZ,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,234,Cutsize (Package-S1),Packaging,CZ,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,233,Cutsize (Package-RI),Packaging,CZ,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,232,Cutsize (Package-QR),Packaging,CZ,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,231,Cutsize (Package-Pallet),Packaging,CZ,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,230,Cutsize (Package-OT),Packaging,CZ,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,229,Cutsize (Package-KB),Packaging,CZ,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,228,Cutsize (Package-GP),Packaging,CZ,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,227,Cutsize (Package-CZ2),Packaging,CZ,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,226,Cutsize (Package-CO),Packaging,CZ,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,225,Cutsize (Package-CA),Packaging,CZ,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,224,Cutsize (Package-BV),Packaging,CZ,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,223,Cutsize (Package-BN),Packaging,CZ,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,222,Cutsize (Package-BA),Packaging,CZ,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,221,Cutsize (Package-AN),Packaging,CZ,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,220,Cutsize (Guillotine) (Package-TS),Packaging,GC,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,219,Cutsize (Guillotine) (Package-TB),Packaging,GC,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,218,Cutsize (Guillotine) (Package-S3),Packaging,GC,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,217,Cutsize (Guillotine) (Package-S2),Packaging,GC,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,216,Cutsize (Guillotine) (Package-QR),Packaging,GC,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,215,Cutsize (Guillotine) (Package-Pallet),Packaging,GC,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,214,Cutsize (Guillotine) (Package-EP),Packaging,GC,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,213,Cutsize (Guillotine) (Package-CO),Packaging,GC,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,212,Cutsize (Guillotine) (Package-BN),Packaging,GC,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,211,Converting (Package-TF),Packaging,CV,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,210,Converting (Package-TB),Packaging,CV,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,209,Converting (Package-SI),Packaging,CV,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,208,Converting (Package-SF),Packaging,CV,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,207,Converting (Package-SD),Packaging,CV,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,206,Converting (Package-S3),Packaging,CV,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,205,Converting (Package-Pallet),Packaging,CV,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,204,Converting (Package-CO),Packaging,CV,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,203,Converting (Package-BN),Packaging,CV,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,202,Converting (Package-AN),Packaging,CV,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,201,Colour Paper (Package-S3),Packaging,CL,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,200,Colour Paper (Package-EP),Packaging,CL,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,199,Box and Cover (Package-TG),Packaging,BC,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,198,Box and Cover (Package-TB),Packaging,BC,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,197,Box and Cover (Package-SC),Packaging,BC,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,196,Box and Cover (Package-Pallet),Packaging,BC,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,195,Book Plant (Package-RC),Packaging,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,194,Book Plant (Package-HB),Packaging,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,193,Book Plant (Package-GC),Packaging,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,192,Book Plant (Package-EP),Packaging,BP,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,191,Book Plant (Package-EL),Packaging,BP,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,190,Book Plant (Package-TL),Packaging,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,189,Book Plant (Package-TG),Packaging,BP,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,188,Book Plant (Package-SF),Packaging,BP,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,187,Book Plant (Package-SC),Packaging,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,186,Book Plant (Package-S4),Packaging,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,185,Book Plant (Package-LB),Packaging,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,184,Book Plant (Package-IR),Packaging,BP,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,183,Book Plant (Package-BN),Packaging,BP,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,182,Book Plant (Package-BG),Packaging,BP,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,181,AA Core (WIP) (Package-TA),Packaging,CW,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,180,AA Core (WIP) (Package-SD),Packaging,CW,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,179,AA Core (WIP) (Package-M5),Packaging,CW,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,178,AA Core (WIP) (Package-M4),Packaging,CW,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,177,AA Core (WIP) (Package-M2),Packaging,CW,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,176,AA Core (WIP) (Package-KA),Packaging,CW,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,175,AA Core (WIP) (Package-CK),Packaging,CW,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,174,AA Core (WIP) (Package-CB),Packaging,CW,No,Yes,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No
+No,173,AA Core (WIP) (Package-BW),Packaging,CW,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No
+No,172,AA Core (FG) (Package-SC),Packaging,CO,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,171,Converting (Package-IR),Packaging,CV,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,170,Converting (Package-S5),Packaging,CV,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,169,Colour Paper (FG-RC),Finished Goods - Paper,CL,No,No,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Yes,No,No
+No,168,Roll FG,Finished Goods - Paper,RG,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,167,Roll CM,Finished Goods - Paper,RG,No,No,No,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,166,Ream CM,Finished Goods - Paper,RC,Yes,No,No,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,165,Cutsize (France),Finished Goods - Paper,CZ,Yes,No,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,Yes
+No,164,Cutsize (Guillotine),Finished Goods - Paper,GC,Yes,No,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+Yes,163,Colour Paper - Deep,Finished Goods - Paper,CD,No,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,Yes
+No,162,Cutsize,Finished Goods - Paper,CZ,Yes,No,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+Yes,161,Colour Paper - Pastel,Finished Goods - Paper,CP,No,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,Yes
+No,160,Folio (Guillotine),Finished Goods - Paper,GF,Yes,No,No,No,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+No,157,PREMIUM,Finished Goods - Non Paper,PR,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No
+No,156,DA CARE,Finished Goods - Non Paper,CA,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,155,DACT,Finished Goods - Non Paper,CT,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,154,DAOS,Finished Goods - Non Paper,DS,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,153,Wet Pulp (เยื่อเปียก),Finished Goods - Non Paper,WP,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,152,RCP Wet Bale (เยื่อเปียกรีไซเคิ้ล),Finished Goods - Non Paper,WR,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,151,Mask,Finished Goods - Non Paper,MS,Yes,Yes,Yes,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,150,DASP (Creative),Finished Goods - Non Paper,AS,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,149,DASP (Card&Colour Paper),Finished Goods - Non Paper,CL,No,Yes,No,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+Yes,148,Box and Cover Other,Finished Goods - Non Paper,BO,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,147,Cutsize (Consume-PI),Consume,CZ,Yes,Yes,Yes,Yes,No,Yes,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No
+No,145,Roll Finishing (Consume-OT),Consume,RF,Yes,Yes,No,Yes,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,143,Cutsize (Consume-CH),Consume,CZ,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,142,Book Plant (Consume-MO),Consume,BP,No,Yes,No,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,141,Converting (Consume-NL),Consume,CV,Yes,Yes,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,140,Wrapper (Consume-OT),Consume,WW,No,Yes,No,Yes,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,139,Wet Pulp (เยื่อเปียก) (Consume-DB),Consume,PU,Yes,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes
+No,138,Box and Cover (Consume-DC),Consume,BC,No,Yes,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,137,Chemical (Consume),Consume,CH,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,136,Wrapper (Consume-MO),Consume,WW,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,135,เชื้อเพลิง (Consume),Consume,FU,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,77,Box and Cover (Consume-OT),Consume,BC,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,Yes,Yes,No,Yes,Yes,No,No,No
+No,76,Box and Cover (Consume-MO),Consume,BC,No,Yes,Yes,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,Yes,Yes,No,No,No
+No,71,Box and Cover (Consume-ST),Consume,BC,No,Yes,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+Yes,67,Pallet DIY - Shortleg,Finished Goods - Non Paper,PS,No,Yes,No,No,Yes,Yes,Yes,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,66,Honey Comb (Roll),Finished Goods - Non Paper,HC,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,65,Pulp (Consume-BW),Consume,PU,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,64,DASP,Finished Goods - Non Paper,AS,No,Yes,No,Yes,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,63,RCP Dry (เยื่อแห้งรีไซเคิ้ล),Finished Goods - Non Paper,DR,No,Yes,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,60,Pallet DIY,Finished Goods - Non Paper,PY,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,49,Honey Comb (Roll) (Consume-S1),Consume,HC,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+No,47,By Product,Finished Goods - Non Paper,BY,Yes,Yes,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,46,Jumbo Reel (Consume-RS),Consume,JR,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No
+Yes,45,Box and Cover,Finished Goods - Non Paper,BC,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,44,Jumbo Reel (Consume-ROD),Consume,JR,No,Yes,Yes,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,Yes
+No,43,Pulp (Consume-NZ),Consume,PU,Yes,Yes,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,Yes,No,Yes,Yes,No,No,No
+No,42,Dry Pulp (เยื่อแห้ง) (Consume-M/C),Consume,PU,No,Yes,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,41,Honey Comb (Roll) (Consume-OT),Consume,HC,No,Yes,No,No,Yes,No,No,No,No,No,No,No,Yes,No,Yes,Yes,No,No,Yes
+No,40,Jumbo Reel (Consume-OT),Consume,JR,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes
+No,39,Pulp (Consume-DT),Consume,PU,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,Yes
+No,38,Jumbo Reel (Consume-NZ),Consume,JR,No,Yes,Yes,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,37,Wrapper,Finished Goods - Non Paper,WW,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,36,Pulp (Consume-DB),Consume,PU,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+No,35,RCP Wet Bale (เยื่อเปียกรีไซเคิ้ล) (Consume-DB),Consume,PU,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+No,33,Roll Finishing (Consume-CG),Consume,RF,No,Yes,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No
+No,32,Pulp (Consume-OT),Consume,PU,No,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,30,Pulp (Consume-SL),Consume,PU,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,No,No,No,No,Yes,No,Yes,Yes,No,No,No
+No,26,Wet Pulp (เยื่อเปียก) (Consume-NZ),Consume,PU,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No
+No,25,Wet Pulp (เยื่อเปียก) (Consume-M/C),Consume,PU,No,Yes,Yes,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,24,AA Core (FG),Finished Goods - Non Paper,CO,No,Yes,No,No,Yes,No,No,No,No,No,No,No,Yes,No,Yes,Yes,No,No,No
+No,23,Jumbo Reel (Consume-RE),Consume,JR,No,Yes,Yes,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,Yes
+No,19,Cutsize (Small Pack),Finished Goods - Paper,CK,Yes,No,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
+No,18,Jumbo Reel (Consume-DB),Consume,JR,No,Yes,Yes,No,Yes,Yes,No,No,No,No,No,Yes,Yes,Yes,No,No,No,No,No
+No,12,Dry Pulp (เยื่อแห้ง),"Consume,Finished Goods - Non Paper",DP,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,Yes,No,Yes,Yes,No,No,No
+No,11,Mask (Consume-MO),Consume,MS,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,Yes
+No,5,Folio,Finished Goods - Paper,FO,Yes,No,No,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,4,Jumbo Reel (Consume-MC),Consume,JR,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,Yes,Yes
+No,3,Pulp (Consume-VB),Consume,PU,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No
+No,2,Colour Paper,Finished Goods - Paper,CL,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,Yes,No,No
+No,1,Pulp (Consume-SD),Consume,PU,Yes,Yes,No,Yes,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No
