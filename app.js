@@ -233,8 +233,137 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (resultBanner) resultBanner.style.display = 'none';
 
+    // Validation for required fields in Step 1
+    function validateStep1(showErrors = true) {
+        let isValid = true;
+        const errors = [];
+        
+        function setFieldValid(fieldId, valid) {
+            if (!showErrors) return;
+            const el = document.getElementById(fieldId);
+            if (!el) return;
+            
+            if (valid) {
+                el.classList.remove('is-invalid');
+                const wrapper = el.nextElementSibling;
+                if (wrapper && wrapper.classList.contains('searchable-select-wrapper')) {
+                    wrapper.querySelector('.searchable-select-toggle')?.classList.remove('is-invalid');
+                }
+            } else {
+                el.classList.add('is-invalid');
+                const wrapper = el.nextElementSibling;
+                if (wrapper && wrapper.classList.contains('searchable-select-wrapper')) {
+                    wrapper.querySelector('.searchable-select-toggle')?.classList.add('is-invalid');
+                }
+                isValid = false;
+            }
+        }
+        
+        // 1. Type
+        const typeVal = document.getElementById('type').value;
+        if (!typeVal) {
+            setFieldValid('type', false);
+            errors.push('Type');
+        } else {
+            setFieldValid('type', true);
+        }
+        
+        // 2. Item Sub-Group
+        const subGroupVal = document.getElementById('subGroup').value;
+        if (!subGroupVal) {
+            setFieldValid('subGroup', false);
+            errors.push('Item Sub-Group');
+        } else {
+            setFieldValid('subGroup', true);
+        }
+        
+        // 3. Item Group
+        const itemGroupVal = document.getElementById('itemGroup').value;
+        if (!itemGroupVal) {
+            setFieldValid('itemGroup', false);
+            errors.push('Item Group');
+        } else {
+            setFieldValid('itemGroup', true);
+        }
+        
+        // 4. Domestic/Export
+        const domExpVal = document.getElementById('domExp').value;
+        if (!domExpVal) {
+            setFieldValid('domExp', false);
+            errors.push('Domestic/Export');
+        } else {
+            setFieldValid('domExp', true);
+        }
+        
+        // 5. Brand
+        const brandVal = document.getElementById('brand').value;
+        if (!brandVal) {
+            setFieldValid('brand', false);
+            errors.push('Brand');
+        } else {
+            setFieldValid('brand', true);
+        }
+        
+        // 6. Gram (GSM)
+        const gramVal = document.getElementById('gram').value.trim();
+        if (!gramVal) {
+            setFieldValid('gram', false);
+            errors.push('Gram (GSM)');
+        } else {
+            setFieldValid('gram', true);
+        }
+        
+        // 7. Size
+        const sizeVal = document.getElementById('size').value.trim();
+        if (!sizeVal) {
+            setFieldValid('size', false);
+            errors.push('Size');
+        } else {
+            setFieldValid('size', true);
+        }
+        
+        // 8. Location for Work Order
+        const locationChecked = document.querySelectorAll('input[name="location_choice"]:checked');
+        if (locationChecked.length === 0) {
+            setFieldValid('location', false);
+            errors.push('Location for Work Order');
+        } else {
+            setFieldValid('location', true);
+        }
+        
+        return { isValid, errors };
+    }
+
     // Wizard Stepper Control Logic
     window.goToWizardStep = function(stepNum) {
+        if (stepNum > 1) {
+            const validation = validateStep1(true);
+            const valAlert = document.getElementById('validationAlert');
+            const valAlertDesc = document.getElementById('validationAlertDesc');
+            
+            if (!validation.isValid) {
+                if (valAlert && valAlertDesc) {
+                    valAlertDesc.innerHTML = 'โปรดระบุข้อมูลสำหรับฟิลด์: ' + validation.errors.map(e => `<strong>${e}</strong>`).join(', ');
+                    valAlert.classList.remove('hidden');
+                } else {
+                    alert('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน:\n- ' + validation.errors.join('\n- '));
+                }
+                
+                // Scroll to top of request form smoothly so user sees the warning
+                const requestFormContainer = document.getElementById('requestFormContainer');
+                if (requestFormContainer) {
+                    requestFormContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                return;
+            } else {
+                if (valAlert) {
+                    valAlert.classList.add('hidden');
+                }
+            }
+        }
+
         const steps = [1, 2, 3];
         steps.forEach(num => {
             const content = document.getElementById(`step${num}Content`);
@@ -1518,6 +1647,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             duplicateAlert.classList.add('hidden');
         }
+
+        // Clear is-invalid dynamically on input if valid
+        const validation = validateStep1(false);
+        if (validation.isValid) {
+            const valAlert = document.getElementById('validationAlert');
+            if (valAlert) valAlert.classList.add('hidden');
+        }
     }
     
     // Export CSV Template logic
@@ -1568,6 +1704,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnSubmitRequest = document.getElementById('btnSubmitRequest');
     if (btnSubmitRequest) {
         btnSubmitRequest.addEventListener('click', async () => {
+            const validation = validateStep1(true);
+            if (!validation.isValid) {
+                alert('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วนก่อนส่งคำขอ:\n- ' + validation.errors.join('\n- '));
+                goToWizardStep(1);
+                return;
+            }
+
             const itemCode = bannerItemCode.textContent || '-';
             const itemName = bannerItemName.textContent || '-';
 

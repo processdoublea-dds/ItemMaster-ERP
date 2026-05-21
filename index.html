@@ -468,6 +468,17 @@
                                     <h3 style="margin: 0; font-weight: 800; font-size: 1.2rem; color: #0f172a;">📝 1. ข้อมูลพื้นฐานสินค้า (Manual Input)</h3>
                                 </div>
                                 
+                                <!-- Validation Alert Box -->
+                                <div id="validationAlert" class="alert error hidden" style="background-color: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                                    <div style="display:flex; gap: 12px; align-items:center;">
+                                        <span style="font-size: 1.25rem;">⚠️</span>
+                                        <div>
+                                            <strong style="display:block; margin-bottom:4px; font-weight: 800;">กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน (Required Fields Missing)</strong>
+                                            <p id="validationAlertDesc" style="font-size:0.85rem; margin:0; opacity:0.9;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <form id="itemForm" class="multi-section-form">
                                     <!-- General Info Fieldset -->
                                     <fieldset class="form-section">
@@ -479,7 +490,7 @@
                                         </div>
                                         <div class="form-grid">
                                             <div class="form-group">
-                                                <label for="type">Type</label>
+                                                <label for="type" class="required">Type</label>
                                                 <select id="type" name="type">
                                                     <option value="">Select Type</option>
                                                     <option value="Parent">Parent</option>
@@ -488,14 +499,14 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="subGroup">Item Sub-Group</label>
+                                                <label for="subGroup" class="required">Item Sub-Group</label>
                                                 <select id="subGroup" name="subGroup">
                                                     <option value="">Select Sub-Group</option>
                                                 </select>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="itemGroup">Item Group</label>
+                                                <label for="itemGroup" class="required">Item Group</label>
                                                 <select id="itemGroup" name="itemGroup">
                                                     <option value="">Select Group</option>
                                                     <option value="1">Finished Goods - Paper</option>
@@ -512,7 +523,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="domExp">Domestic/Export</label>
+                                                <label for="domExp" class="required">Domestic/Export</label>
                                                 <select id="domExp" name="domExp">
                                                     <option value="">Select Region</option>
                                                     <option value="E">Export</option>
@@ -533,7 +544,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="brand">Brand</label>
+                                                <label for="brand" class="required">Brand</label>
                                                 <select id="brand" name="brand">
                                                     <option value="">Select Brand</option>
                                                     <option value="AL">Alpine</option>
@@ -678,12 +689,12 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="gram">Gram (GSM)</label>
+                                                <label for="gram" class="required">Gram (GSM)</label>
                                                 <input type="number" id="gram" name="gram" placeholder="e.g. 080" min="0" max="999" step="1">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="size">Size</label>
+                                                <label for="size" class="required">Size</label>
                                                 <input type="text" id="size" name="size" placeholder="e.g. A4, 210x297">
                                             </div>
 
@@ -793,7 +804,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="location">Location for Work Order</label>
+                                                <label for="location" class="required">Location for Work Order</label>
                                                 <div id="location" class="checkbox-group-container">
                                                     <p style="font-size: 0.8rem; color: var(--text-muted);">Select Sub-Group first</p>
                                                 </div>

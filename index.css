@@ -1675,4 +1675,36 @@ body {
     margin: 0;
 }
 
+/* ============================================
+   Form Validation & Required Fields Styling
+   ============================================ */
+label.required::after {
+    content: ' *';
+    color: #ef4444;
+    font-weight: bold;
+    margin-left: 0.15rem;
+}
+
+.is-invalid {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+}
+
+.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* searchable select toggle validation */
+.searchable-select-wrapper.is-invalid .searchable-select-toggle,
+.searchable-select-toggle.is-invalid {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+}
+
+/* checkbox group container validation */
+.checkbox-group-container.is-invalid {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+}
+
 
